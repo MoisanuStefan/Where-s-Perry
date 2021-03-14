@@ -16,15 +16,22 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool canJump;
 
-    public int amountOfJumps;
+    public int amountOfJumps = 2;
 
     private int amountOfJumpsLeft;
 
     public LayerMask whatIsGround;
     public Transform groundCheck;
+    public Camera camera;
 
     private Rigidbody2D rb;
     void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        amountOfJumpsLeft = amountOfJumps;
+    }
+
+    private void OnEnable()
     {
         rb = GetComponent<Rigidbody2D>();
         amountOfJumpsLeft = amountOfJumps;
@@ -34,7 +41,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         CheckInput();
-        CheckMovementDirection();
+        CheckLookingDirection();
         CheckIfCanJump();
     }
 
@@ -48,16 +55,19 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
     }
-    private void CheckMovementDirection()
+    public void CheckLookingDirection()
     {
-        if(isFacingRight && movementInputDirection < 0)
+        Vector2 mousePos = camera.ScreenToWorldPoint(Input.mousePosition);
+       
+        if (isFacingRight && mousePos.x < transform.position.x )
         {
+            
             Flip();
         }
-        else if(!isFacingRight && movementInputDirection > 0)
+        else if (!isFacingRight && mousePos.x > transform.position.x)
         {
             Flip();
-            
+
         }
     }
 
@@ -77,7 +87,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Flip()
+    public void Flip()
     {
         isFacingRight = !isFacingRight;
         transform.Rotate(0.0f, 180.0f, 0.0f);

@@ -17,6 +17,7 @@ public class HookController : MonoBehaviour
     private Vector3 velocity;
 
     private bool isPulling = false;
+    private bool isDocked = false;
 
     // Start is called before the first frame update
     void Start()
@@ -67,7 +68,17 @@ public class HookController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        velocity = Vector2.zero;
-        isPulling = true;
+        if (isPulling && collision.gameObject.tag.Equals("HookOrigin"))
+        {
+            isPulling = false;
+            isDocked = true;
+        }
+       
+        else if (!isPulling)
+        {
+            velocity = Vector2.zero;
+            isPulling = true;
+        }
+        
     }
 }

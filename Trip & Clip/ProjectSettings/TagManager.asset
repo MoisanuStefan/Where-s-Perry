@@ -17,7 +17,7 @@ TagManager:
   - Ground
   - Hook
   - Player
-  - 
+  - Triggers
   - 
   - 
   - 
@@ -44,6 +44,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 916878209
+    locked: 0
+  - name: Triggers
+    uniqueID: 1762576881
     locked: 0
   - name: Platforms
     uniqueID: 1632617473

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - HookOrigin
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - Hook
   - Player
   - Triggers
-  - 
-  - 
+  - Enemy
+  - Damageable
   - 
   - 
   - 
@@ -53,6 +54,9 @@ TagManager:
     locked: 0
   - name: Decoration
     uniqueID: 3016106307
+    locked: 0
+  - name: Enemy
+    uniqueID: 3256774575
     locked: 0
   - name: Player
     uniqueID: 3234350145

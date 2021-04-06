@@ -17,10 +17,16 @@ public class Entity : MonoBehaviour
     [SerializeField]
     private Transform ledgeCheck;
 
+    private int lastDamageDirection;
+
     private Vector2 velocityWorkspace;  // holder for any vector, instead of creating a new vector each time
 
+    private float currentHealth;
+
+    protected bool isDead;
     public virtual void Start()
     {
+        currentHealth = entityData.maxHealth;
         facingDirection = 1;
         aliveGO = transform.Find("Alive").gameObject;
         rb = aliveGO.GetComponent<Rigidbody2D>();
@@ -45,6 +51,13 @@ public class Entity : MonoBehaviour
         rb.velocity = velocityWorkspace;
     }
 
+    public virtual void SetVelocity(float velocity, Vector2 angle, int direction)
+    {
+        angle.Normalize();
+        velocityWorkspace.Set(angle.x * velocity * direction, angle.y * velocity);
+        rb.velocity = velocityWorkspace;
+    }
+
     public virtual bool CheckWall()
     {
         return Physics2D.Raycast(wallCheck.position, aliveGO.transform.right, entityData.wallCheckDistance, entityData.whatIsGround);
@@ -58,6 +71,31 @@ public class Entity : MonoBehaviour
     {
         facingDirection *= -1;
         aliveGO.transform.Rotate(0f, 180f, 0f);
+    }
+
+    public virtual void DamageHop(float velocity)
+    {
+        velocityWorkspace.Set(rb.velocity.x, velocity);
+        rb.velocity = velocityWorkspace;
+    }
+    public virtual void Damage(AttackDetails attackDetails)
+    {
+        currentHealth -= attackDetails.attackAmount;
+        DamageHop(entityData.damageHopSpeed);
+        if (attackDetails.position.x > aliveGO.transform.position.x)
+        {
+            lastDamageDirection = -1;
+        }
+        else
+        {
+            lastDamageDirection = 1;
+        }
+
+        if (currentHealth <= 0)
+        {
+            isDead = true;
+        }
+
     }
     public virtual void OnDrawGizmos()
     {

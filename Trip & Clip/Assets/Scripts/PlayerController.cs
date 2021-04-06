@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = true;
     private bool isGrounded;
     private bool canJump;
+    private bool isWalking = false;
+    private bool canFlip = true;
 
     public int amountOfJumps = 2;
 
@@ -23,11 +25,13 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsGround;
     public Transform groundCheck;
     public Camera camera;
+    public Animator animator;
 
     private Rigidbody2D rb;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         amountOfJumpsLeft = amountOfJumps;
     }
 
@@ -41,12 +45,14 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         CheckInput();
-        CheckLookingDirection();
         CheckIfCanJump();
+        UpdateAnimations();
     }
 
     private void FixedUpdate()
     {
+        CheckMovementDirection();
+
         ApplyMovement();
         CheckSurroundings();
     }
@@ -55,19 +61,27 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
     }
-    public void CheckLookingDirection()
+    public void CheckMovementDirection()
     {
-        Vector2 mousePos = camera.ScreenToWorldPoint(Input.mousePosition);
        
-        if (isFacingRight && mousePos.x < transform.position.x )
+       
+        if (canFlip && isFacingRight && movementInputDirection < 0)
         {
-            
             Flip();
         }
-        else if (!isFacingRight && mousePos.x > transform.position.x)
+        else if (canFlip && !isFacingRight && movementInputDirection > 0)
         {
             Flip();
+        }
 
+        if (Mathf.Abs(rb.velocity.x) < 0.001)
+        {
+            isWalking = false;
+            
+        }
+        else
+        {
+            isWalking = true;
         }
     }
 
@@ -87,6 +101,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void EnableFlip()
+    {
+        canFlip = true;
+    }
+
+    public void DisableFlip()
+    {
+        canFlip = false;
+    }
     public void Flip()
     {
         isFacingRight = !isFacingRight;
@@ -120,5 +143,11 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+    }
+
+    private void UpdateAnimations()
+    {
+        animator.SetBool("isWalking", isWalking);
+        animator.SetBool("isGrounded", isGrounded);
     }
 }

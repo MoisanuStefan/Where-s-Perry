@@ -28,7 +28,7 @@ public class PlayerSwitcher : MonoBehaviour
             if (currentPlayer == 0)
             {
                 players[currentPlayer].GetComponent<PlayerController>().enabled = false;
-                players[currentPlayer].GetComponentInChildren<GrapplingGun>().enabled = false;
+                //players[currentPlayer].GetComponentInChildren<GrapplingGun>().enabled = false;
                 material.friction = 0.4f;
                 players[currentPlayer].GetComponent<CapsuleCollider2D>().sharedMaterial = material;
 
@@ -44,7 +44,7 @@ public class PlayerSwitcher : MonoBehaviour
 
 
                 players[1 - currentPlayer].GetComponent<PlayerController>().enabled = true;
-                players[1 - currentPlayer].GetComponentInChildren<GrapplingGun>().enabled = true;
+                //players[1 - currentPlayer].GetComponentInChildren<GrapplingGun>().enabled = true;
                 material.friction = 0.0f;
                 players[1 - currentPlayer].GetComponent<CapsuleCollider2D>().sharedMaterial = material;
 

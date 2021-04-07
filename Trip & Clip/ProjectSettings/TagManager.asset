@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HookOrigin
   - Enemy
+  - FlyPlayer
   layers:
   - Default
   - TransparentFX

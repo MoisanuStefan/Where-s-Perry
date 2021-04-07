@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private bool canJump;
     private bool isWalking = false;
     private bool canFlip = true;
+    private bool isFollowing = true;
 
     public int amountOfJumps = 2;
 
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public Camera camera;
     public Animator animator;
+    public GameObject flyPlayer;
 
     private Rigidbody2D rb;
     void Start()
@@ -57,6 +59,20 @@ public class PlayerController : MonoBehaviour
         CheckSurroundings();
     }
 
+    private void CheckInput()
+    {
+        movementInputDirection = Input.GetAxisRaw("Horizontal");
+        if (Input.GetButtonDown("Jump") && canJump)
+        {
+            Jump();
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            isFollowing = !isFollowing;
+            flyPlayer.GetComponent<FollowController>().enabled = isFollowing;
+            
+        }
+    }
     private void CheckSurroundings()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
@@ -121,14 +137,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         amountOfJumpsLeft--;
     }
-    private void CheckInput()
-    {
-        movementInputDirection = Input.GetAxisRaw("Horizontal");
-        if (Input.GetButtonDown("Jump") && canJump)
-        {
-            Jump();
-        }
-    }
+   
 
     private void ApplyMovement()
     {

@@ -33,8 +33,10 @@ public class PlayerSwitcher : MonoBehaviour
                 players[currentPlayer].GetComponent<CapsuleCollider2D>().sharedMaterial = material;
 
                 players[1 - currentPlayer].GetComponent<FlyPlayerController>().enabled = true;
+                players[1 - currentPlayer].GetComponent<FollowController>().enabled = false;
+
                 //players[1 - currentPlayer].GetComponent<Rigidbody2D>().isKinematic = false;
-             
+
             }
             else
             {

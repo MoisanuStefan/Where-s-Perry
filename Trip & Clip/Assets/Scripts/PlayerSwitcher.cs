@@ -7,17 +7,15 @@ public class PlayerSwitcher : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject[] players;
-    public GameObject camera;
+    public FollowCamera camera;
 
     public PhysicsMaterial2D material;
 
     private int currentPlayer = 0;
 
-    private CinemachineVirtualCamera vcam;
 
     private void Start()
     {
-        vcam = camera.GetComponent<CinemachineVirtualCamera>();
     }
 
     // Update is called once per frame
@@ -30,7 +28,7 @@ public class PlayerSwitcher : MonoBehaviour
                 players[currentPlayer].GetComponent<PlayerController>().enabled = false;
                 //players[currentPlayer].GetComponentInChildren<GrapplingGun>().enabled = false;
                 material.friction = 0.4f;
-                players[currentPlayer].GetComponent<CapsuleCollider2D>().sharedMaterial = material;
+                players[currentPlayer].GetComponent<BoxCollider2D>().sharedMaterial = material;
 
                 players[1 - currentPlayer].GetComponent<FlyPlayerController>().enabled = true;
                 players[1 - currentPlayer].GetComponent<FollowController>().enabled = false;
@@ -48,7 +46,7 @@ public class PlayerSwitcher : MonoBehaviour
                 players[1 - currentPlayer].GetComponent<PlayerController>().enabled = true;
                 //players[1 - currentPlayer].GetComponentInChildren<GrapplingGun>().enabled = true;
                 material.friction = 0.0f;
-                players[1 - currentPlayer].GetComponent<CapsuleCollider2D>().sharedMaterial = material;
+                players[1 - currentPlayer].GetComponent<BoxCollider2D>().sharedMaterial = material;
 
             }
            
@@ -59,8 +57,8 @@ public class PlayerSwitcher : MonoBehaviour
 
 
             currentPlayer = 1 - currentPlayer;
-            
-            vcam.Follow = players[currentPlayer].transform;
+
+            camera.SetFollowObject(players[currentPlayer]);
         }
     }
 

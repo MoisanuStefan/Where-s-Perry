@@ -6,9 +6,10 @@ public class FollowCamera : MonoBehaviour
 {
     public GameObject followObject;
     public float followOffset;
-    public float speed;
+    public float switchSpeed = 20f;
     private Rigidbody2D rb;
     private float treshold;
+    private bool isSwitching = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class FollowCamera : MonoBehaviour
 
     public void SetFollowObject(GameObject followObject)
     {
+        isSwitching = true;
         this.followObject = followObject;
         rb = followObject.GetComponent<Rigidbody2D>();
        
@@ -30,14 +32,18 @@ public class FollowCamera : MonoBehaviour
         Vector2 followPosition = followObject.transform.position;
         float xDifference = Vector2.Distance(Vector2.right * transform.position.x, Vector2.right * followPosition.x);
 
+        if (isSwitching && xDifference <= treshold / 2)
+        {
+            isSwitching = false;
+        }
+
         Vector3 newPosition = transform.position;
-        Debug.Log(Mathf.Abs(xDifference));
         if (Mathf.Abs(xDifference) >= treshold)
         {
             newPosition.x = followPosition.x;
         }
-        float moveSpeed = rb.velocity.magnitude > speed ? rb.velocity.magnitude : speed;
-        transform.position = Vector3.MoveTowards(transform.position, newPosition, moveSpeed * Time.deltaTime);
+        float moveSpeed = isSwitching ? switchSpeed : rb.velocity.magnitude;
+        transform.position = Vector3.MoveTowards(transform.position, newPosition, moveSpeed * Time.fixedDeltaTime);
     }
 
     private float ComputeTreshold()

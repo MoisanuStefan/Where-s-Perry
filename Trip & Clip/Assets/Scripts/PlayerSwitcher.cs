@@ -50,12 +50,6 @@ public class PlayerSwitcher : MonoBehaviour
 
             }
            
-            
-
-
-   
-
-
             currentPlayer = 1 - currentPlayer;
 
             camera.SetFollowObject(players[currentPlayer]);

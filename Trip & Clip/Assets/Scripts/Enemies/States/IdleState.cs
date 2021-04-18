@@ -10,9 +10,19 @@ public class IdleState : State
 
     protected bool isIdleTimeOver;
     protected bool flipAfterIdle;
+    protected bool isPlayerInMinRange;
+    protected bool isPlayerInMaxRange;
+
     public IdleState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_IdleState stateData) : base(entity, stateMachine, animBoolName)
     {
         this.stateData = stateData;
+    }
+
+    public override void DoChecks()
+    {
+        base.DoChecks();
+        isPlayerInMinRange = entity.CheckPlayerInMinRange();
+        isPlayerInMaxRange = entity.CheckPlayerInMaxRange();
     }
 
     public override void Enter()
@@ -21,6 +31,7 @@ public class IdleState : State
         entity.SetVelocity(0f);
         isIdleTimeOver = false;
         setRandomIdleTime();
+       
     }
 
     public override void Exit()
@@ -44,6 +55,7 @@ public class IdleState : State
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+       
     }
     public void SetFlipAfterIdle(bool flip)
     {

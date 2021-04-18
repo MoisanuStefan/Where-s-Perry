@@ -16,6 +16,8 @@ public class Entity : MonoBehaviour
     private Transform wallCheck;
     [SerializeField]
     private Transform ledgeCheck;
+    [SerializeField]
+    private Transform playerCheck;
 
     private int lastDamageDirection;
 
@@ -67,6 +69,17 @@ public class Entity : MonoBehaviour
     {
         return !Physics2D.Raycast(ledgeCheck.position, Vector3.down, entityData.ledgeCheckDistance, entityData.whatIsGround);
     }
+
+    public bool CheckPlayerInMinRange()
+    {
+        return Physics2D.Raycast(playerCheck.position, aliveGO.transform.right, entityData.minDetectRange, entityData.whatIsPlayer);
+    }
+
+    public bool CheckPlayerInMaxRange()
+    {
+        return Physics2D.Raycast(playerCheck.position, aliveGO.transform.right, entityData.maxDetectRange, entityData.whatIsPlayer);
+
+    }
     public virtual void Flip()
     {
         facingDirection *= -1;
@@ -101,6 +114,9 @@ public class Entity : MonoBehaviour
     {
         Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.wallCheckDistance));
         Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
+        Gizmos.DrawWireSphere(playerCheck.position + Vector3.right * entityData.minDetectRange, 0.2f);
+        Gizmos.DrawWireSphere(playerCheck.position + Vector3.right * entityData.maxDetectRange, 0.3f);
+
 
     }
 }

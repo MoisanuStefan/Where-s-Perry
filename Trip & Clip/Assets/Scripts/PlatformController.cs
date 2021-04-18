@@ -33,7 +33,6 @@ public class PlatformController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(rb.velocity);
         //transform.position = Vector3.MoveTowards(transform.position, Vector3.Lerp(transform.position, globalWaypoins[fromWaypointIndex + 1], 0.5f), speed * Time.deltaTime / Vector3.Distance(transform.position, globalWaypoins[fromWaypointIndex + 1]));
         Vector2 newPosition = CalculatePlatformMovement();
         //transform.position = Vector3.MoveTowards(transform.position, globalWaypoins[(fromWaypointIndex + 1) % globalWaypoins.Length], 0.5f);

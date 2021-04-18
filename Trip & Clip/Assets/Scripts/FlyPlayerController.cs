@@ -5,7 +5,7 @@ using UnityEngine;
 public class FlyPlayerController : MonoBehaviour
 {
     public float movementSpeed = 10.0f;
-
+    public Collider2D player1Collider;
 
 
     private float horizontalMovementDirection;
@@ -17,6 +17,7 @@ public class FlyPlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        
     }
 
     private void OnEnable()
@@ -34,7 +35,8 @@ public class FlyPlayerController : MonoBehaviour
 
     void ApplyMovement()
     {
-        rb.velocity = new Vector2(movementSpeed * horizontalMovementDirection, movementSpeed * verticalMovementDirection);
+        //rb.velocity = new Vector2(movementSpeed * horizontalMovementDirection, movementSpeed * verticalMovementDirection);
+        rb.AddForce(new Vector2(movementSpeed * horizontalMovementDirection, movementSpeed * verticalMovementDirection));
     }
 
     void CheckInput()

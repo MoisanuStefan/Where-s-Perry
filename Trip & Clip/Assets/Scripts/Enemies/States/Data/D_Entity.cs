@@ -9,6 +9,9 @@ public class D_Entity : ScriptableObject
     public float damageHopSpeed = 10f;
     public float wallCheckDistance = 0.2f;
     public float ledgeCheckDistance = 0.4f;
-   
+    public float minDetectRange = 3f;
+    public float maxDetectRange = 4f;
+
     public LayerMask whatIsGround;
+    public LayerMask whatIsPlayer;
 }

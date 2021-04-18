@@ -32,7 +32,7 @@ public class FollowCamera : MonoBehaviour
         Vector2 followPosition = followObject.transform.position;
         float xDifference = Vector2.Distance(Vector2.right * transform.position.x, Vector2.right * followPosition.x);
 
-        if (isSwitching && xDifference <= treshold / 2)
+        if (isSwitching && xDifference <= treshold)
         {
             isSwitching = false;
         }
@@ -49,6 +49,8 @@ public class FollowCamera : MonoBehaviour
     private float ComputeTreshold()
     {
         Rect aspect = Camera.main.pixelRect;
+      
+
         float treshold = Camera.main.orthographicSize * aspect.width / aspect.height;
         treshold -= followOffset;
         return treshold;

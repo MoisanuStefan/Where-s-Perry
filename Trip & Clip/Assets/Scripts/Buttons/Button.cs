@@ -6,18 +6,20 @@ public class Button : MonoBehaviour
 {
     public float moveDistance;
     public float lerpTime;
+    public float delayTime = 0;
     public bool isVertical;
 
     public Trapdoor trapdoor;
 
     private bool isTriggered;
     private bool isColliding;
-
     private bool isMoving;
     private bool isDisabled;
 
     private float disableTime = 0.2f;
     private float elapsedDisabledTime = 0f;
+    private float elapsedTriggerDelay= 0f;
+    private float triggerTime;
 
     private Vector3 unTriggeredPosition;
     private Vector3 triggeredPosition;
@@ -41,12 +43,12 @@ public class Button : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         isColliding = true;
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         isColliding = false;
     }
@@ -72,6 +74,7 @@ public class Button : MonoBehaviour
             if (!isColliding && isTriggered || isColliding && !isTriggered)
             {
                 isDisabled = true;
+
                 Trigger();
             }
 

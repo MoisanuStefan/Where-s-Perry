@@ -19,12 +19,13 @@ public class PlayerController : MonoBehaviour
     private bool canFlip = true;
     private bool isFollowing = true;
 
-    public int amountOfJumps = 2;
+    public int amountOfJumps = 1;
 
     private int amountOfJumpsLeft;
 
     public LayerMask whatIsGround;
     public Transform groundCheck;
+    public Transform followTarget;
     public Camera camera;
     public Animator animator;
     public GameObject flyPlayer;
@@ -149,14 +150,18 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(force);
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
-    }
+   
 
     private void UpdateAnimations()
     {
         animator.SetBool("isWalking", isWalking);
         animator.SetBool("isGrounded", isGrounded);
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        Gizmos.DrawLine(followTarget.position + Vector3.left * 0.1f, followTarget.position + Vector3.right * 0.1f);
+        Gizmos.DrawLine(followTarget.position + Vector3.up * 0.1f, followTarget.position + Vector3.down * 0.1f);
+
     }
 }

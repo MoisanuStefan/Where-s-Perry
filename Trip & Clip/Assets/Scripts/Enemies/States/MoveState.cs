@@ -8,6 +8,8 @@ public class MoveState : State
 
     protected bool isDetectingLedge;
     protected bool isDetectingWall;
+    protected bool isPlayerInMinRange;
+    protected bool isPlayerInMaxRange;
     public MoveState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_MoveState stateData) : base(entity, stateMachine, animBoolName)    // call base constructor, add specific constructor below
     {
         this.stateData = stateData;
@@ -17,8 +19,7 @@ public class MoveState : State
     {
         base.Enter();
         entity.SetVelocity(stateData.movementSpeed);
-        isDetectingLedge = entity.CheckLedge();
-        isDetectingWall = entity.CheckWall();
+       
     }
 
     public override void Exit()
@@ -29,12 +30,20 @@ public class MoveState : State
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        isDetectingLedge = entity.CheckLedge();
-        isDetectingWall = entity.CheckWall();
+       
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+    }
+
+    public override void DoChecks()
+    {
+        base.DoChecks();
+        isDetectingLedge = entity.CheckLedge();
+        isDetectingWall = entity.CheckWall();
+        isPlayerInMinRange = entity.CheckPlayerInMinRange();
+        isPlayerInMaxRange = entity.CheckPlayerInMaxRange();
     }
 }

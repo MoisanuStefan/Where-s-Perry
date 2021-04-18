@@ -11,11 +11,14 @@ public class PlayerSwitcher : MonoBehaviour
 
     public PhysicsMaterial2D material;
 
-    private int currentPlayer = 0;
+    private int currentPlayer;
 
 
     private void Start()
     {
+        currentPlayer = 0;
+        Physics2D.IgnoreCollision(players[0].GetComponent<BoxCollider2D>(), players[1].GetComponent<BoxCollider2D>());
+        players[1].GetComponent<FlyPlayerController>().enabled = false;
     }
 
     // Update is called once per frame

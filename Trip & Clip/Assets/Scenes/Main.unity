@@ -121,6 +121,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &40188416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 40188417}
+  m_Layer: 13
+  m_Name: MeleeAttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &40188417
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40188416}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.01, y: 0.03, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 203618126}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &88064574
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +282,7 @@ GameObject:
   - component: {fileID: 203618129}
   - component: {fileID: 203618128}
   - component: {fileID: 203618127}
+  - component: {fileID: 203618131}
   m_Layer: 13
   m_Name: Alive
   m_TagString: Enemy
@@ -267,12 +298,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203618125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.54, y: -3, z: 0}
+  m_LocalPosition: {x: 9.38, y: -3.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1338368210}
   - {fileID: 1319756569}
   - {fileID: 945322476}
+  - {fileID: 40188417}
   m_Father: {fileID: 2018951765}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -392,6 +424,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &203618131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203618125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2701bd86910d6284eb65794c1a72328f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &217711286 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3566163298463736940, guid: 637e4fa99adb38b44b67022a615e9223,
@@ -1132,6 +1176,7 @@ GameObject:
   - component: {fileID: 1093633517}
   - component: {fileID: 1093633516}
   - component: {fileID: 1093633515}
+  - component: {fileID: 1093633520}
   - component: {fileID: 1093633519}
   - component: {fileID: 1093633514}
   - component: {fileID: 1093633512}
@@ -1203,8 +1248,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 6
-  jumpForce: 14
+  jumpForce: 20
   groundCheckRadius: 0.18
+  knockbackSpeed: {x: 8, y: 10}
+  knockbackDuration: 0.25
   amountOfJumps: 1
   whatIsGround:
     serializedVersion: 2
@@ -1229,7 +1276,7 @@ Rigidbody2D:
   m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 4
+  m_GravityScale: 8
   m_Material: {fileID: 6200000, guid: e1560f483c411de49a1b3185c9491904, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1293,7 +1340,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093633511}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.8, y: 10.11, z: 0}
+  m_LocalPosition: {x: 2.9, y: 10.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1744398319}
@@ -1342,6 +1389,19 @@ MonoBehaviour:
   whatIsDamageable:
     serializedVersion: 2
     m_Bits: 8192
+--- !u!114 &1093633520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093633511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad3c9e68c2740ef4faf74254754640dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 50
 --- !u!1 &1182829910
 GameObject:
   m_ObjectHideFlags: 0
@@ -5436,6 +5496,9 @@ MonoBehaviour:
   chargeStateData: {fileID: 11400000, guid: 2fc7307d330a85b48a1a19752d18d8e9, type: 2}
   lookForPlayerStateData: {fileID: 11400000, guid: 2a7d97d8155186e45b0b910060762bfa,
     type: 2}
+  meleeAttackStateData: {fileID: 11400000, guid: f9744c6047f3d6547b48918a600ec8d4,
+    type: 2}
+  meleeAttackPosition: {fileID: 40188417}
 --- !u!4 &2018951765
 Transform:
   m_ObjectHideFlags: 0
@@ -5444,7 +5507,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018951763}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.24, y: 13.45, z: 0}
+  m_LocalPosition: {x: -13.27, y: 13.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 203618126}

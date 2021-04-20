@@ -7,5 +7,5 @@ using UnityEngine;
 public class D_ChargeState : ScriptableObject
 {
     public float chargeSpeed = 20f;
-    public float chargeTime = 3f;
+    public float chargeTime = 1f;
 }

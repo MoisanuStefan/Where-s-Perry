@@ -10,7 +10,13 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 16.0f;
     public float groundCheckRadius;
 
+    [SerializeField]
+    private Vector2 knockbackSpeed;
+    [SerializeField]
+    private float knockbackDuration;
+
     private float movementInputDirection;
+    private float knockbackStartTime;
 
     private bool isFacingRight = true;
     private bool isGrounded;
@@ -18,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private bool isWalking = false;
     private bool canFlip = true;
     private bool isFollowing = true;
+    private bool knockback;
 
     public int amountOfJumps = 1;
 
@@ -29,6 +36,7 @@ public class PlayerController : MonoBehaviour
     public Camera camera;
     public Animator animator;
     public GameObject flyPlayer;
+    public ScoreKeeper scoreKeeper;
 
     private Rigidbody2D rb;
     void Start()
@@ -50,6 +58,7 @@ public class PlayerController : MonoBehaviour
         CheckInput();
         CheckIfCanJump();
         UpdateAnimations();
+        CheckKnockback();
     }
 
     private void FixedUpdate()
@@ -129,8 +138,11 @@ public class PlayerController : MonoBehaviour
     }
     public void Flip()
     {
-        isFacingRight = !isFacingRight;
-        transform.Rotate(0.0f, 180.0f, 0.0f);
+        if (canFlip && !knockback)
+        {
+            isFacingRight = !isFacingRight;
+            transform.Rotate(0.0f, 180.0f, 0.0f);
+        }
     }
 
     private void Jump()
@@ -142,7 +154,10 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovement()
     {
-        rb.velocity = new Vector2(movementSpeed * movementInputDirection, rb.velocity.y);
+        if (!knockback)
+        {
+            rb.velocity = new Vector2(movementSpeed * movementInputDirection, rb.velocity.y);
+        }
     }
 
     public void ApplyForce(Vector3 force)
@@ -150,12 +165,35 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(force);
     }
 
-   
+    public void Knockback(int direction)
+    {
+        knockback = true;
+        knockbackStartTime = Time.time;
+        rb.velocity = new Vector2(knockbackSpeed.x * direction, knockbackSpeed.y);
+    }
+
+    private void CheckKnockback()
+    {
+        if (knockback && Time.time >= knockbackStartTime + knockbackDuration)
+        {
+            knockback = false;
+            rb.velocity = new Vector2(0.0f, rb.velocity.y);
+        }
+    }
 
     private void UpdateAnimations()
     {
         animator.SetBool("isWalking", isWalking);
         animator.SetBool("isGrounded", isGrounded);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Hat"))
+        {
+            scoreKeeper.IncrementScore();
+            Destroy(collision.gameObject);
+        }
     }
     private void OnDrawGizmos()
     {

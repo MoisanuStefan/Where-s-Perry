@@ -21,10 +21,15 @@ public class PlayerCombatController : MonoBehaviour
     private float lastInputTime = -Mathf.Infinity;
 
     private Animator animator;
+    private PlayerController playerController;
+    private PlayerStats playerStats;
+
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        playerController = GetComponent<PlayerController>();
+        playerStats = GetComponent<PlayerStats>();
     }
 
     private void Update()
@@ -78,6 +83,24 @@ public class PlayerCombatController : MonoBehaviour
         isAttacking = false;
         animator.SetBool("isAttacking", isAttacking);
     }
+
+    public void Damage(AttackDetails attackDetails)
+    {
+        int direction;
+        playerStats.DecreaseHealth(attackDetails.attackAmount);
+        if (attackDetails.position.x < transform.position.x)
+        {
+            direction = 1;
+        }
+        else
+        {
+            direction = -1;
+        }
+
+        playerController.Knockback(direction);
+    }
+
+
 
     private void OnDrawGizmos()
     {

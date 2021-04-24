@@ -8,9 +8,10 @@ public class FlyPlayerController : MonoBehaviour
     public Collider2D player1Collider;
 
 
-    private float horizontalMovementDirection;
-    private float verticalMovementDirection;
+    private float horizontalMovementDirection = 0;
+    private float verticalMovementDirection = 0;
 
+    private bool isFocused = false;
     private Rigidbody2D rb;
     
     // Start is called before the first frame update
@@ -29,12 +30,24 @@ public class FlyPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckInput();
+        if (isFocused)
+        {
+
+            CheckInput();
+        }
         ApplyMovement();
     }
 
+    public void SetFocused(bool value)
+    {
+        isFocused = value;
+        horizontalMovementDirection = 0;
+        verticalMovementDirection = 0;
+    }
     void ApplyMovement()
     {
+
+
         //rb.velocity = new Vector2(movementSpeed * horizontalMovementDirection, movementSpeed * verticalMovementDirection);
         rb.AddForce(new Vector2(movementSpeed * horizontalMovementDirection, movementSpeed * verticalMovementDirection));
     }

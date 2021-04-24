@@ -18,7 +18,6 @@ public class PlayerSwitcher : MonoBehaviour
     {
         currentPlayer = 0;
         Physics2D.IgnoreCollision(players[0].GetComponent<BoxCollider2D>(), players[1].GetComponent<BoxCollider2D>());
-        players[1].GetComponent<FlyPlayerController>().enabled = false;
     }
 
     // Update is called once per frame
@@ -28,12 +27,12 @@ public class PlayerSwitcher : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift)){
             if (currentPlayer == 0)
             {
-                players[currentPlayer].GetComponent<PlayerController>().enabled = false;
+                players[currentPlayer].GetComponent<PlayerController>().SetFocused(false);
                 //players[currentPlayer].GetComponentInChildren<GrapplingGun>().enabled = false;
-                material.friction = 0.4f;
-                players[currentPlayer].GetComponent<BoxCollider2D>().sharedMaterial = material;
+                //material.friction = 0.4f;
+                //players[currentPlayer].GetComponent<BoxCollider2D>().sharedMaterial = material;
 
-                players[1 - currentPlayer].GetComponent<FlyPlayerController>().enabled = true;
+                players[1 - currentPlayer].GetComponent<FlyPlayerController>().SetFocused(true);
                 players[1 - currentPlayer].GetComponent<FollowController>().enabled = false;
 
                 //players[1 - currentPlayer].GetComponent<Rigidbody2D>().isKinematic = false;
@@ -41,15 +40,15 @@ public class PlayerSwitcher : MonoBehaviour
             }
             else
             {
-                players[currentPlayer].GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                players[currentPlayer].GetComponent<FlyPlayerController>().enabled = false;
+                //players[currentPlayer].GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                players[currentPlayer].GetComponent<FlyPlayerController>().SetFocused(false);
                 //players[currentPlayer].GetComponent<Rigidbody2D>().isKinematic = true;
 
 
-                players[1 - currentPlayer].GetComponent<PlayerController>().enabled = true;
+                players[1 - currentPlayer].GetComponent<PlayerController>().SetFocused(true);
                 //players[1 - currentPlayer].GetComponentInChildren<GrapplingGun>().enabled = true;
-                material.friction = 0.0f;
-                players[1 - currentPlayer].GetComponent<BoxCollider2D>().sharedMaterial = material;
+                //material.friction = 0.0f;
+                //players[1 - currentPlayer].GetComponent<BoxCollider2D>().sharedMaterial = material;
 
             }
            

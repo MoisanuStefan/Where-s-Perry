@@ -15,11 +15,14 @@ public class Button : MonoBehaviour
     private bool isColliding;
     private bool isMoving;
     private bool isDisabled;
+    private bool delayTimerStarted = false;
+    private bool triggerEnter;
+    private bool triggerExit;
 
     private float disableTime = 0.2f;
     private float elapsedDisabledTime = 0f;
     private float elapsedTriggerDelay= 0f;
-    private float triggerTime;
+    private float unTriggerTime;
 
     private Vector3 unTriggeredPosition;
     private Vector3 triggeredPosition;
@@ -46,11 +49,16 @@ public class Button : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         isColliding = true;
+        triggerEnter = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        triggerExit = true;
         isColliding = false;
+        unTriggerTime = Time.time;
+        delayTimerStarted = true;
+
     }
 
 
@@ -58,6 +66,29 @@ public class Button : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      
+        if (triggerEnter)
+        {
+            if(Time.time < unTriggerTime + delayTime)
+            {
+                unTriggerTime = Time.time;
+            }
+            else
+            {
+                
+                Trigger();
+            }
+            triggerEnter = false;
+
+        }
+
+        if(triggerExit && Time.time >= unTriggerTime + delayTime)
+        {
+            triggerExit = false;
+            Trigger();
+        }
+       
+        /*
         if (isDisabled)
         {
             elapsedDisabledTime += Time.deltaTime;
@@ -69,9 +100,10 @@ public class Button : MonoBehaviour
         }
 
 
-        if (!isDisabled)
+        if (!isDisabled && delayTimerStarted && Time.time >= unTriggerTime + delayTime)
         {
-            if (!isColliding && isTriggered || isColliding && !isTriggered)
+            delayTimerStarted = false;
+            if (isColliding && !isTriggered)
             {
                 isDisabled = true;
 
@@ -79,7 +111,7 @@ public class Button : MonoBehaviour
             }
 
         }
-
+        */
 
     }
 

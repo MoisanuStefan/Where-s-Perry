@@ -7,6 +7,7 @@ public class FollowCamera : MonoBehaviour
     public GameObject followObject;
     public float followOffset;
     public float switchSpeed = 20f;
+    public Transform leftTreshold;
     private Rigidbody2D rb;
     private float treshold;
     private bool isSwitching = false;
@@ -23,33 +24,39 @@ public class FollowCamera : MonoBehaviour
         isSwitching = true;
         this.followObject = followObject;
         rb = followObject.GetComponent<Rigidbody2D>();
-       
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+       
         Vector2 followPosition = followObject.transform.position;
-        float xDifference = Vector2.Distance(Vector2.right * transform.position.x, Vector2.right * followPosition.x);
+        if (followPosition.x > leftTreshold.position.x || transform.position.x > leftTreshold.position.x)
 
-        if (isSwitching && xDifference <= treshold)
         {
-            isSwitching = false;
-        }
+            
+            float xDifference = Vector2.Distance(Vector2.right * transform.position.x, Vector2.right * followPosition.x);
 
-        Vector3 newPosition = transform.position;
-        if (Mathf.Abs(xDifference) >= treshold)
-        {
-            newPosition.x = followPosition.x;
+            if (isSwitching && xDifference <= treshold)
+            {
+                isSwitching = false;
+            }
+
+            Vector3 newPosition = transform.position;
+            if (Mathf.Abs(xDifference) >= treshold)
+            {
+                newPosition.x = followPosition.x;
+            }
+            float moveSpeed = isSwitching ? switchSpeed : rb.velocity.magnitude;
+            transform.position = Vector3.MoveTowards(transform.position, newPosition, moveSpeed * Time.fixedDeltaTime);
         }
-        float moveSpeed = isSwitching ? switchSpeed : rb.velocity.magnitude;
-        transform.position = Vector3.MoveTowards(transform.position, newPosition, moveSpeed * Time.fixedDeltaTime);
     }
 
     private float ComputeTreshold()
     {
         Rect aspect = Camera.main.pixelRect;
-      
+
 
         float treshold = Camera.main.orthographicSize * aspect.width / aspect.height;
         treshold -= followOffset;

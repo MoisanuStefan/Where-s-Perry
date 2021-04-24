@@ -16,8 +16,11 @@ public class PlatformController : MonoBehaviour
     private bool playerOn = false;
 
     private Rigidbody2D rb;
-    private Transform playerTransform;
+    private PlayerController playerController;
     private Vector3 platformDirection;
+    private float xVelocity;
+    private Vector3 newPos;
+    private Vector3 oldPos;
     private float platformMovement;
 
     private void Start()
@@ -29,28 +32,37 @@ public class PlatformController : MonoBehaviour
         {
             globalWaypoins[i] = localWaypoints[i] + transform.position;
         }
+        oldPos = transform.position;
     }
 
     private void Update()
     {
         //transform.position = Vector3.MoveTowards(transform.position, Vector3.Lerp(transform.position, globalWaypoins[fromWaypointIndex + 1], 0.5f), speed * Time.deltaTime / Vector3.Distance(transform.position, globalWaypoins[fromWaypointIndex + 1]));
-        Vector2 newPosition = CalculatePlatformMovement();
         //transform.position = Vector3.MoveTowards(transform.position, globalWaypoins[(fromWaypointIndex + 1) % globalWaypoins.Length], 0.5f);
+        UpdateHorizontalVelocity();
         if (playerOn)
         {
-           
-           
+            playerController.SetPlatformXVelocity(xVelocity);
         }
-        transform.Translate(newPosition);
         
 
     }
 
-    private void UpdatePlayerPosition(Vector3 newPlatformPosition)
+    private void FixedUpdate()
     {
-        Vector3 newPlayerPosition = playerTransform.position;
+        transform.Translate(CalculatePlatformMovement());
+       
         
     }
+
+    private void UpdateHorizontalVelocity()
+    {
+        newPos = transform.position;
+        xVelocity = (newPos.x - oldPos.x) / Time.deltaTime;
+        oldPos = newPos;
+    }
+
+  
 
     private void SetPlatformDirection(Vector2 newPosition)
     {
@@ -126,8 +138,8 @@ public class PlatformController : MonoBehaviour
         if (collision.gameObject.tag.Equals("Player"))
         {
             playerOn = true;
-            playerTransform = collision.gameObject.transform;
-            collision.gameObject.transform.parent = transform;
+            playerController = collision.gameObject.GetComponent<PlayerController>();
+            //collision.gameObject.transform.parent = transform;
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -135,8 +147,9 @@ public class PlatformController : MonoBehaviour
 
         if (collision.gameObject.tag.Equals("Player"))
         {
-            collision.gameObject.transform.parent = null;
+            //collision.gameObject.transform.parent = null;
             playerOn = false;
+            playerController.SetPlatformXVelocity(0f);
         }
     }
 }

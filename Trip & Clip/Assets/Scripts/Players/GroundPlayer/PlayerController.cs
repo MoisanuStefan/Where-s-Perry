@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     private float movementInputDirection;
     private float knockbackStartTime;
+    private float platformXVelocity;
 
     private bool isFacingRight = true;
     private bool isGrounded;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private bool canFlip = true;
     private bool isFollowing = true;
     private bool knockback;
+    private bool isFocused = true;
 
     public int amountOfJumps = 1;
 
@@ -44,6 +46,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         amountOfJumpsLeft = amountOfJumps;
+        
     }
 
     private void OnEnable()
@@ -55,37 +58,47 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckInput();
+        if (isFocused)
+        {
+            CheckInput();
+        }
         CheckIfCanJump();
         UpdateAnimations();
-        CheckKnockback();
+        CheckKnockbackDone();
     }
 
     private void FixedUpdate()
     {
         CheckMovementDirection();
-
         ApplyMovement();
         CheckSurroundings();
     }
 
     private void CheckInput()
     {
-        movementInputDirection = Input.GetAxisRaw("Horizontal");
-        if (Input.GetButtonDown("Jump") && canJump)
-        {
-            Jump();
-        }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            isFollowing = !isFollowing;
-            flyPlayer.GetComponent<FollowController>().enabled = isFollowing;
-            
-        }
+      
+            movementInputDirection = Input.GetAxisRaw("Horizontal");
+            if (Input.GetButtonDown("Jump") && canJump)
+            {
+                Jump();
+            }
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                isFollowing = !isFollowing;
+                flyPlayer.GetComponent<FollowController>().enabled = isFollowing;
+
+            }
+        
     }
     private void CheckSurroundings()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+    }
+
+    public void SetFocused(bool value)
+    {
+        isFocused = value;
+        movementInputDirection = 0;
     }
     public void CheckMovementDirection()
     {
@@ -113,7 +126,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckIfCanJump()
     {
-        if (isGrounded && rb.velocity.y <= 0)
+        if (isGrounded && rb.velocity.y <= 0.001)
         {
             amountOfJumpsLeft = amountOfJumps;
         }
@@ -156,8 +169,14 @@ public class PlayerController : MonoBehaviour
     {
         if (!knockback)
         {
-            rb.velocity = new Vector2(movementSpeed * movementInputDirection, rb.velocity.y);
+            rb.velocity = new Vector2(movementSpeed * movementInputDirection + platformXVelocity, rb.velocity.y);
         }
+    }
+
+    public void SetPlatformXVelocity(float xVelocity)
+    {
+        platformXVelocity = xVelocity;
+
     }
 
     public void ApplyForce(Vector3 force)
@@ -172,7 +191,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(knockbackSpeed.x * direction, knockbackSpeed.y);
     }
 
-    private void CheckKnockback()
+    private void CheckKnockbackDone()
     {
         if (knockback && Time.time >= knockbackStartTime + knockbackDuration)
         {

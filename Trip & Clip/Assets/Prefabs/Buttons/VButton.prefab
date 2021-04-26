@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6804001996012140266}
   - component: {fileID: 6804001996012140269}
   - component: {fileID: 394617632372817143}
-  m_Layer: 11
+  m_Layer: 16
   m_Name: VButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,5 +145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveDistance: 0.1
   lerpTime: 1
+  delayTime: 0
   isVertical: 1
   trapdoor: {fileID: 0}

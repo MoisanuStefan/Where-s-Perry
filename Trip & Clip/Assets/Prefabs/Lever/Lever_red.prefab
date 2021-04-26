@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 75865832345910128}
   - component: {fileID: 4623750623251660534}
   - component: {fileID: 6465989219199951891}
-  m_Layer: 11
-  m_Name: Lever
+  m_Layer: 16
+  m_Name: Lever_red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

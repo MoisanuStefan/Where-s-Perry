@@ -38,6 +38,11 @@ public class FlyPlayerController : MonoBehaviour
         ApplyMovement();
     }
 
+    public bool IsFocused()
+    {
+        return isFocused;
+    }
+
     public void SetFocused(bool value)
     {
         isFocused = value;

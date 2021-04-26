@@ -19,10 +19,10 @@ public class Lever : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("trigger");
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("FlyPlayer"))
+        if ((collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("FlyPlayer")) && collision.gameObject.GetComponent<FlyPlayerController>().IsFocused())
+
         {
-            Debug.Log(collision.gameObject);
+
             if (isOn)
             {
                 GetComponent<SpriteRenderer>().sprite = offLever.GetComponent<SpriteRenderer>().sprite;

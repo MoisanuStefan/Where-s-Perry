@@ -7,10 +7,6 @@ public class PlayerSwitcher : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject[] players;
-    public FollowCamera camera;
-
-    public PhysicsMaterial2D material;
-
     private int currentPlayer;
 
 
@@ -28,12 +24,15 @@ public class PlayerSwitcher : MonoBehaviour
             if (currentPlayer == 0)
             {
                 players[currentPlayer].GetComponent<PlayerController>().SetFocused(false);
+
                 //players[currentPlayer].GetComponentInChildren<GrapplingGun>().enabled = false;
                 //material.friction = 0.4f;
                 //players[currentPlayer].GetComponent<BoxCollider2D>().sharedMaterial = material;
 
                 players[1 - currentPlayer].GetComponent<FlyPlayerController>().SetFocused(true);
+
                 players[1 - currentPlayer].GetComponent<FollowController>().enabled = false;
+
 
                 //players[1 - currentPlayer].GetComponent<Rigidbody2D>().isKinematic = false;
 
@@ -54,7 +53,6 @@ public class PlayerSwitcher : MonoBehaviour
            
             currentPlayer = 1 - currentPlayer;
 
-            camera.SetFollowObject(players[currentPlayer]);
         }
     }
 

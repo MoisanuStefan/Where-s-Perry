@@ -48,8 +48,13 @@ public class Button : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        isColliding = true;
-        triggerEnter = true;
+        if (!collision.gameObject.CompareTag("FlyPlayer") || collision.gameObject.GetComponent<FlyPlayerController>().IsFocused())
+        {
+            
+            isColliding = true;
+            triggerEnter = true;
+        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)

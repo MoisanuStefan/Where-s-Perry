@@ -100,6 +100,11 @@ public class PlayerController : MonoBehaviour
         isFocused = value;
         movementInputDirection = 0;
     }
+
+    public bool IsFocused()
+    {
+        return isFocused;
+    }
     public void CheckMovementDirection()
     {
        

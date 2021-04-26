@@ -16,11 +16,14 @@ public class Trapdoor : MonoBehaviour
     private Vector3 destination;
     private float perc = 1f;
     private float incrementAmount;
+    private Bounds trapdoorBound;
 
+    private BoxCollider2D collider;
 
     // Start is called before the first frame update
     void Start()
     {
+        collider = GetComponent<BoxCollider2D>();
         unTriggeredPosition = transform.position;
         triggeredPosition = transform.position;
         if (isVertical)
@@ -48,6 +51,9 @@ public class Trapdoor : MonoBehaviour
             {
                 isMoving = false;
                 transform.position = destination;
+
+                AstarPath.active.UpdateGraphs(collider.bounds);
+                AstarPath.active.UpdateGraphs(trapdoorBound);
             }
         }
     }
@@ -72,5 +78,6 @@ public class Trapdoor : MonoBehaviour
         }
         isMoving = true;
         isTriggered = !isTriggered;
+        trapdoorBound = collider.bounds;
     }
 }

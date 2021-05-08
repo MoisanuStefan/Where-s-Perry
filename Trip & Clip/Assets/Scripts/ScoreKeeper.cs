@@ -15,7 +15,7 @@ public class ScoreKeeper : MonoBehaviour
         {
             instance = this;
         }
-        numberOfHats = 0;
+
     }
 
     public void IncrementScore()

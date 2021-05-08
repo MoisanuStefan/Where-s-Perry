@@ -1,0 +1,392 @@
+fileFormatVersion: 2
+guid: 4066b4e2cb911e7479e7d5118007f401
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7644643854016387940
+    second: doof_tile_sheet_0
+  - first:
+      213: 6670358605094722920
+    second: doof_tile_sheet_1
+  - first:
+      213: 7978576725527126472
+    second: doof_tile_sheet_2
+  - first:
+      213: -4843908229206296044
+    second: doof_tile_sheet_3
+  - first:
+      213: -6817031685685374995
+    second: doof_tile_sheet_4
+  - first:
+      213: 7125128405673051713
+    second: doof_tile_sheet_5
+  - first:
+      213: 7048298225249434321
+    second: doof_tile_sheet_6
+  - first:
+      213: -1027033333084104734
+    second: doof_tile_sheet_7
+  - first:
+      213: -1535099505481590422
+    second: doof_tile_sheet_8
+  - first:
+      213: 1842356932899837978
+    second: doof_tile_sheet_9
+  - first:
+      213: -272869609040349560
+    second: doof_tile_sheet_10
+  - first:
+      213: 2068952095488553566
+    second: doof_tile_sheet_11
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 125
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: doof_tile_sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 250.66666
+        width: 125.25
+        height: 125.333336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46b1509051b371a60800000000000000
+      internalID: 7644643854016387940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doof_tile_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 250.66666
+        width: 125.25
+        height: 125.333336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86d142d6fcfd19c50800000000000000
+      internalID: 6670358605094722920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doof_tile_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 250.66666
+        width: 125.25
+        height: 125.333336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c16e32724999be60800000000000000
+      internalID: 7978576725527126472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doof_tile_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 250.66666
+        width: 125.25
+        height: 125.333336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41a3191312bf6ccb0800000000000000
+      internalID: -4843908229206296044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doof_tile_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 125.666664
+        width: 125.25
+        height: 125.333336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: def0420dcc90561a0800000000000000
+      internalID: -6817031685685374995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doof_tile_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 125.666664
+        width: 125.25
+        height: 125.333336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 146003fc88a81e260800000000000000
+      internalID: 7125128405673051713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doof_tile_sheet_6
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 125.666664
+        width: 125.25
+        height: 125.333336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1da320374e590d160800000000000000
+      internalID: 7048298225249434321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doof_tile_sheet_7
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 125.666664
+        width: 125.25
+        height: 125.333336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e7590100ae3fb1f0800000000000000
+      internalID: -1027033333084104734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doof_tile_sheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0.6666641
+        width: 125.25
+        height: 125.333336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6954e0122b32bae0800000000000000
+      internalID: -1535099505481590422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doof_tile_sheet_9
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 0.6666641
+        width: 125.25
+        height: 125.333336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1819f68edd519910800000000000000
+      internalID: 1842356932899837978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doof_tile_sheet_10
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 0.6666641
+        width: 125.25
+        height: 125.333336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 886762b4982963cf0800000000000000
+      internalID: -272869609040349560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doof_tile_sheet_11
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 0.6666641
+        width: 125.25
+        height: 125.333336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5235e418f466bc10800000000000000
+      internalID: 2068952095488553566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

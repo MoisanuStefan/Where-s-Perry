@@ -21,14 +21,14 @@ public class PlayerCombatController : MonoBehaviour
     private float lastInputTime = -Mathf.Infinity;
 
     private Animator animator;
-    private PlayerController playerController;
+    private GroundPlayerController playerController;
     private PlayerStats playerStats;
 
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        playerController = GetComponent<PlayerController>();
+        playerController = GetComponent<GroundPlayerController>();
         playerStats = GetComponent<PlayerStats>();
     }
 

@@ -2,65 +2,145 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyPlayerController : MonoBehaviour
+public class FlyPlayerController : PlayerController
 {
+    private static FlyPlayerController flySingleton;
+    public POnPCollisionController popCollisioncontroller;
     public float movementSpeed = 10.0f;
+    public float headjumpMovementDelayTime = 0.5f;
     public Collider2D player1Collider;
+    public GameObject[] thrustParticles;
 
-
-    private float horizontalMovementDirection = 0;
     private float verticalMovementDirection = 0;
+    private float canMoveTime;
+    private bool canMove = true;
+    private bool isFollowing = true;
 
-    private bool isFocused = false;
-    private Rigidbody2D rb;
+
     
-    // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        if (flySingleton != null)
+        {
+            Object.Destroy(gameObject);
+            return;
+        }
+        flySingleton = this;
+        GameObject.DontDestroyOnLoad(gameObject);
+        base.Start();
+        isFocused = false;
         
     }
 
+    public static FlyPlayerController GetInstance()
+    {
+        return flySingleton;
+    }
+    public override void Update()
+    {
+        base.Update();
+        UpdateThrustParticles();
+    }
+
+    public void ResetPositionBeforeImpact()
+    {
+        popCollisioncontroller.ResetPositionBeforeImpact();
+    }
+    public void SetFollowMode(bool value) {
+        isFollowing = value;
+        ResetThrusters();
+        GetComponent<FollowController>().SetEnabled(value);
+    }
+
+    public override void FixedUpdate()
+    {
+        CheckIfCanMove();
+        if (canMove)
+        {
+            base.FixedUpdate();
+        }
+        
+    }
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody2D>();
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DeactivateMovement()
     {
-        if (isFocused)
+        canMove = false;
+    }
+    public void ActivateMovementWithDelay()
+    {
+        canMoveTime = Time.time;
+        canMove = false;
+    }
+
+   
+    private void CheckIfCanMove()
+    {
+        if (!canMove && Time.time > canMoveTime + headjumpMovementDelayTime)
         {
-
-            CheckInput();
+            canMove = true;
         }
-        ApplyMovement();
     }
-
-    public bool IsFocused()
+  
+   
+    public override void ApplyMovement()
     {
-        return isFocused;
-    }
-
-    public void SetFocused(bool value)
-    {
-        isFocused = value;
-        horizontalMovementDirection = 0;
-        verticalMovementDirection = 0;
-    }
-    void ApplyMovement()
-    {
-
-
-        //rb.velocity = new Vector2(movementSpeed * horizontalMovementDirection, movementSpeed * verticalMovementDirection);
+        base.ApplyMovement();
         rb.AddForce(new Vector2(movementSpeed * horizontalMovementDirection, movementSpeed * verticalMovementDirection));
+       
     }
 
-    void CheckInput()
+    private void UpdateThrustParticles()
     {
-        horizontalMovementDirection = Input.GetAxisRaw("Horizontal");
+        if (!isFollowing && isFocused)
+        {
+            thrustParticles[0].SetActive(verticalMovementDirection == -1);
+            thrustParticles[1].SetActive(horizontalMovementDirection != 0);
+            thrustParticles[2].SetActive(verticalMovementDirection == 1);
+        }
+        else if (isFollowing)
+        {
+            thrustParticles[0].SetActive(rb.velocity.y < -0.01);
+            thrustParticles[1].SetActive(rb.velocity.x < -0.01 || rb.velocity.x > 0.1);
+            thrustParticles[2].SetActive(rb.velocity.y > 0.01);
+        }
+
+        
+          
+        
+    }
+
+    public void ResetThrusters()
+    {
+        foreach(GameObject go in thrustParticles)
+        {
+            go.SetActive(false);
+        }
+    }
+
+    public override void SetFocused(bool value)
+    {
+        base.SetFocused(value);
+        ResetThrusters();
+    }
+
+    public override void CheckInput()
+    {
+        base.CheckInput();
+       
+        previousVerticalDirection = verticalMovementDirection;
         verticalMovementDirection = Input.GetAxisRaw("Vertical");
+        if (verticalMovementDirection != previousVerticalDirection || horizontalMovementDirection != previousHorizontalDirection)
+        {
+            if (isFollowing && isFocused)
+            {
+                SetFollowMode(false);
+            }
+        }
         
     }
 }

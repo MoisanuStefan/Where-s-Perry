@@ -46,5 +46,3 @@ MonoBehaviour:
   players:
   - {fileID: 0}
   - {fileID: 0}
-  camera: {fileID: 0}
-  material: {fileID: 6200000, guid: e1560f483c411de49a1b3185c9491904, type: 2}

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5296331191253870887}
   - component: {fileID: 1480615089201514758}
-  - component: {fileID: 6173142849958595712}
   - component: {fileID: 5492837838431622757}
+  - component: {fileID: 6173142849958595712}
   m_Layer: 16
   m_Name: Lever_blue
   m_TagString: Untagged
@@ -83,6 +83,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5492837838431622757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8282254816432654343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5112dac1f8fbcf24183eac11da8b4570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  trapdoor: {fileID: 0}
+  onLever: {fileID: 5680832172185987422, guid: 9fca0236620bad74bb838724d8440431, type: 3}
+  offLever: {fileID: 2826387481564899088, guid: b8e0844a89eac024a8c3d516e6df4116,
+    type: 3}
 --- !u!61 &6173142849958595712
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -109,19 +126,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.82006264, y: 0.70341206}
   m_EdgeRadius: 0
---- !u!114 &5492837838431622757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8282254816432654343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d430bd2fd2e7d344d97bc365e2c329d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trapdoor: {fileID: 0}
-  onLever: {fileID: 2826387481564899088, guid: b8e0844a89eac024a8c3d516e6df4116, type: 3}
-  offLever: {fileID: 5680832172185987422, guid: 9fca0236620bad74bb838724d8440431,
-    type: 3}

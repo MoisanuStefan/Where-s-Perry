@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trapdoor : MonoBehaviour
+public class Trapdoor : Trigger
 {
     public float moveDistance;
     public bool isTriggered;
     private bool isMoving;
     public float lerpTime;
-    public bool isVertical;
 
     private Vector3 unTriggeredPosition;
     private Vector3 triggeredPosition;
@@ -25,16 +24,8 @@ public class Trapdoor : MonoBehaviour
     {
         collider = GetComponent<BoxCollider2D>();
         unTriggeredPosition = transform.position;
-        triggeredPosition = transform.position;
-        if (isVertical)
-        {
-            triggeredPosition += Vector3.up * moveDistance; 
-        }
-        else
-        {
-            triggeredPosition += Vector3.left * moveDistance;
-        }
-
+        triggeredPosition = transform.position - transform.up * moveDistance;
+       
     }
 
     // Update is called once per frame
@@ -63,8 +54,9 @@ public class Trapdoor : MonoBehaviour
        
     }
 
-    public void Trigger()
+    public override void TriggerFunction()
     {
+        base.TriggerFunction();
         perc = 0f;
         incrementAmount = 1f / lerpTime;
 

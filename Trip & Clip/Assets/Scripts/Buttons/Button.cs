@@ -2,26 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Button : MonoBehaviour
+public class Button : Trigger
 {
     public float moveDistance;
     public float lerpTime;
     public float delayTime = 0;
-    public bool isVertical;
 
-    public Trapdoor trapdoor;
+    public Trigger trigger;
 
     private bool isTriggered;
-    private bool isColliding;
     private bool isMoving;
-    private bool isDisabled;
-    private bool delayTimerStarted = false;
-    private bool triggerEnter;
-    private bool triggerExit;
+    private bool triggerEnter = false;
+    private bool triggerExit = false;
 
-    private float disableTime = 0.2f;
-    private float elapsedDisabledTime = 0f;
-    private float elapsedTriggerDelay= 0f;
     private float unTriggerTime;
 
     private Vector3 unTriggeredPosition;
@@ -32,26 +25,20 @@ public class Button : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        unTriggeredPosition = transform.position;
-        triggeredPosition = transform.position;
-        if (isVertical)
-        {
-            triggeredPosition += Vector3.left * moveDistance;
-        }
-        else
-        {
-            triggeredPosition += Vector3.up * moveDistance;
+       unTriggeredPosition = transform.position;
+       triggeredPosition = transform.position - transform.up.normalized * moveDistance;
+      
 
-        }
+       
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.gameObject.CompareTag("FlyPlayer") || collision.gameObject.GetComponent<FlyPlayerController>().IsFocused())
+        
+        if (collision.gameObject.GetComponent<PlayerController>().IsFocused() && isMoving == false)
         {
-            
-            isColliding = true;
+            isMoving = true;
             triggerEnter = true;
         }
         
@@ -59,10 +46,12 @@ public class Button : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        triggerExit = true;
-        isColliding = false;
-        unTriggerTime = Time.time;
-        delayTimerStarted = true;
+        if (collision.gameObject.GetComponent<PlayerController>().IsFocused() && isMoving == false)
+        {
+            triggerExit = true;
+            unTriggerTime = Time.time;
+        }
+        
 
     }
 
@@ -81,53 +70,30 @@ public class Button : MonoBehaviour
             else
             {
                 
-                Trigger();
+                TriggerFunction();
             }
             triggerEnter = false;
 
         }
 
-        if(triggerExit && Time.time >= unTriggerTime + delayTime)
+        else if(triggerExit && Time.time >= unTriggerTime + delayTime)
         {
+            isMoving = true;
             triggerExit = false;
-            Trigger();
+            TriggerFunction();
         }
-       
-        /*
-        if (isDisabled)
-        {
-            elapsedDisabledTime += Time.deltaTime;
-            if (disableTime - elapsedDisabledTime <= 0)
-            {
-                isDisabled = false;
-                elapsedDisabledTime = 0;
-            }
-        }
-
-
-        if (!isDisabled && delayTimerStarted && Time.time >= unTriggerTime + delayTime)
-        {
-            delayTimerStarted = false;
-            if (isColliding && !isTriggered)
-            {
-                isDisabled = true;
-
-                Trigger();
-            }
-
-        }
-        */
+      
 
     }
 
-    void Trigger()
+    public override void TriggerFunction()
     {
+        base.TriggerFunction();
         Vector3 destination;
-        trapdoor.Trigger();
+        trigger.TriggerFunction();
 
         destination = (isTriggered) ? unTriggeredPosition : triggeredPosition;
 
-        isMoving = true;
         isTriggered = !isTriggered;
         StartCoroutine(Move(0f, destination));
     }
@@ -150,4 +116,6 @@ public class Button : MonoBehaviour
         }
         yield return null;
     }
+
+  
 }

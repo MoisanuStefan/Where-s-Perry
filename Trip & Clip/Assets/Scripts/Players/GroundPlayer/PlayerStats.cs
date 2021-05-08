@@ -6,7 +6,10 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField]
     private float maxHealth;
+    [SerializeField]
+    private GameManager gm;
     private float currentHealth;
+
 
     private void Start()
     {
@@ -24,6 +27,8 @@ public class PlayerStats : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
+        gameObject.transform.parent = null;
+        GameObject.DontDestroyOnLoad(gameObject);
+        gm.ResetScene();
     }
 }

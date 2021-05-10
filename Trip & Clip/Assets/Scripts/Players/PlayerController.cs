@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     protected bool canFlip = true;
     protected bool isWalking = false;
 
+    
     protected float horizontalMovementDirection = 0;
     protected float previousHorizontalDirection = 0;
     protected float previousVerticalDirection = 0;

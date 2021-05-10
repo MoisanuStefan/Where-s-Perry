@@ -5,36 +5,48 @@ using UnityEngine.SceneManagement;
 
 public class ResetPlayersPositions : MonoBehaviour
 {
+    private static ResetPlayersPositions instance;
     public GameObject startPlatform;
     public float inactiveTime = 1f;
-    public GameObject flyPlayerCollider;
+  
+
     PlayerController groundPlayer = null;
-    PlayerController flyPlayer = null;
+    FlyPlayerController flyPlayer = null;
 
     private bool resetInitiated = false;
     private bool resetDone = false;
     private bool colliderActivated = false;
     private float startTime;
 
+    private ScoreKeeper scoreKeeper;
+    private GameObject flyPlayerCollider;
+
+
     private void Awake()
     {
+        if (instance != null)
+        {
+            Object.Destroy(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded -= OnSceneLoaded;
         SceneManager.sceneLoaded += OnSceneLoaded;
-        GameObject.DontDestroyOnLoad(gameObject);
 
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         startPlatform = GameObject.FindGameObjectWithTag("StartPlatform");
+        colliderActivated = false;
         resetInitiated = true;
         resetDone = false;
     }
     // Start is called before the first frame update
     void Start()
     {
-       // done = false;
-       
+        flyPlayerCollider = GameObject.FindGameObjectWithTag("FlyPlayerCollider");
 
 
     }
@@ -88,6 +100,8 @@ public class ResetPlayersPositions : MonoBehaviour
             colliderActivated = true;
             flyPlayerCollider.SetActive(true);
             groundPlayer.SetFocused(true);
+            flyPlayer.SetFollowMode(true);
+            ScoreKeeper.GetInstance().BeginTimer();
         }
     }
 

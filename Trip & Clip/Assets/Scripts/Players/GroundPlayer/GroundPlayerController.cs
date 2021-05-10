@@ -32,9 +32,8 @@ public class GroundPlayerController : PlayerController
     public Transform followTarget;
     public Camera camera;
     public GameObject flyPlayer;
-    public ScoreKeeper scoreKeeper;
 
-    public override void Start()
+    private void Awake()
     {
         if (groundSingleton != null)
         {
@@ -43,6 +42,10 @@ public class GroundPlayerController : PlayerController
         }
         groundSingleton = this;
         GameObject.DontDestroyOnLoad(gameObject);
+    }
+    public override void Start()
+    {
+       
         base.Start();
         isFocused = true;
         amountOfJumpsLeft = amountOfJumps;
@@ -87,7 +90,21 @@ public class GroundPlayerController : PlayerController
     }
     private void CheckSurroundings()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+        Collider2D col;
+        col = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+        if (!col)
+        {
+            isGrounded = false;
+        }
+        // make sure jump is enabled only if player is on top of flyplayer, not just by colliding
+        else if(col.gameObject.CompareTag("FlyPlayer") && groundCheck.position.y - (flyPlayer.transform.position.y + flyPlayer.GetComponent<SpriteRenderer>().sprite.bounds.size.y / 2) < 0.001)
+        {
+            isGrounded = false;
+        }
+        else
+        {
+            isGrounded = col;
+        }
     }
 
    
@@ -163,7 +180,8 @@ public class GroundPlayerController : PlayerController
     {
         if (collision.gameObject.CompareTag("Hat"))
         {
-            scoreKeeper.IncrementScore();
+            Debug.Log("har");
+            ScoreKeeper.GetInstance().IncrementScore();
             Destroy(collision.gameObject);
         }
     }
@@ -175,11 +193,21 @@ public class GroundPlayerController : PlayerController
             base.Flip();
         }
     }
+
+    public void SetDontDestroyOnLoad()
+    {
+        gameObject.transform.parent = null;
+        GameObject.DontDestroyOnLoad(gameObject);
+    }
+
+   
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         Gizmos.DrawLine(followTarget.position + Vector3.left * 0.1f, followTarget.position + Vector3.right * 0.1f);
         Gizmos.DrawLine(followTarget.position + Vector3.up * 0.1f, followTarget.position + Vector3.down * 0.1f);
 
+
+        
     }
 }

@@ -12,8 +12,10 @@ public class Button : Trigger
 
     private bool isTriggered;
     private bool isMoving;
-    private bool triggerEnter = false;
-    private bool triggerExit = false;
+    private bool collisionEnter = false;
+    private bool collisionExit = false;
+
+    private string triggeringEntity;
 
     private float unTriggerTime;
 
@@ -36,21 +38,24 @@ public class Button : Trigger
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
-        if (collision.gameObject.GetComponent<PlayerController>().IsFocused() && isMoving == false)
+        if (collision.gameObject.GetComponent<PlayerController>().IsFocused() && !isTriggered)
         {
-            isMoving = true;
-            triggerEnter = true;
+            triggeringEntity = collision.gameObject.tag;
+            TriggerFunction();
         }
         
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerController>().IsFocused() && isMoving == false)
+
+        if (isTriggered && collision.gameObject.CompareTag(triggeringEntity))
         {
-            triggerExit = true;
+            triggeringEntity = "";
+            collisionExit = true;
             unTriggerTime = Time.time;
         }
+        
         
 
     }
@@ -60,26 +65,10 @@ public class Button : Trigger
     // Update is called once per frame
     void Update()
     {
-      
-        if (triggerEnter)
+     
+        if(collisionExit && Time.time >= unTriggerTime + delayTime)
         {
-            if(Time.time < unTriggerTime + delayTime)
-            {
-                unTriggerTime = Time.time;
-            }
-            else
-            {
-                
-                TriggerFunction();
-            }
-            triggerEnter = false;
-
-        }
-
-        else if(triggerExit && Time.time >= unTriggerTime + delayTime)
-        {
-            isMoving = true;
-            triggerExit = false;
+            collisionExit = false;
             TriggerFunction();
         }
       
@@ -101,19 +90,18 @@ public class Button : Trigger
     IEnumerator Move(float perc, Vector3 destination)
     {
         float incrementAmount = 1f / lerpTime;
-        if (isMoving)
+      
+        while (perc < 1f)
         {
-            while (perc < 1f)
-            {
-                perc += Time.deltaTime * incrementAmount;
-                transform.position = Vector3.Lerp(transform.position, destination, perc);
-            }
-            if (perc >= 1f)
-            {
-                isMoving = false;
-                transform.position = destination;
-            }
+            perc += Time.deltaTime * incrementAmount;
+            transform.position = Vector3.Lerp(transform.position, destination, perc);
         }
+        if (perc >= 1f)
+        {
+            isMoving = false;
+            transform.position = destination;
+        }
+        
         yield return null;
     }
 

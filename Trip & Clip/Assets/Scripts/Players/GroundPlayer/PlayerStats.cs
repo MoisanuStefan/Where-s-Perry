@@ -6,13 +6,15 @@ public class PlayerStats : MonoBehaviour
 {
     [SerializeField]
     private float maxHealth;
-    [SerializeField]
-    private GameManager gm;
+
+    private GroundPlayerController playerController;
     private float currentHealth;
 
 
     private void Start()
     {
+
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<GroundPlayerController>();
         currentHealth = maxHealth;
     }
 
@@ -27,8 +29,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Die()
     {
-        gameObject.transform.parent = null;
-        GameObject.DontDestroyOnLoad(gameObject);
-        gm.ResetScene();
+        playerController.SetDontDestroyOnLoad();
+        GameManager.ResetScene();
     }
 }

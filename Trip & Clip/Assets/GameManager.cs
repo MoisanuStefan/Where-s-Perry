@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     static GameManager gameManagerSingleton;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         if (gameManagerSingleton != null)
         {
@@ -15,17 +15,26 @@ public class GameManager : MonoBehaviour
         }
         gameManagerSingleton = this;
         GameObject.DontDestroyOnLoad(gameObject);
+    }
+    void Start()
+    {
+       
 
     }
 
+    public static GameManager GetInstance()
+    {
+        return gameManagerSingleton;
+    }
     // Update is called once per frame
     void Update()
     {
         
     }
 
-    public void ResetScene()
+    public static void ResetScene()
     {
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

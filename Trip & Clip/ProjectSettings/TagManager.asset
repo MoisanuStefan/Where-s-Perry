@@ -9,6 +9,10 @@ TagManager:
   - FlyPlayer
   - Hat
   - StartPlatform
+  - FollowTarget
+  - FlyPlayerCollider
+  - HatCounter
+  - TimeCounter
   layers:
   - Default
   - TransparentFX
@@ -27,7 +31,7 @@ TagManager:
   - FlyPlayer
   - Collectable
   - TriggerButtons
-  - 
+  - FlyPlayerCollider
   - 
   - 
   - 

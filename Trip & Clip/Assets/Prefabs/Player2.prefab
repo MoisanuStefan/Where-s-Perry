@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 3960198528419833779}
   m_Layer: 0
   m_Name: PlayerCollider
-  m_TagString: Untagged
+  m_TagString: FlyPlayerCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +60,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3960198528419833777}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: -0.03, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3960198528856592563}
@@ -90,7 +90,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.968115, y: 1.969}
+  m_Size: {x: 0.9871553, y: 0.9871553}
   m_EdgeRadius: 0
 --- !u!251 &3960198528419833778
 PlatformEffector2D:
@@ -130,7 +130,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 1024
-  playerCheckRadius: 0.73
+  playerCheckRadius: 0.67
 --- !u!1 &3960198528552205890
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +155,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3960198528552205890}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.86, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3960198528856592563}
@@ -192,7 +192,7 @@ Transform:
   m_GameObject: {fileID: 3960198528856592567}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.83, y: -1.48, z: 0}
-  m_LocalScale: {x: 0.5164566, y: 0.5164566, z: 0.5164566}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3960198528419833776}
   - {fileID: 3960198528552205901}
@@ -308,14 +308,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.0875, y: 2.0875}
+    oldSize: {x: 1.04375, y: 1.04375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9681151, y: 1.9689995}
+  m_Size: {x: 0.98715526, y: 0.9871553}
   m_EdgeRadius: 0
 --- !u!114 &3960198528856592573
 MonoBehaviour:
@@ -357,7 +357,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde7a2aa17973494d9481d3b451b7b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   speed: 600
   nextWaypointDistance: 1
   followDistance: 2
@@ -382,7 +381,7 @@ PrefabInstance:
     - target: {fileID: 3200369907269998027, guid: 8a05cb10b110c8544b2fd0667ce7bb87,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.0999993
+      value: -0.553
       objectReference: {fileID: 0}
     - target: {fileID: 3200369907269998027, guid: 8a05cb10b110c8544b2fd0667ce7bb87,
         type: 3}
@@ -468,7 +467,7 @@ PrefabInstance:
     - target: {fileID: 3200369907269998027, guid: 8a05cb10b110c8544b2fd0667ce7bb87,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.0999993
+      value: -0.572
       objectReference: {fileID: 0}
     - target: {fileID: 3200369907269998027, guid: 8a05cb10b110c8544b2fd0667ce7bb87,
         type: 3}
@@ -549,7 +548,7 @@ PrefabInstance:
     - target: {fileID: 3200369907269998027, guid: 8a05cb10b110c8544b2fd0667ce7bb87,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1000003
+      value: 0.553
       objectReference: {fileID: 0}
     - target: {fileID: 3200369907269998027, guid: 8a05cb10b110c8544b2fd0667ce7bb87,
         type: 3}

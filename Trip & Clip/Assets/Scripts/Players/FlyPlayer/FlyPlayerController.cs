@@ -15,10 +15,9 @@ public class FlyPlayerController : PlayerController
     private float canMoveTime;
     private bool canMove = true;
     private bool isFollowing = true;
+    private bool hasPlayerOn = false;
 
-
-    
-    public override void Start()
+    private void Awake()
     {
         if (flySingleton != null)
         {
@@ -27,6 +26,11 @@ public class FlyPlayerController : PlayerController
         }
         flySingleton = this;
         GameObject.DontDestroyOnLoad(gameObject);
+    }
+
+    public override void Start()
+    {
+      
         base.Start();
         isFocused = false;
         
@@ -84,6 +88,7 @@ public class FlyPlayerController : PlayerController
         {
             canMove = true;
         }
+        hasPlayerOn = popCollisioncontroller.IsPlayerOnHead();
     }
   
    
@@ -96,22 +101,38 @@ public class FlyPlayerController : PlayerController
 
     private void UpdateThrustParticles()
     {
-        if (!isFollowing && isFocused)
+        if (!hasPlayerOn && canMove)
         {
-            thrustParticles[0].SetActive(verticalMovementDirection == -1);
-            thrustParticles[1].SetActive(horizontalMovementDirection != 0);
-            thrustParticles[2].SetActive(verticalMovementDirection == 1);
+            if (!isFollowing && isFocused)
+            {
+                thrustParticles[0].SetActive(verticalMovementDirection == -1);
+                thrustParticles[1].SetActive(horizontalMovementDirection != 0);
+                thrustParticles[2].SetActive(verticalMovementDirection == 1);
+            }
+            else if (isFollowing)
+            {
+                thrustParticles[0].SetActive(rb.velocity.y < -0.01);
+                thrustParticles[1].SetActive(rb.velocity.x < -0.01 || rb.velocity.x > 0.1);
+                thrustParticles[2].SetActive(rb.velocity.y > 0.01);
+            }
         }
-        else if (isFollowing)
+        else if (hasPlayerOn)
         {
-            thrustParticles[0].SetActive(rb.velocity.y < -0.01);
-            thrustParticles[1].SetActive(rb.velocity.x < -0.01 || rb.velocity.x > 0.1);
-            thrustParticles[2].SetActive(rb.velocity.y > 0.01);
+            thrustParticles[2].SetActive(true);
         }
-
+        else
+        {
+            thrustParticles[2].SetActive(false);
+        }
+      
         
           
         
+    }
+
+    public bool HasPlayerOn()
+    {
+        return hasPlayerOn;
     }
 
     public void ResetThrusters()

@@ -2623,6 +2623,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3960198528419833777, guid: 3a37233b5ed8f864ea84665dfaa2fa87,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 3960198528419833779, guid: 3a37233b5ed8f864ea84665dfaa2fa87,
         type: 3}
       propertyPath: player
@@ -2641,12 +2646,12 @@ PrefabInstance:
     - target: {fileID: 3960198528856592563, guid: 3a37233b5ed8f864ea84665dfaa2fa87,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.284
+      value: -9.496
       objectReference: {fileID: 0}
     - target: {fileID: 3960198528856592563, guid: 3a37233b5ed8f864ea84665dfaa2fa87,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.3289995
+      value: 8.503
       objectReference: {fileID: 0}
     - target: {fileID: 3960198528856592563, guid: 3a37233b5ed8f864ea84665dfaa2fa87,
         type: 3}
@@ -2712,6 +2717,18 @@ BoxCollider2D:
     type: 3}
   m_PrefabInstance: {fileID: 1666316631}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1527635821 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1527635821, guid: ad1d0a67e2b927245a59daa85fc8eee0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1965710548}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1532530761 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3960198528856592567, guid: 3a37233b5ed8f864ea84665dfaa2fa87,
@@ -3059,6 +3076,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6059912889578585471, guid: 523097526122ad04faec54a2d3c75999,
         type: 3}
+      propertyPath: isTriggerable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6059912889578585471, guid: 523097526122ad04faec54a2d3c75999,
+        type: 3}
       propertyPath: localWaypoints.Array.data[0].y
       value: 0
       objectReference: {fileID: 0}
@@ -3354,6 +3376,16 @@ PrefabInstance:
       propertyPath: text
       value: 
       objectReference: {fileID: 1873800947}
+    - target: {fileID: 833110601470863247, guid: c8254f8af54a83947b6d06ce4f38e72b,
+        type: 3}
+      propertyPath: hatsCounter
+      value: 
+      objectReference: {fileID: 1873800947}
+    - target: {fileID: 833110601470863247, guid: c8254f8af54a83947b6d06ce4f38e72b,
+        type: 3}
+      propertyPath: timeCounter
+      value: 
+      objectReference: {fileID: 1527635821}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8254f8af54a83947b6d06ce4f38e72b, type: 3}
 --- !u!1001 &1953332557

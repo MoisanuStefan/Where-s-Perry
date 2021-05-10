@@ -16,7 +16,7 @@ public class PlayerSwitcher : MonoBehaviour
     {
         if (playerSwitcherSingleton != null)
         {
-            Object.Destroy(gameObject);
+            Destroy(gameObject);
             return;
         }
         playerSwitcherSingleton = this;

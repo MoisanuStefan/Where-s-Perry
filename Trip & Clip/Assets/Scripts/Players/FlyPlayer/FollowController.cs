@@ -5,7 +5,7 @@ using Pathfinding;
 
 public class FollowController : MonoBehaviour
 {
-    public Transform target;
+  
     public float speed = 200f;
     public float nextWaypointDistance = 3f;
     public float followDistance = 10f;
@@ -21,10 +21,12 @@ public class FollowController : MonoBehaviour
 
     private Seeker seeker;
     private Rigidbody2D rb;
+    private Transform target;
 
     // Start is called before the first frame update
     void Start()
     {
+        target = GameObject.FindGameObjectWithTag("FollowTarget").transform;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 

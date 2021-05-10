@@ -34,6 +34,10 @@ public class POnPCollisionController : MonoBehaviour
 
     }
 
+    public bool IsPlayerOnHead()
+    {
+        return isPlayerOnHead;
+    }
     public void ResetPositionBeforeImpact()
     {
         positionBeforeImpact = flyPlayer.transform.position;
@@ -62,7 +66,6 @@ public class POnPCollisionController : MonoBehaviour
             flyPlayer.transform.Translate(positionBeforeImpact - transform.position);
             flyPlayer.GetComponent<FlyPlayerController>().DeactivateMovement();
             flyPlayer.GetComponent<FollowController>().DeactivateMovement();
-            bottomThurster.SetActive(true);
         }
        
     }
@@ -76,7 +79,7 @@ public class POnPCollisionController : MonoBehaviour
             flyPlayer.GetComponent<FlyPlayerController>().ActivateMovementWithDelay();
             flyPlayer.GetComponent<FollowController>().ActivateMovementWithDelay();
 
-            bottomThurster.SetActive(false);
+            
         }
     }
 

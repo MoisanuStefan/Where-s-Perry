@@ -16,10 +16,13 @@ public class POnPCollisionController : MonoBehaviour
     private bool isEnabled = true;
     private Vector3 positionBeforeImpact;
 
+    private BoxCollider2D collider;
+
     // Start is called before the first frame update
     void Start()
     {
         positionBeforeImpact = flyPlayer.transform.position;
+        collider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -45,6 +48,7 @@ public class POnPCollisionController : MonoBehaviour
     public void SetEnabled(bool value)
     {
         isEnabled = value;
+        collider.enabled = value;
     }
     private void CheckForPlayerIncoming()
     {

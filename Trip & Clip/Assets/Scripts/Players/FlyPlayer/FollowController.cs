@@ -93,7 +93,7 @@ public class FollowController : MonoBehaviour
         if (!reachedEndOfPath)
         {
             Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-            Vector2 force = direction * speed * Time.deltaTime;
+            Vector2 force = direction * speed;
             if (direction.x > 0) { }
 
             rb.AddForce(force);

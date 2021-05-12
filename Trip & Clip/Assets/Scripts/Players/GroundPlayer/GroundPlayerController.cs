@@ -97,7 +97,7 @@ public class GroundPlayerController : PlayerController
             isGrounded = false;
         }
         // make sure jump is enabled only if player is on top of flyplayer, not just by colliding
-        else if(col.gameObject.CompareTag("FlyPlayer") && groundCheck.position.y - (flyPlayer.transform.position.y + flyPlayer.GetComponent<SpriteRenderer>().sprite.bounds.size.y / 2) < 0.001)
+        else if(col.gameObject.CompareTag("FlyPlayer") && groundCheck.position.y - (flyPlayer.transform.position.y + flyPlayer.GetComponent<SpriteRenderer>().sprite.bounds.size.y / 2) < 0.01)
         {
             isGrounded = false;
         }

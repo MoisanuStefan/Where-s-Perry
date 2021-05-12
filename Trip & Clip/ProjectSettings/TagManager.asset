@@ -32,7 +32,7 @@ TagManager:
   - Collectable
   - TriggerButtons
   - FlyPlayerCollider
-  - 
+  - Movable
   - 
   - 
   - 

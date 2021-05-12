@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1547815670}
-  m_Layer: 14
+  m_Layer: 10
   m_Name: Thrusters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 3960198528419833789}
   - component: {fileID: 3960198528419833778}
   - component: {fileID: 3960198528419833779}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: PlayerCollider
   m_TagString: FlyPlayerCollider
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9871553, y: 0.9871553}
+  m_Size: {x: 0.9272376, y: 0.9272376}
   m_EdgeRadius: 0
 --- !u!251 &3960198528419833778
 PlatformEffector2D:
@@ -140,7 +140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3960198528552205901}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 3960198528856592566}
   - component: {fileID: 3960198528856592573}
   - component: {fileID: 3960198528856592572}
-  m_Layer: 14
+  m_Layer: 10
   m_Name: Player2
   m_TagString: FlyPlayer
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popCollisioncontroller: {fileID: 3960198528419833779}
-  movementSpeed: 6
+  movementSpeed: 200
   headjumpMovementDelayTime: 0.5
   player1Collider: {fileID: 0}
   thrustParticles:
@@ -282,8 +282,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.1
-  m_LinearDrag: 10
+  m_Mass: 5
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: e1560f483c411de49a1b3185c9491904, type: 2}
@@ -308,14 +308,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.04375, y: 1.04375}
+    oldSize: {x: 0.92777777, y: 0.92777777}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.98715526, y: 0.9871553}
+  m_Size: {x: 0.92723763, y: 0.9272376}
   m_EdgeRadius: 0
 --- !u!114 &3960198528856592573
 MonoBehaviour:
@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde7a2aa17973494d9481d3b451b7b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 600
+  speed: 200
   nextWaypointDistance: 1
   followDistance: 2
   headjumpMovementDelayTime: 0.5
@@ -372,6 +372,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ThrustParticles (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3200369907269998006, guid: 8a05cb10b110c8544b2fd0667ce7bb87,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3200369907269998027, guid: 8a05cb10b110c8544b2fd0667ce7bb87,
         type: 3}
@@ -454,6 +459,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ThrustParticles (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3200369907269998006, guid: 8a05cb10b110c8544b2fd0667ce7bb87,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3200369907269998027, guid: 8a05cb10b110c8544b2fd0667ce7bb87,
         type: 3}
       propertyPath: m_RootOrder
@@ -534,6 +544,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ThrustParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 3200369907269998006, guid: 8a05cb10b110c8544b2fd0667ce7bb87,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3200369907269998027, guid: 8a05cb10b110c8544b2fd0667ce7bb87,
         type: 3}

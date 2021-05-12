@@ -8,14 +8,14 @@ public class Button : Trigger
     public float lerpTime;
     public float delayTime = 0;
 
-    public Trigger trigger;
+    public Trigger[] triggers;
 
     private bool isTriggered;
     private bool isMoving;
     private bool collisionEnter = false;
     private bool collisionExit = false;
 
-    private string triggeringEntity;
+    private string triggeringEntity = "notag";
 
     private float unTriggerTime;
 
@@ -29,7 +29,7 @@ public class Button : Trigger
     {
        unTriggeredPosition = transform.position;
        triggeredPosition = transform.position - transform.up.normalized * moveDistance;
-      
+        triggeringEntity = "notag";
 
        
     }
@@ -37,21 +37,35 @@ public class Button : Trigger
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-        if (collision.gameObject.GetComponent<PlayerController>().IsFocused() && !isTriggered)
+        GameObject go = collision.gameObject;
+        if (triggeringEntity == "notag" || go.CompareTag(triggeringEntity))
         {
-            triggeringEntity = collision.gameObject.tag;
-            TriggerFunction();
+            // player layer = 10
+            if ((go.layer == 10 && go.GetComponent<PlayerController>().IsFocused()) || go.layer == 18)
+            {
+                triggeringEntity = collision.gameObject.tag;
+                if (!isTriggered)
+                {
+
+                    TriggerFunction();
+                }
+
+                else
+                {
+                    unTriggerTime = Mathf.Infinity;
+                }
+            }
         }
-        
+            
+       
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
 
-        if (isTriggered && collision.gameObject.CompareTag(triggeringEntity))
+        if (!isMoving && isTriggered && collision.gameObject.CompareTag(triggeringEntity))
         {
-            triggeringEntity = "";
+            triggeringEntity = "notag";
             collisionExit = true;
             unTriggerTime = Time.time;
         }
@@ -75,11 +89,18 @@ public class Button : Trigger
 
     }
 
+    private void TriggerAll()
+    {
+        foreach (Trigger trigger in triggers)
+        {
+            trigger.TriggerFunction();
+        }
+    }
     public override void TriggerFunction()
     {
         base.TriggerFunction();
         Vector3 destination;
-        trigger.TriggerFunction();
+        TriggerAll();
 
         destination = (isTriggered) ? unTriggeredPosition : triggeredPosition;
 

@@ -52,6 +52,7 @@ public class FlyPlayerController : PlayerController
     }
     public void SetFollowMode(bool value) {
         isFollowing = value;
+        popCollisioncontroller.SetEnabled(!value);
         ResetThrusters();
         GetComponent<FollowController>().SetEnabled(value);
     }

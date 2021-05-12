@@ -24,6 +24,8 @@ public class PlatformController : Trigger
     private float xVelocity;
     private Vector3 newPos;
     private Vector3 oldPos;
+    private Vector3 unTriggeredPosition;
+    private Vector3 triggeredPosition;
     private float platformMovement;
 
     private bool isMoving;
@@ -39,6 +41,11 @@ public class PlatformController : Trigger
             globalWaypoins[i] = localWaypoints[i] + transform.position;
         }
         oldPos = transform.position;
+        if (isTriggerable)
+        {
+            unTriggeredPosition = globalWaypoins[0];
+            triggeredPosition = globalWaypoins[1];
+        }
     }
 
     private void Update()
@@ -46,7 +53,7 @@ public class PlatformController : Trigger
         //transform.position = Vector3.MoveTowards(transform.position, Vector3.Lerp(transform.position, globalWaypoins[fromWaypointIndex + 1], 0.5f), speed * Time.deltaTime / Vector3.Distance(transform.position, globalWaypoins[fromWaypointIndex + 1]));
         //transform.position = Vector3.MoveTowards(transform.position, globalWaypoins[(fromWaypointIndex + 1) % globalWaypoins.Length], 0.5f);
         
-        UpdateHorizontalVelocity();
+        //UpdateHorizontalVelocity();
         /*
         if (playerOn)
         {
@@ -67,15 +74,16 @@ public class PlatformController : Trigger
 
     }
 
+    /*
     private void UpdateHorizontalVelocity()
     {
         newPos = transform.position;
         xVelocity = (newPos.x - oldPos.x) / Time.deltaTime;
         oldPos = newPos;
     }
-
+    */
   
-
+    /*
     private void SetPlatformDirection(Vector2 newPosition)
     {
         if (newPosition.x > transform.position.x)
@@ -104,34 +112,54 @@ public class PlatformController : Trigger
 
     }
 
+    */
     public override void TriggerFunction()
     {
         if (isTriggerable)
         {
             base.TriggerFunction();
             isTriggered = !isTriggered;
+            percentBetweenWaypoints = 0;
             isMoving = true;
         }
     }
     private Vector3 CalculatePlatformMovement()
     {
-        int toWaypointIndex = fromWaypointIndex + 1;
-        float distance = Vector3.Distance(transform.position, globalWaypoins[toWaypointIndex]);
-        percentBetweenWaypoints += Time.deltaTime * speed / distance;
-
-        Vector3 newPosition = Vector3.Lerp(transform.position, globalWaypoins[toWaypointIndex], percentBetweenWaypoints);
-
-        if (1 - percentBetweenWaypoints < 0.01f)       
+        Vector3 newPosition;
+        if (isTriggerable)
         {
-            percentBetweenWaypoints = 0;
-            fromWaypointIndex++;
-            if (fromWaypointIndex >= globalWaypoins.Length - 1)
-            {
-                fromWaypointIndex = 0;
-                System.Array.Reverse(globalWaypoins);
-            }
-            isMoving = false;
+            Vector3 destination = (isTriggered) ? triggeredPosition : unTriggeredPosition;
+            float distance = Vector3.Distance(transform.position, destination);
+            percentBetweenWaypoints += Time.deltaTime * speed / distance;
 
+            newPosition = Vector3.Lerp(transform.position, destination, percentBetweenWaypoints);
+            if (1 - percentBetweenWaypoints < 0.1f) {
+                percentBetweenWaypoints = 0;
+                isMoving = false;
+            
+            }
+
+        }
+        else
+        {
+            int toWaypointIndex = fromWaypointIndex + 1;
+            float distance = Vector3.Distance(transform.position, globalWaypoins[toWaypointIndex]);
+            percentBetweenWaypoints += Time.deltaTime * speed / distance;
+
+            newPosition = Vector3.Lerp(transform.position, globalWaypoins[toWaypointIndex], percentBetweenWaypoints);
+
+            if (1 - percentBetweenWaypoints < 0.01f)
+            {
+                percentBetweenWaypoints = 0;
+                fromWaypointIndex++;
+                if (fromWaypointIndex >= globalWaypoins.Length - 1)
+                {
+                    fromWaypointIndex = 0;
+                    System.Array.Reverse(globalWaypoins);
+                }
+                isMoving = false;
+
+            }
         }
         return newPosition - transform.position;
 

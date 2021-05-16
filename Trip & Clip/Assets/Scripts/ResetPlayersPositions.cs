@@ -13,13 +13,10 @@ public class ResetPlayersPositions : MonoBehaviour
     PlayerController groundPlayer = null;
     FlyPlayerController flyPlayer = null;
 
-    private bool resetInitiated = false;
-    private bool resetDone = false;
     private bool colliderActivated = false;
     private float startTime;
+    private float spawnOffset = 0.8f;
 
-    private ScoreKeeper scoreKeeper;
-    private GameObject flyPlayerCollider;
 
 
     private void Awake()
@@ -38,15 +35,18 @@ public class ResetPlayersPositions : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        startTime = Mathf.Infinity;
         startPlatform = GameObject.FindGameObjectWithTag("StartPlatform");
+
+        groundPlayer = GroundPlayerController.GetInstance();
+        flyPlayer = FlyPlayerController.GetInstance();
+        ResetPlayersPosition();
         colliderActivated = false;
-        resetInitiated = true;
-        resetDone = false;
     }
     // Start is called before the first frame update
     void Start()
     {
-        flyPlayerCollider = GameObject.FindGameObjectWithTag("FlyPlayerCollider");
+        
 
 
     }
@@ -55,50 +55,37 @@ public class ResetPlayersPositions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         CheckInactiveTime();
-        if (resetInitiated)
-        {
-            ResetPlayersPosition();
-        }
+       
     }
+
+  
 
     private void ResetPlayersPosition()
     {
-       
-        
-        if (!resetDone)
+        if (groundPlayer != null && flyPlayer != null)
         {
-            if (groundPlayer == null)
-            {
-                groundPlayer = GroundPlayerController.GetInstance();
-            }
-            if (flyPlayer == null)
-            {
-                flyPlayer = FlyPlayerController.GetInstance();
+           // GameObject.FindGameObjectWithTag("FlyPlayerCollider").SendMessage("SetEnabled", false);
 
-            }
-            if (groundPlayer != null && flyPlayer != null)
-            {
-
-                flyPlayerCollider.SetActive(false);
-                colliderActivated = false;
-                flyPlayer.SetPosition(transform.position - flyPlayer.transform.position);
-                flyPlayer.SendMessage("ResetPositionBeforeImpact");
-                groundPlayer.SetPosition(transform.position - groundPlayer.transform.position);
-                startPlatform.SendMessage("TriggerFunction");
-                startTime = Time.time;
-                resetDone = true;
-                resetInitiated = false;
-            }
+            //colliderActivated = false;
+            //flyPlayer.SetPosition(transform.position + Vector3.left * spawnOffset - flyPlayer.transform.position);
+            flyPlayer.SendMessage("ResetPositionBeforeImpact");
+            //groundPlayer.SetPosition(transform.position + Vector3.right * spawnOffset - groundPlayer.transform.position);
+            flyPlayer.SetCanGetDamage(true);
+            groundPlayer.SetCanGetDamage(true);
+           
+            startPlatform.SendMessage("TriggerFunction");
+            startTime = Time.time;
         }
-        
     }
     private void CheckInactiveTime()
     {
-        if(!colliderActivated && Time.time >= startTime + inactiveTime)
+        if(Time.time >= startTime + inactiveTime)
         {
-            colliderActivated = true;
-            flyPlayerCollider.SetActive(true);
+            //colliderActivated = true;
+            //GameObject.FindGameObjectWithTag("FlyPlayerCollider").SendMessage("SetEnabled", Strue);
+            startTime = Mathf.Infinity;
             groundPlayer.SetFocused(true);
             flyPlayer.SetFollowMode(true);
             ScoreKeeper.GetInstance().BeginTimer();

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class GroundPlayerController : PlayerController
 {
     private static GroundPlayerController groundSingleton;
@@ -37,12 +38,23 @@ public class GroundPlayerController : PlayerController
     {
         if (groundSingleton != null)
         {
-            Object.Destroy(gameObject);
+            Destroy(gameObject);
             return;
         }
         groundSingleton = this;
+       
         GameObject.DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        sceneLoaded = true;
+        groundSingleton.transform.position = resetPosition.position + Vector3.right * 0.8f;
+        Physics2D.IgnoreCollision(groundSingleton.GetComponent<BoxCollider2D>(), FlyPlayerController.GetInstance().GetComponent<BoxCollider2D>());
+
+    }
+
     public override void Start()
     {
        
@@ -71,6 +83,7 @@ public class GroundPlayerController : PlayerController
         CheckSurroundings();
     }
 
+   
     public override void CheckInput()
     {
         base.CheckInput();

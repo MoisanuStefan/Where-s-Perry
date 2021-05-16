@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class POnPCollisionController : MonoBehaviour
 {
-    public GameObject flyPlayer;
-    public GameObject player;
     public GameObject bottomThurster;
     public Transform playerCheck;
     public LayerMask whatIsPlayer;
@@ -21,7 +19,7 @@ public class POnPCollisionController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        positionBeforeImpact = flyPlayer.transform.position;
+        positionBeforeImpact = FlyPlayerController.GetInstance().transform.position;
         collider = GetComponent<BoxCollider2D>();
     }
 
@@ -43,7 +41,7 @@ public class POnPCollisionController : MonoBehaviour
     }
     public void ResetPositionBeforeImpact()
     {
-        positionBeforeImpact = flyPlayer.transform.position;
+        positionBeforeImpact = FlyPlayerController.GetInstance().transform.position;
     }
     public void SetEnabled(bool value)
     {
@@ -55,21 +53,21 @@ public class POnPCollisionController : MonoBehaviour
         playerIncoming = Physics2D.OverlapCircle(playerCheck.position, playerCheckRadius, whatIsPlayer);
         if (playerIncoming)
         {
-            positionBeforeImpact = flyPlayer.transform.position;
+            positionBeforeImpact = FlyPlayerController.GetInstance().transform.position;
         }
        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
-        if (player.GetComponent<Rigidbody2D>().velocity.y < 0 && isEnabled)
+        if (GroundPlayerController.GetInstance().GetComponent<Rigidbody2D>().velocity.y < 0 && isEnabled && GroundPlayerController.GetInstance().groundCheck.position.y - (FlyPlayerController.GetInstance().transform.position.y + FlyPlayerController.GetInstance().GetComponent<SpriteRenderer>().sprite.bounds.size.y / 2) > 0.01)
         {
             isPlayerOnHead = true;
-            flyPlayer.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            flyPlayer.GetComponent<Rigidbody2D>().isKinematic = true;
-            flyPlayer.transform.Translate(positionBeforeImpact - transform.position);
-            flyPlayer.GetComponent<FlyPlayerController>().DeactivateMovement();
-            flyPlayer.GetComponent<FollowController>().DeactivateMovement();
+            FlyPlayerController.GetInstance().GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            FlyPlayerController.GetInstance().GetComponent<Rigidbody2D>().isKinematic = true;
+            FlyPlayerController.GetInstance().transform.Translate(positionBeforeImpact - transform.position);
+            FlyPlayerController.GetInstance().GetComponent<FlyPlayerController>().DeactivateMovement();
+            FlyPlayerController.GetInstance().GetComponent<FollowController>().DeactivateMovement();
         }
        
     }
@@ -79,9 +77,9 @@ public class POnPCollisionController : MonoBehaviour
         if (isPlayerOnHead && isEnabled)
         {
             isPlayerOnHead = false;
-            flyPlayer.GetComponent<Rigidbody2D>().isKinematic = false;
-            flyPlayer.GetComponent<FlyPlayerController>().ActivateMovementWithDelay();
-            flyPlayer.GetComponent<FollowController>().ActivateMovementWithDelay();
+            FlyPlayerController.GetInstance().GetComponent<Rigidbody2D>().isKinematic = false;
+            FlyPlayerController.GetInstance().GetComponent<FlyPlayerController>().ActivateMovementWithDelay();
+            FlyPlayerController.GetInstance().GetComponent<FollowController>().ActivateMovementWithDelay();
 
             
         }

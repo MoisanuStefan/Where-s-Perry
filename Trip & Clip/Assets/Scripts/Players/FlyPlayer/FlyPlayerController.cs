@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FlyPlayerController : PlayerController
 {
@@ -17,17 +18,25 @@ public class FlyPlayerController : PlayerController
     private bool isFollowing = true;
     private bool hasPlayerOn = false;
 
+
     private void Awake()
     {
         if (flySingleton != null)
         {
-            Object.Destroy(gameObject);
+            Destroy(gameObject);
             return;
         }
         flySingleton = this;
         GameObject.DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        sceneLoaded = true;
+        flySingleton.transform.position = resetPosition.position + Vector3.left * 0.8f;
+    }
     public override void Start()
     {
       
@@ -36,6 +45,7 @@ public class FlyPlayerController : PlayerController
         
     }
 
+  
     public static FlyPlayerController GetInstance()
     {
         return flySingleton;
@@ -43,6 +53,7 @@ public class FlyPlayerController : PlayerController
     public override void Update()
     {
         base.Update();
+        CheckSceneLoaded();
         UpdateThrustParticles();
     }
 

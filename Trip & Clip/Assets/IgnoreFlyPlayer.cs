@@ -32,6 +32,8 @@ public class IgnoreFlyPlayer : MonoBehaviour
         incoming = Physics2D.OverlapCircle(transform.position, collisionCheckRadius, whoCantMoveMe);
         if (incoming)
         {
+            Debug.Log(incoming.gameObject.tag);
+            
             if (incoming.gameObject.CompareTag("FlyPlayer"))
             {
                 rb.mass = 1000000;
@@ -40,6 +42,7 @@ public class IgnoreFlyPlayer : MonoBehaviour
             {
                 rb.mass = initMass;
             }
+            Debug.Log(rb.mass);
         }
         else
         {

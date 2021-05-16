@@ -26,7 +26,6 @@ public class FollowController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("FollowTarget").transform;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -37,7 +36,7 @@ public class FollowController : MonoBehaviour
 
     private void UpdatePath()
     {
-        seeker.StartPath(rb.position, target.position, OnPathComplete);
+        seeker.StartPath(rb.position, GameObject.FindGameObjectWithTag("FollowTarget").transform.position, OnPathComplete);
 
     }
     private void OnPathComplete(Path p)
@@ -80,7 +79,7 @@ public class FollowController : MonoBehaviour
             return;
         }
 
-        if (currentWaypoint >= path.vectorPath.Count || Vector2.Distance(rb.position, target.position) < followDistance)
+        if (currentWaypoint >= path.vectorPath.Count || Vector2.Distance(rb.position, GameObject.FindGameObjectWithTag("FollowTarget").transform.position) < followDistance)
         {
             reachedEndOfPath = true;
             return;

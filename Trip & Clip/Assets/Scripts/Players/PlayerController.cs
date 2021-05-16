@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    protected Transform resetPosition;
     protected bool isFocused;
     protected bool isFacingRight = true;
     protected bool canFlip = true;
     protected bool isWalking = false;
+    protected bool canGetDamage = true;
+    protected bool sceneLoaded = false;
 
-    
+
+
     protected float horizontalMovementDirection = 0;
     protected float previousHorizontalDirection = 0;
     protected float previousVerticalDirection = 0;
@@ -32,6 +37,7 @@ public class PlayerController : MonoBehaviour
     public virtual void Update()
     {
         CheckInput();
+        CheckSceneLoaded();
        
     }
 
@@ -44,6 +50,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public virtual void CheckSceneLoaded()
+    {
+        if (sceneLoaded)
+        {
+            sceneLoaded = false;
+            rb.velocity = Vector3.zero;
+        }
+    }
+    public virtual void SetVelocity(Vector3 velocity)
+    {
+        rb.velocity = velocity;
+    }
+    public virtual void SetCanGetDamage(bool value)
+    {
+        canGetDamage = value;
+    }
+
+    public virtual bool CanGetDamage()
+    {
+        return canGetDamage;
+    }
     public virtual void ApplyMovement()
     {
 

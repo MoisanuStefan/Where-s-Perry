@@ -15,6 +15,8 @@ public class LaserCollisionController : MonoBehaviour
     private Bounds previousBounds;
 
 
+
+
     void Start()
     {
         previousPosition = receiverPoint.position;
@@ -58,6 +60,9 @@ public class LaserCollisionController : MonoBehaviour
                 attackDetails.attackAmount = 10000;
                 attackDetails.position = gameObject.transform.position;
                 collision.gameObject.SendMessage("Damage", attackDetails);
+                collision.gameObject.SendMessage("SetCanGetDamage", false);
+
+
             }
         }
     }

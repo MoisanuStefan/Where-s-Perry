@@ -13,6 +13,7 @@ TagManager:
   - FlyPlayerCollider
   - HatCounter
   - TimeCounter
+  - FinalPlatform
   layers:
   - Default
   - TransparentFX

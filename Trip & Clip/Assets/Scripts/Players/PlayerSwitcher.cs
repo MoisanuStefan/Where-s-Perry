@@ -7,7 +7,7 @@ public class PlayerSwitcher : MonoBehaviour
     static PlayerSwitcher playerSwitcherSingleton;
 
 
-    public GameObject[] players;
+    public PlayerController[] players;
     private int currentPlayer;
     private bool isFollowEnabled = true;
 
@@ -22,7 +22,6 @@ public class PlayerSwitcher : MonoBehaviour
         playerSwitcherSingleton = this;
         GameObject.DontDestroyOnLoad(gameObject);
         currentPlayer = 0;
-        Physics2D.IgnoreCollision(players[0].GetComponent<BoxCollider2D>(), players[1].GetComponent<BoxCollider2D>());
     }
 
     // Update is called once per frame
@@ -67,22 +66,32 @@ public class PlayerSwitcher : MonoBehaviour
         
     }
 
+   
     private void CheckInput()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
+            FlyPlayerController flyplayer = FlyPlayerController.GetInstance();
+            GroundPlayerController groundPlayer = GroundPlayerController.GetInstance();
             if (currentPlayer == 0)
             {
-                players[1].GetComponent<FlyPlayerController>().SetFollowMode(false);
+                flyplayer.SetFocused(true);
+                flyplayer.SetFollowMode(false);
+                groundPlayer.SetFocused(false);
+                isFollowEnabled = false;
             }
-            players[currentPlayer].GetComponent<PlayerController>().SetFocused(false);
-            players[1 - currentPlayer].GetComponent<PlayerController>().SetFocused(true);
+            else
+            {
+                groundPlayer.SetFocused(true);
+                flyplayer.SetFocused(false);
+            }
+           
             currentPlayer = 1 - currentPlayer;
         }
             if (Input.GetKeyDown(KeyCode.F))
         {
             isFollowEnabled = !isFollowEnabled;
-            players[1].GetComponent<FlyPlayerController>().SetFollowMode(isFollowEnabled);
+            FlyPlayerController.GetInstance().SetFollowMode(isFollowEnabled);
         }
     }
 

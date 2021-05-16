@@ -29,7 +29,8 @@ public class PlayerStats : MonoBehaviour
 
     private void Die()
     {
+        playerController.SetVelocity(Vector3.zero);
         playerController.SetDontDestroyOnLoad();
-        GameManager.ResetScene();
+        ManageGame.GetInstance().ResetScene();
     }
 }

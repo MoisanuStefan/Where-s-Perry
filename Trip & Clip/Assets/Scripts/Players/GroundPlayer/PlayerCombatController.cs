@@ -39,6 +39,7 @@ public class PlayerCombatController : MonoBehaviour
     }
     private void CheckCombatInput()
     {
+        /*
         if (Input.GetMouseButtonDown(0) && playerController.IsFocused())
         {
             if (combatEnabled)
@@ -47,6 +48,7 @@ public class PlayerCombatController : MonoBehaviour
                 lastInputTime = Time.time;
             }
         }
+        */
     }
 
     private void CheckAttacks()
@@ -86,18 +88,21 @@ public class PlayerCombatController : MonoBehaviour
 
     public void Damage(AttackDetails attackDetails)
     {
-        int direction;
-        playerStats.DecreaseHealth(attackDetails.attackAmount);
-        if (attackDetails.position.x < transform.position.x)
+        if (playerController.CanGetDamage())
         {
-            direction = 1;
-        }
-        else
-        {
-            direction = -1;
-        }
+            int direction;
+            playerStats.DecreaseHealth(attackDetails.attackAmount);
+            if (attackDetails.position.x < transform.position.x)
+            {
+                direction = 1;
+            }
+            else
+            {
+                direction = -1;
+            }
 
-        playerController.Knockback(direction);
+            playerController.Knockback(direction);
+        }
     }
 
 

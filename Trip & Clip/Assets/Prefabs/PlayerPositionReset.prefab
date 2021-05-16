@@ -45,4 +45,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPlatform: {fileID: 0}
   inactiveTime: 1
-  flyPlayerCollider: {fileID: 0}

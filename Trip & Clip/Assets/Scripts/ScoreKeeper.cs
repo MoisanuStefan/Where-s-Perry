@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
@@ -18,7 +19,7 @@ public class ScoreKeeper : MonoBehaviour
     private bool timerStarted;
 
     private TimeSpan timePlaying;
-    private TextMeshProUGUI hatsCounter;
+    private Text hatsCounter;
     private TextMeshProUGUI timeCounter;
     private void Awake()
     {
@@ -47,8 +48,9 @@ public class ScoreKeeper : MonoBehaviour
 
     public void ResetScore()
     {
-        hatsCounter = GameObject.FindGameObjectWithTag("HatCounter").GetComponent<TextMeshProUGUI>();
+        hatsCounter = GameObject.FindGameObjectWithTag("HatCounter").GetComponent<Text>();
         timeCounter = GameObject.FindGameObjectWithTag("TimeCounter").GetComponent<TextMeshProUGUI>();
+        numberOfHats = 0;
 
         timeCounter.text = "Time: 00:00.00";
         timerStarted = false;
@@ -68,6 +70,8 @@ public class ScoreKeeper : MonoBehaviour
     public void EndTimer()
     {
         timerStarted = false;
+        FirebaseHandler.GetInstance().PutLevelScore("user", SceneManager.GetActiveScene().buildIndex, SceneManager.GetActiveScene().name, elapsedTime);
+
     }
 
     private IEnumerator UpdateTimer()

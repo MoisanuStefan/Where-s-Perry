@@ -9,7 +9,7 @@ public class NextSceneLoader : MonoBehaviour
 
     public Vector3 playersResetPosition;
 
-
+    private bool sceneLoaded;
     private bool groundPlayerOn;
     private bool flyPlayerOn;
     private GameObject flyPlayer;
@@ -19,6 +19,7 @@ public class NextSceneLoader : MonoBehaviour
   
     private void Start()
     {
+        sceneLoaded = false;
         groundPlayerOn = false;
         flyPlayerOn = false;
     }
@@ -42,13 +43,15 @@ public class NextSceneLoader : MonoBehaviour
             flyPlayer = collision.gameObject;
         }
 
-        if (groundPlayerOn && flyPlayerOn)
+        if (groundPlayerOn && flyPlayerOn && !sceneLoaded)
         {
+            sceneLoaded = true;
             groundPlayer.SendMessage("SetFocused", false);
             flyPlayer.SendMessage("SetFocused", false);
             groundPlayer.transform.parent = null;
             GameObject.DontDestroyOnLoad(groundPlayer);
-            GetComponentInParent<PlatformController>().TriggerFunction();
+            GameObject.FindGameObjectWithTag("FinalPlatform").SendMessage("TriggerFunction");
+            ScoreKeeper.GetInstance().EndTimer();
             StartCoroutine(LoadNextScene(sceneName));           
         }
     }

@@ -31,6 +31,11 @@ public class ManageGame : MonoBehaviour
 
     }
 
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Level1");
+    }
+
     public void ResetScene()
     {
         Debug.Log("Scene reset");

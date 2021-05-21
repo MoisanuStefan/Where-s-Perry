@@ -11,7 +11,13 @@ public class LevelData
     public string timeString;
     public float seconds;
 
-    
+    public LevelData()
+    {
+        id = -1;
+        name = "";
+        timeString = "";
+        seconds = 0;
+    }
 
     public LevelData(int id, string name, string timeString, float seconds)
     {

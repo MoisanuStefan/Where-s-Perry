@@ -20,16 +20,46 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: d3c41fb87b0dacc4085f85462f6e4938, type: 3}
-    - time: 0.15
-      value: {fileID: 21300000, guid: d3c41fb87b0dacc4085f85462f6e4938, type: 3}
+      value: {fileID: 6511715546741198847, guid: c8aee29161f24b94ba7badeb6c7932bf,
+        type: 3}
+    - time: 0.033333335
+      value: {fileID: 6198596669093255590, guid: c8aee29161f24b94ba7badeb6c7932bf,
+        type: 3}
+    - time: 0.06666667
+      value: {fileID: 9150436502133321877, guid: c8aee29161f24b94ba7badeb6c7932bf,
+        type: 3}
+    - time: 0.1
+      value: {fileID: 3628096791273654844, guid: c8aee29161f24b94ba7badeb6c7932bf,
+        type: 3}
+    - time: 0.13333334
+      value: {fileID: 7560469619981757191, guid: c8aee29161f24b94ba7badeb6c7932bf,
+        type: 3}
+    - time: 0.16666667
+      value: {fileID: -2783028847146261023, guid: c8aee29161f24b94ba7badeb6c7932bf,
+        type: 3}
+    - time: 0.2
+      value: {fileID: -5548519424816086194, guid: c8aee29161f24b94ba7badeb6c7932bf,
+        type: 3}
+    - time: 0.23333333
+      value: {fileID: 220051916404491346, guid: c8aee29161f24b94ba7badeb6c7932bf,
+        type: 3}
+    - time: 0.26666668
+      value: {fileID: -4024421252143851185, guid: c8aee29161f24b94ba7badeb6c7932bf,
+        type: 3}
     - time: 0.3
-      value: {fileID: 21300000, guid: d3c41fb87b0dacc4085f85462f6e4938, type: 3}
+      value: {fileID: 3190664443447751279, guid: c8aee29161f24b94ba7badeb6c7932bf,
+        type: 3}
+    - time: 0.33333334
+      value: {fileID: 7892791633292443834, guid: c8aee29161f24b94ba7badeb6c7932bf,
+        type: 3}
+    - time: 0.36666667
+      value: {fileID: -5803105626434187902, guid: c8aee29161f24b94ba7badeb6c7932bf,
+        type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 20
+  m_SampleRate: 30
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -44,15 +74,24 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: d3c41fb87b0dacc4085f85462f6e4938, type: 3}
-    - {fileID: 21300000, guid: d3c41fb87b0dacc4085f85462f6e4938, type: 3}
-    - {fileID: 21300000, guid: d3c41fb87b0dacc4085f85462f6e4938, type: 3}
+    - {fileID: 6511715546741198847, guid: c8aee29161f24b94ba7badeb6c7932bf, type: 3}
+    - {fileID: 6198596669093255590, guid: c8aee29161f24b94ba7badeb6c7932bf, type: 3}
+    - {fileID: 9150436502133321877, guid: c8aee29161f24b94ba7badeb6c7932bf, type: 3}
+    - {fileID: 3628096791273654844, guid: c8aee29161f24b94ba7badeb6c7932bf, type: 3}
+    - {fileID: 7560469619981757191, guid: c8aee29161f24b94ba7badeb6c7932bf, type: 3}
+    - {fileID: -2783028847146261023, guid: c8aee29161f24b94ba7badeb6c7932bf, type: 3}
+    - {fileID: -5548519424816086194, guid: c8aee29161f24b94ba7badeb6c7932bf, type: 3}
+    - {fileID: 220051916404491346, guid: c8aee29161f24b94ba7badeb6c7932bf, type: 3}
+    - {fileID: -4024421252143851185, guid: c8aee29161f24b94ba7badeb6c7932bf, type: 3}
+    - {fileID: 3190664443447751279, guid: c8aee29161f24b94ba7badeb6c7932bf, type: 3}
+    - {fileID: 7892791633292443834, guid: c8aee29161f24b94ba7badeb6c7932bf, type: 3}
+    - {fileID: -5803105626434187902, guid: c8aee29161f24b94ba7badeb6c7932bf, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.35000002
+    m_StopTime: 0.4
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -79,22 +118,22 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.15
+  - time: 0.2
     functionName: CheckAttackHitBox
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.3
-    functionName: FinishAttack
+  - time: 0.36666667
+    functionName: EnableFlip
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.3
-    functionName: EnableFlip
+  - time: 0.36666667
+    functionName: FinishAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

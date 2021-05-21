@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerCombatController : MonoBehaviour
 {
@@ -39,8 +40,8 @@ public class PlayerCombatController : MonoBehaviour
     }
     private void CheckCombatInput()
     {
-        /*
-        if (Input.GetMouseButtonDown(0) && playerController.IsFocused())
+        
+        if (Input.GetMouseButtonDown(0) && playerController.IsFocused() && !EventSystem.current.IsPointerOverGameObject())
         {
             if (combatEnabled)
             {
@@ -48,7 +49,7 @@ public class PlayerCombatController : MonoBehaviour
                 lastInputTime = Time.time;
             }
         }
-        */
+        
     }
 
     private void CheckAttacks()

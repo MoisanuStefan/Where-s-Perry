@@ -36,6 +36,10 @@ public class ManageGame : MonoBehaviour
         SceneManager.LoadScene("Level1");
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     public void ResetScene()
     {
         Debug.Log("Scene reset");

@@ -51,7 +51,7 @@ public class GroundPlayerController : PlayerController
     {
         sceneLoaded = true;
         groundSingleton.transform.position = resetPosition.position + Vector3.right * 0.8f;
-        Physics2D.IgnoreCollision(groundSingleton.GetComponent<BoxCollider2D>(), FlyPlayerController.GetInstance().GetComponent<BoxCollider2D>());
+        Physics2D.IgnoreCollision(groundSingleton.GetComponent<CapsuleCollider2D>(), FlyPlayerController.GetInstance().GetComponent<BoxCollider2D>());
 
     }
 

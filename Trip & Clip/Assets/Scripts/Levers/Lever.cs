@@ -6,7 +6,7 @@ public class Lever : Trigger
 {
     public int id;
     [SerializeField]
-    protected Trigger trigger;
+    protected Trigger[] triggers;
     [SerializeField]
     private GameObject onLever;
     [SerializeField]
@@ -33,9 +33,9 @@ public class Lever : Trigger
                 GetComponent<SpriteRenderer>().sprite = onLever.GetComponent<SpriteRenderer>().sprite;
             }
             isOn = !isOn;
-           
 
-            trigger.TriggerFunction();
+
+            TriggerAll();
         }
     }
 
@@ -45,10 +45,17 @@ public class Lever : Trigger
     {
         if (isOn)
         {
-            trigger.TriggerFunction();
+            TriggerAll();
         }
         isOn = false;
         GetComponent<SpriteRenderer>().sprite = offLever.GetComponent<SpriteRenderer>().sprite;
     }
 
+    public virtual void TriggerAll()
+    {
+        foreach (Trigger trigger in triggers)
+        {
+            trigger.TriggerFunction();
+        }
+    }
 }

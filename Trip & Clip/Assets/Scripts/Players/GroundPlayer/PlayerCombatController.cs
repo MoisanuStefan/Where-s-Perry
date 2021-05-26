@@ -87,24 +87,7 @@ public class PlayerCombatController : MonoBehaviour
         animator.SetBool("isAttacking", isAttacking);
     }
 
-    public void Damage(AttackDetails attackDetails)
-    {
-        if (playerController.CanGetDamage())
-        {
-            int direction;
-            playerStats.DecreaseHealth(attackDetails.attackAmount);
-            if (attackDetails.position.x < transform.position.x)
-            {
-                direction = 1;
-            }
-            else
-            {
-                direction = -1;
-            }
-
-            playerController.Knockback(direction);
-        }
-    }
+  
 
 
 

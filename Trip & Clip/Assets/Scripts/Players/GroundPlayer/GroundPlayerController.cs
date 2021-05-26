@@ -11,18 +11,14 @@ public class GroundPlayerController : PlayerController
     public float jumpForce = 16.0f;
     public float groundCheckRadius;
 
-    [SerializeField]
-    private Vector2 knockbackSpeed;
-    [SerializeField]
-    private float knockbackDuration;
+    
+    
 
-    private float knockbackStartTime;
     private float platformXVelocity;
 
     private bool isGrounded;
     private bool canJump;
     private bool isFollowing = true;
-    private bool knockback;
 
     public int amountOfJumps = 1;
 
@@ -49,10 +45,14 @@ public class GroundPlayerController : PlayerController
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        currentHealth = maxHealth;
+        isFocused = true;
         sceneLoaded = true;
-        groundSingleton.transform.position = resetPosition.position + Vector3.right * 0.8f;
-        Physics2D.IgnoreCollision(groundSingleton.GetComponent<CapsuleCollider2D>(), FlyPlayerController.GetInstance().GetComponent<BoxCollider2D>());
-
+        if (groundSingleton)
+        {
+            groundSingleton.transform.position = resetPosition.position + Vector3.right * 0.8f;
+            Physics2D.IgnoreCollision(groundSingleton.GetComponent<CapsuleCollider2D>(), FlyPlayerController.GetInstance().GetComponent<BoxCollider2D>());
+        }
     }
 
     public override void Start()
@@ -74,7 +74,6 @@ public class GroundPlayerController : PlayerController
         base.Update();
         CheckIfCanJump();
         UpdateAnimations();
-        CheckKnockbackDone();
     }
 
     public override void FixedUpdate()
@@ -110,7 +109,7 @@ public class GroundPlayerController : PlayerController
             isGrounded = false;
         }
         // make sure jump is enabled only if player is on top of flyplayer, not just by colliding
-        else if(col.gameObject.CompareTag("FlyPlayer") && groundCheck.position.y - (flyPlayer.transform.position.y + flyPlayer.GetComponent<SpriteRenderer>().sprite.bounds.size.y / 2) < 0.01)
+        else if(col.gameObject.CompareTag("FlyPlayerCollider") && groundCheck.position.y < (flyPlayer.transform.position.y + flyPlayer.GetComponent<SpriteRenderer>().sprite.bounds.size.y / 2) - 0.1)
         {
             isGrounded = false;
         }
@@ -167,53 +166,31 @@ public class GroundPlayerController : PlayerController
         rb.AddForce(force);
     }
 
-    public void Knockback(int direction)
-    {
-        knockback = true;
-        knockbackStartTime = Time.time;
-        rb.velocity = new Vector2(knockbackSpeed.x * direction, knockbackSpeed.y);
-    }
-
-    private void CheckKnockbackDone()
-    {
-        if (knockback && Time.time >= knockbackStartTime + knockbackDuration)
-        {
-            knockback = false;
-            rb.velocity = new Vector2(0.0f, rb.velocity.y);
-        }
-    }
+   
 
     private void UpdateAnimations()
     {
-        animator.SetBool("isWalking", isWalking);
+        animator.SetBool("isWalking", Mathf.Abs(rb.velocity.x) > 0.001);
         animator.SetBool("isGrounded", isGrounded);
+        animator.SetFloat("yVelocity", (rb.velocity.y > 0) ? 1 : -1);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Hat"))
         {
-            Debug.Log("har");
-            ScoreKeeper.GetInstance().IncrementScore();
+            GameObject.FindGameObjectWithTag("ScoreKeeper").SendMessage("IncrementScore");
             Destroy(collision.gameObject);
         }
     }
 
-    public override void Flip()
+    public override void SetFocused(bool value)
     {
-        if (!knockback)
-        {
-            base.Flip();
-        }
+        base.SetFocused(value);
     }
 
-    public void SetDontDestroyOnLoad()
-    {
-        gameObject.transform.parent = null;
-        GameObject.DontDestroyOnLoad(gameObject);
-    }
 
-   
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);

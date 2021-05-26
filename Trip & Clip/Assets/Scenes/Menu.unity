@@ -2791,7 +2791,7 @@ PrefabInstance:
     - target: {fileID: 394052873314684315, guid: 4d35c35c6f8cd8641a928714ff91aa00,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 394052873314684315, guid: 4d35c35c6f8cd8641a928714ff91aa00,
         type: 3}
@@ -5039,6 +5039,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010490908}
   m_CullTransparentMesh: 0
+--- !u!1 &1016095873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1016095874}
+  m_Layer: 5
+  m_Name: Map
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1016095874
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016095873}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1346973982}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1016765303
 GameObject:
   m_ObjectHideFlags: 0
@@ -6846,8 +6881,9 @@ RectTransform:
   - {fileID: 1068133676}
   - {fileID: 2083533796}
   - {fileID: 896047219}
+  - {fileID: 1016095874}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6978,7 +7014,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1354428669
 GameObject:
@@ -10682,56 +10718,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094644631}
   m_CullTransparentMesh: 0
---- !u!1 &2096271344
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2096271346}
-  - component: {fileID: 2096271345}
-  m_Layer: 0
-  m_Name: FirebaseHandler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2096271345
+--- !u!114 &2096271345 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 8647729176377537641, guid: dde7a9f3725ba634e84580b8d991abe8,
+    type: 3}
+  m_PrefabInstance: {fileID: 8647729176166611864}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2096271344}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9de17b82e7c46de47a4d3f2a5caa7b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogBox: {fileID: 417019584}
-  signOutButton: {fileID: 1328065827}
-  requestWaitTime: 1
-  usernameInput: {fileID: 249811003}
-  emailInput: {fileID: 1475445143}
-  passwordInput: {fileID: 114921353}
-  passordCheckInput: {fileID: 221600600}
---- !u!4 &2096271346
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2096271344}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2121189246
 GameObject:
   m_ObjectHideFlags: 0
@@ -10925,3 +10923,102 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2146789596}
   m_CullTransparentMesh: 0
+--- !u!1001 &8647729176166611864
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8647729176377537640, guid: dde7a9f3725ba634e84580b8d991abe8,
+        type: 3}
+      propertyPath: m_Name
+      value: FirebaseHandler
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647729176377537641, guid: dde7a9f3725ba634e84580b8d991abe8,
+        type: 3}
+      propertyPath: dialogBox
+      value: 
+      objectReference: {fileID: 417019584}
+    - target: {fileID: 8647729176377537641, guid: dde7a9f3725ba634e84580b8d991abe8,
+        type: 3}
+      propertyPath: emailInput
+      value: 
+      objectReference: {fileID: 1475445143}
+    - target: {fileID: 8647729176377537641, guid: dde7a9f3725ba634e84580b8d991abe8,
+        type: 3}
+      propertyPath: passwordInput
+      value: 
+      objectReference: {fileID: 114921353}
+    - target: {fileID: 8647729176377537641, guid: dde7a9f3725ba634e84580b8d991abe8,
+        type: 3}
+      propertyPath: signOutButton
+      value: 
+      objectReference: {fileID: 1328065827}
+    - target: {fileID: 8647729176377537641, guid: dde7a9f3725ba634e84580b8d991abe8,
+        type: 3}
+      propertyPath: usernameInput
+      value: 
+      objectReference: {fileID: 249811003}
+    - target: {fileID: 8647729176377537641, guid: dde7a9f3725ba634e84580b8d991abe8,
+        type: 3}
+      propertyPath: passordCheckInput
+      value: 
+      objectReference: {fileID: 221600600}
+    - target: {fileID: 8647729176377537642, guid: dde7a9f3725ba634e84580b8d991abe8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647729176377537642, guid: dde7a9f3725ba634e84580b8d991abe8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647729176377537642, guid: dde7a9f3725ba634e84580b8d991abe8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647729176377537642, guid: dde7a9f3725ba634e84580b8d991abe8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647729176377537642, guid: dde7a9f3725ba634e84580b8d991abe8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647729176377537642, guid: dde7a9f3725ba634e84580b8d991abe8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647729176377537642, guid: dde7a9f3725ba634e84580b8d991abe8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647729176377537642, guid: dde7a9f3725ba634e84580b8d991abe8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647729176377537642, guid: dde7a9f3725ba634e84580b8d991abe8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647729176377537642, guid: dde7a9f3725ba634e84580b8d991abe8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647729176377537642, guid: dde7a9f3725ba634e84580b8d991abe8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dde7a9f3725ba634e84580b8d991abe8, type: 3}

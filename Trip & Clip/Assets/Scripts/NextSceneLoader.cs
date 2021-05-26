@@ -14,6 +14,8 @@ public class NextSceneLoader : MonoBehaviour
     private bool flyPlayerOn;
     private GameObject flyPlayer;
     private GameObject groundPlayer;
+    [SerializeField]
+    private ScoreKeeper scoreKeeper;
 
   
   
@@ -45,14 +47,21 @@ public class NextSceneLoader : MonoBehaviour
 
         if (groundPlayerOn && flyPlayerOn && !sceneLoaded)
         {
-            sceneLoaded = true;
-            groundPlayer.SendMessage("SetFocused", false);
-            flyPlayer.SendMessage("SetFocused", false);
-            groundPlayer.transform.parent = null;
-            GameObject.DontDestroyOnLoad(groundPlayer);
-            GameObject.FindGameObjectWithTag("FinalPlatform").SendMessage("TriggerFunction");
-            ScoreKeeper.GetInstance().EndTimer();
-            StartCoroutine(LoadNextScene(sceneName));           
+            if (scoreKeeper.AllHatsCollected())
+            {
+                sceneLoaded = true;
+                groundPlayer.SendMessage("SetFocused", false);
+                flyPlayer.SendMessage("SetFocused", false);
+                groundPlayer.transform.parent = null;
+                GameObject.DontDestroyOnLoad(groundPlayer);
+                GameObject.FindGameObjectWithTag("FinalPlatform").SendMessage("TriggerFunction");
+                scoreKeeper.EndTimer();
+                StartCoroutine(LoadNextScene(sceneName));
+            }
+            else
+            {
+                scoreKeeper.ShakeHatsCounterContainer();
+            }
         }
     }
 

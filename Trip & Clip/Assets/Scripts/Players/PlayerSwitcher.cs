@@ -4,7 +4,6 @@ using UnityEngine;
 using Cinemachine;
 public class PlayerSwitcher : MonoBehaviour
 {
-    static PlayerSwitcher playerSwitcherSingleton;
 
 
     public PlayerController[] players;
@@ -14,13 +13,7 @@ public class PlayerSwitcher : MonoBehaviour
 
     private void Start()
     {
-        if (playerSwitcherSingleton != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        playerSwitcherSingleton = this;
-        GameObject.DontDestroyOnLoad(gameObject);
+       
         currentPlayer = 0;
     }
 
@@ -28,40 +21,7 @@ public class PlayerSwitcher : MonoBehaviour
     void Update()
     {
         CheckInput();
-        //vcam = camera.GetComponent<CinemachineVirtualCamera>();
        
-
-            /*
-            if (currentPlayer == 0)
-            {
-
-                //players[currentPlayer].GetComponentInChildren<GrapplingGun>().enabled = false;
-                //material.friction = 0.4f;
-                //players[currentPlayer].GetComponent<BoxCollider2D>().sharedMaterial = material;
-
-
-
-
-                //players[1 - currentPlayer].GetComponent<Rigidbody2D>().isKinematic = false;
-
-            }
-            else
-            {
-                //players[currentPlayer].GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                players[currentPlayer].GetComponent<FlyPlayerController>().SetFocused(false);
-
-                //players[currentPlayer].GetComponent<Rigidbody2D>().isKinematic = true;
-
-
-                players[1 - currentPlayer].GetComponent<PlayerController>().SetFocused(true);
-                //players[1 - currentPlayer].GetComponentInChildren<GrapplingGun>().enabled = true;
-                //material.friction = 0.0f;
-                //players[1 - currentPlayer].GetComponent<BoxCollider2D>().sharedMaterial = material;
-
-            }
-           
-            currentPlayer = 1 - currentPlayer;
-            */
 
         
     }
@@ -78,6 +38,7 @@ public class PlayerSwitcher : MonoBehaviour
                 flyplayer.SetFocused(true);
                 flyplayer.SetFollowMode(false);
                 groundPlayer.SetFocused(false);
+               
                 isFollowEnabled = false;
             }
             else

@@ -113,8 +113,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 312.57144
-        height: 456
+        width: 729.2857
+        height: 658
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,10 +132,10 @@ TextureImporter:
       name: Perry_walk_spritesheet_1
       rect:
         serializedVersion: 2
-        x: 312
+        x: 729
         y: 0
-        width: 312.57144
-        height: 456
+        width: 729.2857
+        height: 658
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,10 +153,10 @@ TextureImporter:
       name: Perry_walk_spritesheet_2
       rect:
         serializedVersion: 2
-        x: 624
+        x: 1458
         y: 0
-        width: 312.57144
-        height: 456
+        width: 729.2857
+        height: 658
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,10 +174,10 @@ TextureImporter:
       name: Perry_walk_spritesheet_3
       rect:
         serializedVersion: 2
-        x: 936
+        x: 2187
         y: 0
-        width: 312.57144
-        height: 456
+        width: 729.2857
+        height: 658
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,10 +195,10 @@ TextureImporter:
       name: Perry_walk_spritesheet_4
       rect:
         serializedVersion: 2
-        x: 1248
+        x: 2916
         y: 0
-        width: 312.57144
-        height: 456
+        width: 729.2857
+        height: 658
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,10 +216,10 @@ TextureImporter:
       name: Perry_walk_spritesheet_5
       rect:
         serializedVersion: 2
-        x: 1560
+        x: 3645
         y: 0
-        width: 312.57144
-        height: 456
+        width: 729.2857
+        height: 658
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,10 +237,10 @@ TextureImporter:
       name: Perry_walk_spritesheet_6
       rect:
         serializedVersion: 2
-        x: 1872
+        x: 4374
         y: 0
-        width: 312.57144
-        height: 456
+        width: 729.2857
+        height: 658
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

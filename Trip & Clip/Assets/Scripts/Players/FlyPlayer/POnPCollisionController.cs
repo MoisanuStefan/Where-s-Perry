@@ -60,7 +60,7 @@ public class POnPCollisionController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
-        if (GroundPlayerController.GetInstance().GetComponent<Rigidbody2D>().velocity.y < 0 && isEnabled && GroundPlayerController.GetInstance().groundCheck.position.y - (FlyPlayerController.GetInstance().transform.position.y + FlyPlayerController.GetInstance().GetComponent<SpriteRenderer>().sprite.bounds.size.y / 2) > 0.01)
+        if (GroundPlayerController.GetInstance().GetComponent<Rigidbody2D>().velocity.y < 0 && isEnabled && GroundPlayerController.GetInstance().groundCheck.position.y - (FlyPlayerController.GetInstance().transform.position.y + FlyPlayerController.GetInstance().GetComponent<SpriteRenderer>().sprite.bounds.size.y / 2) > - 0.2)
         {
             isPlayerOnHead = true;
             FlyPlayerController.GetInstance().GetComponent<Rigidbody2D>().velocity = Vector2.zero;

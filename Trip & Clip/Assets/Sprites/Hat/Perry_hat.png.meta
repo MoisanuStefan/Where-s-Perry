@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: 5f80ce7c1dba64049a460ad4d4656005
+guid: 4d1c2899059311247b00384fa05948a5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4303118750552806723
-    second: Hat_sheet_128_0
+      213: 4878077400745671814
+    second: Perry_hat_0
   - first:
-      213: -4638119754570918447
-    second: Hat_sheet_128_1
+      213: 8243205443445257412
+    second: Perry_hat_1
   - first:
-      213: -387019456017660552
-    second: Hat_sheet_128_2
+      213: -7396330550229134194
+    second: Perry_hat_2
   - first:
-      213: -1270228707180122761
-    second: Hat_sheet_128_3
+      213: -8056019612306719556
+    second: Perry_hat_3
   - first:
-      213: 5196312628107072030
-    second: Hat_sheet_128_4
+      213: -5415677873554039770
+    second: Perry_hat_4
   - first:
-      213: 5151040962316611031
-    second: Hat_sheet_128_5
+      213: -5408230780087206997
+    second: Perry_hat_5
   - first:
-      213: -5997215606065195683
-    second: Hat_sheet_128_6
+      213: -3973348097824809576
+    second: Perry_hat_6
   - first:
-      213: -2885516567218341055
-    second: Hat_sheet_128_7
+      213: 3226926815246441957
+    second: Perry_hat_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -55,7 +55,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -69,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 400
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -88,7 +88,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,7 +100,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -111,13 +111,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hat_sheet_128_0
+      name: Perry_hat_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 479.25
+        height: 293
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,20 +125,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 345d50964bfb7bb30800000000000000
-      internalID: 4303118750552806723
+      spriteID: 68c7e420d8962b340800000000000000
+      internalID: 4878077400745671814
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hat_sheet_128_1
+      name: Perry_hat_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 479
         y: 0
-        width: 128
-        height: 128
+        width: 479.25
+        height: 293
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,20 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d5141338a612afb0800000000000000
-      internalID: -4638119754570918447
+      spriteID: 4c4fe1b2dafb56270800000000000000
+      internalID: 8243205443445257412
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hat_sheet_128_2
+      name: Perry_hat_2
       rect:
         serializedVersion: 2
-        x: 256
+        x: 958
         y: 0
-        width: 128
-        height: 128
+        width: 479.25
+        height: 293
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,20 +167,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87507e2fad701aaf0800000000000000
-      internalID: -387019456017660552
+      spriteID: e8419305d84fa5990800000000000000
+      internalID: -7396330550229134194
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hat_sheet_128_3
+      name: Perry_hat_3
       rect:
         serializedVersion: 2
-        x: 384
+        x: 1437
         y: 0
-        width: 128
-        height: 128
+        width: 479.25
+        height: 293
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,20 +188,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77d660588bd3f5ee0800000000000000
-      internalID: -1270228707180122761
+      spriteID: cbcb0e068d4433090800000000000000
+      internalID: -8056019612306719556
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hat_sheet_128_4
+      name: Perry_hat_4
       rect:
         serializedVersion: 2
-        x: 512
+        x: 1916
         y: 0
-        width: 128
-        height: 128
+        width: 479.25
+        height: 293
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,20 +209,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e12d234ddc20d1840800000000000000
-      internalID: 5196312628107072030
+      spriteID: 62c5ed0eaa5a7d4b0800000000000000
+      internalID: -5415677873554039770
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hat_sheet_128_5
+      name: Perry_hat_5
       rect:
         serializedVersion: 2
-        x: 640
+        x: 2395
         y: 0
-        width: 128
-        height: 128
+        width: 479.25
+        height: 293
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,20 +230,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7dd2e5eb67c2c7740800000000000000
-      internalID: 5151040962316611031
+      spriteID: bab719172ca12f4b0800000000000000
+      internalID: -5408230780087206997
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hat_sheet_128_6
+      name: Perry_hat_6
       rect:
         serializedVersion: 2
-        x: 768
+        x: 2874
         y: 0
-        width: 128
-        height: 128
+        width: 479.25
+        height: 293
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -251,20 +251,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d551e0f4e2c95cca0800000000000000
-      internalID: -5997215606065195683
+      spriteID: 89d9d2ce4f4dbd8c0800000000000000
+      internalID: -3973348097824809576
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hat_sheet_128_7
+      name: Perry_hat_7
       rect:
         serializedVersion: 2
-        x: 896
+        x: 3353
         y: 0
-        width: 128
-        height: 128
+        width: 479.25
+        height: 293
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -272,8 +272,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14b327168f594f7d0800000000000000
-      internalID: -2885516567218341055
+      spriteID: 5ed52fa67d858cc20800000000000000
+      internalID: 3226926815246441957
       vertices: []
       indices: 
       edges: []
@@ -290,7 +290,7 @@ TextureImporter:
     secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 1
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

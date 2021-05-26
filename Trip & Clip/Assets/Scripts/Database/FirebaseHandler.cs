@@ -179,7 +179,7 @@ public class FirebaseHandler : MonoBehaviour
     }
 
 
-    public void PutLevelScore(string userName, int levelId, string levelName, float seconds)
+    public void PutLevelScore(int levelId, string levelName, float seconds)
     {
         if (idToken != null)
         {
@@ -191,13 +191,18 @@ public class FirebaseHandler : MonoBehaviour
                 float previousLevelTime = response.levelsData[levelId].seconds;
                 if (previousLevelTime > seconds || previousLevelTime == 0)
                 {
-                    //there is a new highscore => update database entrys
+                    //there is a new highscore => update database entries
                     string timeString = TimeSpan.FromSeconds(seconds).ToString("mm':'ss'.'ff");
                     response.globalTime = response.globalTime - previousLevelTime + seconds;
                     response.levelsData[levelId].timeString = timeString;
                     response.levelsData[levelId].seconds = seconds;
                     response.levelsData[levelId].id = SceneManager.GetActiveScene().buildIndex;
                     response.levelsData[levelId].name = SceneManager.GetActiveScene().name;
+                    if (response.currentLevel == levelId)
+                    {
+                        // store the level with the lowest index that the user did not complete yet
+                        response.currentLevel = levelId + 1;
+                    }
                     RestClient.Put(databaseURL + "/userData/" + localId + ".json?auth=" + idToken, response).Catch(err =>
                     {
                         var error = err as RequestException;

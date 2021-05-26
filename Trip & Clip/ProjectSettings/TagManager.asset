@@ -15,6 +15,9 @@ TagManager:
   - TimeCounter
   - FinalPlatform
   - SignOutButton
+  - HatContainer
+  - PauseButton
+  - ScoreKeeper
   layers:
   - Default
   - TransparentFX

@@ -88,7 +88,7 @@ public class ResetPlayersPositions : MonoBehaviour
             startTime = Mathf.Infinity;
             groundPlayer.SetFocused(true);
             flyPlayer.SetFollowMode(true);
-            ScoreKeeper.GetInstance().BeginTimer();
+            GameObject.FindGameObjectWithTag("ScoreKeeper").SendMessage("BeginTimer");
         }
     }
 

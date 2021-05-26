@@ -1,22 +1,28 @@
 fileFormatVersion: 2
-guid: b38543c54901d784e85eb98d7035ac14
+guid: 4f1bdf38455c5e34baf385cda257baa4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7289503274972957803
-    second: Perry_idle_spritesheet_0
+      213: 3248719529158680378
+    second: Perry_jump_spritesheet_0
   - first:
-      213: 6280060081297556423
-    second: Perry_idle_spritesheet_1
+      213: 2087989308143020744
+    second: Perry_jump_spritesheet_1
   - first:
-      213: -2563001642027206022
-    second: Perry_idle_spritesheet_2
+      213: 4062282760355391498
+    second: Perry_jump_spritesheet_2
   - first:
-      213: 8451515559844549753
-    second: Perry_idle_spritesheet_3
+      213: -7656778749315500329
+    second: Perry_jump_spritesheet_3
   - first:
-      213: -4901578830010162539
-    second: Perry_idle_spritesheet_4
+      213: -4555102329589481436
+    second: Perry_jump_spritesheet_4
+  - first:
+      213: -5601800181385226816
+    second: Perry_jump_spritesheet_5
+  - first:
+      213: -5792343112038253354
+    second: Perry_jump_spritesheet_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -102,13 +108,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Perry_idle_spritesheet_0
+      name: Perry_jump_spritesheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 312.6
-        height: 456
+        width: 729.2857
+        height: 658
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -116,20 +122,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6c4fcd6b94892560800000000000000
-      internalID: 7289503274972957803
+      spriteID: a3f90660335c51d20800000000000000
+      internalID: 3248719529158680378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Perry_idle_spritesheet_1
+      name: Perry_jump_spritesheet_1
       rect:
         serializedVersion: 2
-        x: 312
+        x: 729
         y: 0
-        width: 312.6
-        height: 456
+        width: 729.2857
+        height: 658
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +143,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c30ad9ee51472750800000000000000
-      internalID: 6280060081297556423
+      spriteID: 8caadae86370afc10800000000000000
+      internalID: 2087989308143020744
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Perry_idle_spritesheet_2
+      name: Perry_jump_spritesheet_2
       rect:
         serializedVersion: 2
-        x: 624
+        x: 1458
         y: 0
-        width: 312.6
-        height: 456
+        width: 729.2857
+        height: 658
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +164,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7ab93006936e6cd0800000000000000
-      internalID: -2563001642027206022
+      spriteID: a082d2cc5a0206830800000000000000
+      internalID: 4062282760355391498
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Perry_idle_spritesheet_3
+      name: Perry_jump_spritesheet_3
       rect:
         serializedVersion: 2
-        x: 936
+        x: 2187
         y: 0
-        width: 312.6
-        height: 456
+        width: 729.2857
+        height: 658
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +185,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9749836af90d94570800000000000000
-      internalID: 8451515559844549753
+      spriteID: 7d63a4b7b48adb590800000000000000
+      internalID: -7656778749315500329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Perry_idle_spritesheet_4
+      name: Perry_jump_spritesheet_4
       rect:
         serializedVersion: 2
-        x: 1248
+        x: 2916
         y: 0
-        width: 312.6
-        height: 456
+        width: 729.2857
+        height: 658
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,8 +206,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5926ba616081afbb0800000000000000
-      internalID: -4901578830010162539
+      spriteID: 420c341b09609c0c0800000000000000
+      internalID: -4555102329589481436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Perry_jump_spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 3645
+        y: 0
+        width: 729.2857
+        height: 658
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c590d52a686242b0800000000000000
+      internalID: -5601800181385226816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Perry_jump_spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 4374
+        y: 0
+        width: 729.2857
+        height: 658
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dc77c5f0a67d9fa0800000000000000
+      internalID: -5792343112038253354
       vertices: []
       indices: 
       edges: []

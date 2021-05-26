@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding; 
+using Pathfinding;
+using UnityEngine.SceneManagement;
 
 public class FollowController : MonoBehaviour
 {
@@ -28,12 +29,25 @@ public class FollowController : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-
-        InvokeRepeating("UpdatePath", 0f, 0.2f);
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            // if current scene is not the menu, create path
+            InvokeRepeating("UpdatePath", 0f, 0.2f);
+        }
+        
 
         
     }
 
+    public void ResumePathBuilding()
+    {
+        InvokeRepeating("UpdatePath", 0f, 0.2f);
+
+    }
+    public void CancelPathBuilding()
+    {
+        CancelInvoke();
+    }
     private void UpdatePath()
     {
         seeker.StartPath(rb.position, GameObject.FindGameObjectWithTag("FollowTarget").transform.position, OnPathComplete);

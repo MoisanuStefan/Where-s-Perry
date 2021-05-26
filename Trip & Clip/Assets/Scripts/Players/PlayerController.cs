@@ -12,19 +12,30 @@ public class PlayerController : MonoBehaviour
     protected bool isWalking = false;
     protected bool canGetDamage = true;
     protected bool sceneLoaded = false;
-
+    protected bool knockback;
 
 
     protected float horizontalMovementDirection = 0;
     protected float previousHorizontalDirection = 0;
     protected float previousVerticalDirection = 0;
+    protected float currentHealth;
+    protected float knockbackStartTime;
+
+    [SerializeField]
+    protected float maxHealth;
+    [SerializeField]
+    protected float knockbackDuration;
+
 
     protected Rigidbody2D rb;
     protected Animator animator;
-    
+
+    [SerializeField]
+    protected Vector2 knockbackSpeed;
+
     public virtual void Start()
     {
-       
+        currentHealth = maxHealth;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -38,7 +49,9 @@ public class PlayerController : MonoBehaviour
     {
         CheckInput();
         CheckSceneLoaded();
-       
+        CheckKnockbackDone();
+
+
     }
 
     public virtual void FixedUpdate()
@@ -143,12 +156,63 @@ public class PlayerController : MonoBehaviour
     }
     public virtual void Flip()
     {
-        if (canFlip)
+        if (canFlip && !knockback)
         {
             isFacingRight = !isFacingRight;
             transform.Rotate(0.0f, 180.0f, 0.0f);
         }
     }
 
-   
+    public void DecreaseHealth(float amount)
+    {
+        currentHealth -= amount;
+        if (currentHealth <= 0.0f)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        SetVelocity(Vector3.zero);
+        gameObject.transform.parent = null;
+        GameObject.DontDestroyOnLoad(gameObject);
+        ManageGame.ResetScene();
+    }
+
+    public void Damage(AttackDetails attackDetails)
+    {
+        if (CanGetDamage())
+        {
+            int direction;
+            DecreaseHealth(attackDetails.attackAmount);
+            if (attackDetails.position.x < transform.position.x)
+            {
+                direction = 1;
+            }
+            else
+            {
+                direction = -1;
+            }
+
+            Knockback(direction);
+        }
+    }
+
+    public void Knockback(int direction)
+    {
+        knockback = true;
+        knockbackStartTime = Time.time;
+        rb.velocity = new Vector2(knockbackSpeed.x * direction, knockbackSpeed.y);
+    }
+
+    private void CheckKnockbackDone()
+    {
+        if (knockback && Time.time >= knockbackStartTime + knockbackDuration)
+        {
+            knockback = false;
+            rb.velocity = new Vector2(0.0f, rb.velocity.y);
+        }
+    }
+
 }

@@ -10,55 +10,45 @@ using UnityEngine.SceneManagement;
 public class ScoreKeeper : MonoBehaviour
 {
     private static ScoreKeeper instance;
-    
+
 
     private int numberOfHats;
-
+    private int shakeDirection;
 
     private float elapsedTime;
     private bool timerStarted;
+    private bool isShaking = false;
+    [SerializeField]
+    private float shakeFactor = 0.5f;
+    private float shakeBeginTime;
+    private float shakeTime = 0.5f;
+    [SerializeField]
+    private float shakeSpeed;
 
     private TimeSpan timePlaying;
     private Text hatsCounter;
-    private TextMeshProUGUI timeCounter;
-    private void Awake()
-    {
-        if (instance != null)
-        {
-            
+    private Text timeCounter;
+    private Transform hatContainerTransform;
+    private Vector3 initialPosition;
+   
 
-            Destroy(gameObject);
-            return;
-        }
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneManager.sceneLoaded += OnSceneLoaded;
-
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        ResetScore();
-    }
+    
     private void Start()
     {
         ResetScore();
     }
 
+  
     public void ResetScore()
     {
         hatsCounter = GameObject.FindGameObjectWithTag("HatCounter").GetComponent<Text>();
-        timeCounter = GameObject.FindGameObjectWithTag("TimeCounter").GetComponent<TextMeshProUGUI>();
+        timeCounter = GameObject.FindGameObjectWithTag("TimeCounter").GetComponent<Text>();
         numberOfHats = 0;
 
-        timeCounter.text = "Time: 00:00.00";
+        timeCounter.text = "00:00.00";
         timerStarted = false;
     }
-    public static ScoreKeeper GetInstance()
-    {
-        return instance;
-    }
+   
     public void BeginTimer()
     {
         timerStarted = true;
@@ -70,8 +60,17 @@ public class ScoreKeeper : MonoBehaviour
     public void EndTimer()
     {
         timerStarted = false;
-        FirebaseHandler.GetInstance().PutLevelScore("user", SceneManager.GetActiveScene().buildIndex, SceneManager.GetActiveScene().name, elapsedTime);
+        FirebaseHandler.GetInstance().PutLevelScore(SceneManager.GetActiveScene().buildIndex - 1, SceneManager.GetActiveScene().name, elapsedTime);
 
+    }
+
+    public void PauseResumeTimer()
+    {
+        timerStarted = !timerStarted;
+        if (timerStarted)
+        {
+            StartCoroutine(UpdateTimer());
+        }
     }
 
     private IEnumerator UpdateTimer()
@@ -80,7 +79,7 @@ public class ScoreKeeper : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             timePlaying = TimeSpan.FromSeconds(elapsedTime);
-            string timePlayingStr = "Time: " + timePlaying.ToString("mm':'ss'.'ff");
+            string timePlayingStr = timePlaying.ToString("mm':'ss'.'ff");
             timeCounter.text = timePlayingStr;
             yield return null;
         }
@@ -89,8 +88,39 @@ public class ScoreKeeper : MonoBehaviour
     {
         Debug.Log("incrementScore");
         numberOfHats += 1;
-        hatsCounter.text = ": " + numberOfHats.ToString();
+        hatsCounter.text = numberOfHats.ToString() + " / 3";
     }
 
+    public bool AllHatsCollected()
+    {
+        return numberOfHats == 3;
+    }
+    public void ShakeHatsCounterContainer()
+    {
+        if (!isShaking)
+        {
+            isShaking = true;
+            shakeBeginTime = Time.time;
+            shakeDirection = -1;
+            hatContainerTransform = GameObject.FindGameObjectWithTag("HatContainer").transform;
+            initialPosition = hatContainerTransform.position;
+            hatContainerTransform.position += Vector3.left * shakeFactor / 2;
+            StartCoroutine(ShakeMe());
+        }
 
+    }
+
+    private IEnumerator ShakeMe()
+    {
+        while (Time.time < shakeBeginTime + shakeTime)
+        {
+            hatContainerTransform.position += Vector3.left * shakeDirection * shakeFactor;
+            shakeDirection *= -1;
+            yield return new WaitForSeconds(shakeSpeed);
+        }
+
+        hatContainerTransform.position = initialPosition;
+        isShaking = false;
+
+    }
 }

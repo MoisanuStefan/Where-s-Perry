@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 833110601470863247}
   m_Layer: 0
   m_Name: ScoreKeeper
-  m_TagString: Untagged
+  m_TagString: ScoreKeeper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,4 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8cdf02d2da4a9644adca87035da700d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
+  shakeFactor: 0.2
+  shakeSpeed: 0.01

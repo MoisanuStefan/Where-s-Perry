@@ -11,7 +11,7 @@ public class FlyPlayerController : PlayerController
     public float headjumpMovementDelayTime = 0.5f;
     public Collider2D player1Collider;
     public GameObject[] thrustParticles;
-
+    public FollowController followController;
     private float verticalMovementDirection = 0;
     private float canMoveTime;
     private bool canMove = true;
@@ -34,8 +34,13 @@ public class FlyPlayerController : PlayerController
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        currentHealth = maxHealth;
+        isFocused = false;
         sceneLoaded = true;
-        flySingleton.transform.position = resetPosition.position + Vector3.left * 0.8f;
+        if (flySingleton)
+        {
+            flySingleton.transform.position = resetPosition.position + Vector3.left * 0.8f;
+        }
     }
     public override void Start()
     {
@@ -57,6 +62,15 @@ public class FlyPlayerController : PlayerController
         UpdateThrustParticles();
     }
 
+    public void CancelPathBuilding()
+    {
+        followController.CancelPathBuilding();
+    }
+
+    public void ResumePathBuilding()
+    {
+        followController.ResumePathBuilding();
+    }
     public void ResetPositionBeforeImpact()
     {
         popCollisioncontroller.ResetPositionBeforeImpact();
@@ -107,8 +121,10 @@ public class FlyPlayerController : PlayerController
     public override void ApplyMovement()
     {
         base.ApplyMovement();
-        rb.AddForce(new Vector2(movementSpeed * horizontalMovementDirection, movementSpeed * verticalMovementDirection));
-       
+        if (!knockback)
+        {
+            rb.AddForce(new Vector2(movementSpeed * horizontalMovementDirection, movementSpeed * verticalMovementDirection));
+        }
     }
 
     private void UpdateThrustParticles()

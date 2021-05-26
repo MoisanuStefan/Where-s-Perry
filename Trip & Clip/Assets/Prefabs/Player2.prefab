@@ -107,7 +107,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 111.67
+  m_SurfaceArc: 136.37
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -123,8 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e4fbf5b77b97bb4b913434bb73f2dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flyPlayer: {fileID: 3960198528856592567}
-  player: {fileID: 0}
   bottomThurster: {fileID: 3200369905883405047}
   playerCheck: {fileID: 3960198528552205901}
   whatIsPlayer:
@@ -262,6 +260,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfb8fe9961cd3a408cc401c413e66b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetPosition: {fileID: 0}
+  maxHealth: 100
+  knockbackDuration: 0.25
+  knockbackSpeed: {x: 8, y: 10}
   popCollisioncontroller: {fileID: 3960198528419833779}
   movementSpeed: 150
   headjumpMovementDelayTime: 0.5

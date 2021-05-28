@@ -143,10 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa70954a2556544db6ce1da3bb101ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resetPosition: {fileID: 0}
   maxHealth: 100
   knockbackDuration: 0.25
   knockbackSpeed: {x: 8, y: 10}
+  spriteScaleFactor: 0.03
   movementSpeed: 6
   jumpForce: 30
   groundCheckRadius: 0.26
@@ -156,7 +156,6 @@ MonoBehaviour:
     m_Bits: 133376
   groundCheck: {fileID: 9182830024534879827}
   followTarget: {fileID: 9182830025886894742}
-  camera: {fileID: 0}
   flyPlayer: {fileID: 0}
 --- !u!95 &9182830023976389714
 Animator:

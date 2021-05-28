@@ -17,12 +17,12 @@ public class Trapdoor : Trigger
     private float incrementAmount;
     private Bounds trapdoorBound;
 
-    private BoxCollider2D collider;
+    private BoxCollider2D boxCollider;
 
     // Start is called before the first frame update
     void Start()
     {
-        collider = GetComponent<BoxCollider2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
         unTriggeredPosition = transform.position;
         triggeredPosition = transform.position - transform.up * moveDistance;
        
@@ -43,7 +43,7 @@ public class Trapdoor : Trigger
                 isMoving = false;
                 transform.position = destination;
 
-                AstarPath.active.UpdateGraphs(collider.bounds);
+                AstarPath.active.UpdateGraphs(boxCollider.bounds);
                 AstarPath.active.UpdateGraphs(trapdoorBound);
             }
         }
@@ -70,6 +70,6 @@ public class Trapdoor : Trigger
         }
         isMoving = true;
         isTriggered = !isTriggered;
-        trapdoorBound = collider.bounds;
+        trapdoorBound = boxCollider.bounds;
     }
 }

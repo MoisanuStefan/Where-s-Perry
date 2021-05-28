@@ -260,10 +260,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfb8fe9961cd3a408cc401c413e66b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resetPosition: {fileID: 0}
   maxHealth: 100
   knockbackDuration: 0.25
   knockbackSpeed: {x: 8, y: 10}
+  spriteScaleFactor: 0.03
   popCollisioncontroller: {fileID: 3960198528419833779}
   movementSpeed: 150
   headjumpMovementDelayTime: 0.5
@@ -272,6 +272,7 @@ MonoBehaviour:
   - {fileID: 3200369905435800452}
   - {fileID: 3200369905766039004}
   - {fileID: 3200369905883405047}
+  followController: {fileID: 0}
 --- !u!50 &3960198528856592561
 Rigidbody2D:
   serializedVersion: 4

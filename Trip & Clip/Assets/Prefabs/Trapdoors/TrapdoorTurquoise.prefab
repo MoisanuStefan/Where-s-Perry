@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9101719084475584454
+--- !u!1 &733567342079185843
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9101719084475584453}
-  - component: {fileID: 9101719084475584457}
-  - component: {fileID: 9101719084475584459}
-  - component: {fileID: 8220629379923060940}
-  - component: {fileID: 6527306875352545408}
-  m_Layer: 16
-  m_Name: ButtonGray
+  - component: {fileID: 733567342079185847}
+  - component: {fileID: 733567342079185844}
+  - component: {fileID: 5672470508038140552}
+  - component: {fileID: 1588241973647168784}
+  m_Layer: 11
+  m_Name: TrapdoorTurquoise
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9101719084475584453
+--- !u!4 &733567342079185847
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9101719084475584454}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.148901, y: -30.9232, z: 0}
+  m_GameObject: {fileID: 733567342079185843}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.58, y: -0.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &9101719084475584457
+--- !u!212 &733567342079185844
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9101719084475584454}
+  m_GameObject: {fileID: 733567342079185843}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -73,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 1762576881
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4f6d5781b4ec325449e5e659fc3e61e5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c5d66a604c2c6b4eab5ad994d539466, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,66 +83,44 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &9101719084475584459
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9101719084475584454}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0
---- !u!114 &8220629379923060940
+--- !u!114 &5672470508038140552
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9101719084475584454}
+  m_GameObject: {fileID: 733567342079185843}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d029708557c0bf42b062fa383851510, type: 3}
+  m_Script: {fileID: 11500000, guid: 010e4b777747e5c47a22db6df4c70d30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDistance: 0.1
+  moveDistance: 1.85
+  isTriggered: 0
   lerpTime: 1
-  delayTime: 0
-  triggers: []
---- !u!61 &6527306875352545408
+--- !u!61 &1588241973647168784
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9101719084475584454}
+  m_GameObject: {fileID: 733567342079185843}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0075436532, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.59, y: 0.26}
+    oldSize: {x: 2.09, y: 2.09}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.59, y: 0.26}
+  m_Size: {x: 0.2041071, y: 2.09}
   m_EdgeRadius: 0

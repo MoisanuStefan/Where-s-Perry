@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    protected Transform resetPosition;
     protected bool isFocused;
     protected bool isFacingRight = true;
     protected bool canFlip = true;
@@ -32,6 +30,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     protected Vector2 knockbackSpeed;
+    [SerializeField]
+    protected float spriteScaleFactor;
 
     public virtual void Start()
     {
@@ -138,6 +138,29 @@ public class PlayerController : MonoBehaviour
         }
         rb.velocity = new Vector2(0f, rb.velocity.y);
         horizontalMovementDirection = 0;
+        if (value)
+        {
+            StartCoroutine(VisualFeedback());
+        }
+    }
+
+    private IEnumerator VisualFeedback()
+    {
+        int loopTop = 20;
+        int loopCounter = 0;
+        Vector3 scaleIncrement = new Vector3(spriteScaleFactor, spriteScaleFactor, 0f);
+        Vector3 initialScale = transform.localScale;
+        while(loopCounter < loopTop)
+        {
+            transform.localScale += scaleIncrement;
+            if (loopCounter == loopTop / 2)
+            {
+                scaleIncrement = -scaleIncrement;
+            }
+            loopCounter++;
+            yield return new WaitForSeconds(0.001f);
+        }
+        transform.localScale = initialScale;
     }
 
     public bool IsFocused()

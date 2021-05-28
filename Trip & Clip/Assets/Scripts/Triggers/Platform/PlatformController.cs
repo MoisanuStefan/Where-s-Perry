@@ -16,7 +16,6 @@ public class PlatformController : Trigger
     private float percentBetweenWaypoints;
 
     private int fromWaypointIndex;
-    private bool playerOn = false;
 
     private Rigidbody2D rb;
     private GroundPlayerController groundPlayerController;
@@ -188,7 +187,6 @@ public class PlatformController : Trigger
 
         if (collision.gameObject.tag.Equals("Player"))
         {
-            playerOn = true;
             //collision.gameObject.transform.SetParent(transform);
             //groundPlayerController = collision.gameObject.GetComponent<GroundPlayerController>();
             collision.gameObject.transform.parent = transform;
@@ -200,7 +198,6 @@ public class PlatformController : Trigger
         if (collision.gameObject.tag.Equals("Player"))
         {
             collision.gameObject.transform.parent = null;
-            playerOn = false;
             //collision.gameObject.transform.SetParent(transform);
             //groundPlayerController.SetPlatformXVelocity(0f);
         }

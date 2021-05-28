@@ -9,7 +9,7 @@ public class LaserCollisionController : MonoBehaviour
     public Transform receiverPoint;
     public Transform parent;
     private Vector3 previousPosition;
-    private PolygonCollider2D collider;
+    private PolygonCollider2D polygonCollider;
     private LineRenderer lineRenderer;
     private AttackDetails attackDetails;
     private Bounds previousBounds;
@@ -21,11 +21,11 @@ public class LaserCollisionController : MonoBehaviour
     {
         previousPosition = receiverPoint.position;
         lineRenderer = GetComponent<LineRenderer>();
-        collider = GetComponent<PolygonCollider2D>();
-        AstarPath.active.UpdateGraphs(collider.bounds);
+        polygonCollider = GetComponent<PolygonCollider2D>();
+        AstarPath.active.UpdateGraphs(polygonCollider.bounds);
 
         SetCollider();
-        previousBounds = collider.bounds;
+        previousBounds = polygonCollider.bounds;
     }
 
     private void SetCollider()
@@ -46,7 +46,7 @@ public class LaserCollisionController : MonoBehaviour
         colliderPointsV2[2] = rightLinePoint;
         rightLinePoint.y -= 2 * halfLineWidth;
         colliderPointsV2[3] = rightLinePoint;
-        collider.SetPath(0, colliderPointsV2);
+        polygonCollider.SetPath(0, colliderPointsV2);
         
 
     }
@@ -80,9 +80,9 @@ public class LaserCollisionController : MonoBehaviour
 
     private void UpdateAStarPath()
     {
-        AstarPath.active.UpdateGraphs(collider.bounds);
+        AstarPath.active.UpdateGraphs(polygonCollider.bounds);
         AstarPath.active.UpdateGraphs(previousBounds);
-        previousBounds = collider.bounds;
+        previousBounds = polygonCollider.bounds;
         previousPosition = receiverPoint.position;
     }
 

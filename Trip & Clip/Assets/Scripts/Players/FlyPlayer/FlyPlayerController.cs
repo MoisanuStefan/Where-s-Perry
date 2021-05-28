@@ -39,7 +39,7 @@ public class FlyPlayerController : PlayerController
         sceneLoaded = true;
         if (flySingleton)
         {
-            flySingleton.transform.position = resetPosition.position + Vector3.left * 0.8f;
+            flySingleton.transform.position = GameObject.FindGameObjectWithTag("ResetPosition").transform.position + Vector3.left * 0.8f;
         }
     }
     public override void Start()

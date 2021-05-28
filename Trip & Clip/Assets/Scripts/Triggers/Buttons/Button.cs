@@ -12,7 +12,6 @@ public class Button : Trigger
 
     private bool isTriggered;
     private bool isMoving;
-    private bool collisionEnter = false;
     private bool collisionExit = false;
 
     private string triggeringEntity = "notag";

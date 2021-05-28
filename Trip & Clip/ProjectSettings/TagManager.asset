@@ -18,6 +18,8 @@ TagManager:
   - HatContainer
   - PauseButton
   - ScoreKeeper
+  - ResetPosition
+  - notag
   layers:
   - Default
   - TransparentFX

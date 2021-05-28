@@ -18,7 +18,6 @@ public class GroundPlayerController : PlayerController
 
     private bool isGrounded;
     private bool canJump;
-    private bool isFollowing = true;
 
     public int amountOfJumps = 1;
 
@@ -27,7 +26,6 @@ public class GroundPlayerController : PlayerController
     public LayerMask whatIsGround;
     public Transform groundCheck;
     public Transform followTarget;
-    public Camera camera;
     public GameObject flyPlayer;
 
     private void Awake()
@@ -50,7 +48,7 @@ public class GroundPlayerController : PlayerController
         sceneLoaded = true;
         if (groundSingleton)
         {
-            groundSingleton.transform.position = resetPosition.position + Vector3.right * 0.8f;
+            groundSingleton.transform.position = GameObject.FindGameObjectWithTag("ResetPosition").transform.position + Vector3.right * 0.8f;
             Physics2D.IgnoreCollision(groundSingleton.GetComponent<CapsuleCollider2D>(), FlyPlayerController.GetInstance().GetComponent<BoxCollider2D>());
         }
     }

@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class ResetPlayersPositions : MonoBehaviour
 {
-    private static ResetPlayersPositions instance;
     public GameObject startPlatform;
     public float inactiveTime = 1f;
   
@@ -13,44 +12,17 @@ public class ResetPlayersPositions : MonoBehaviour
     PlayerController groundPlayer = null;
     FlyPlayerController flyPlayer = null;
 
-    private bool colliderActivated = false;
     private float startTime;
-    private float spawnOffset = 0.8f;
 
-
-
-    private void Awake()
-    {
-        if (instance != null)
-        {
-            Object.Destroy(gameObject);
-            return;
-        }
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneManager.sceneLoaded += OnSceneLoaded;
-
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void Start()
     {
         startTime = Mathf.Infinity;
         startPlatform = GameObject.FindGameObjectWithTag("StartPlatform");
-
         groundPlayer = GroundPlayerController.GetInstance();
         flyPlayer = FlyPlayerController.GetInstance();
         ResetPlayersPosition();
-        colliderActivated = false;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-
-
-    }
-
+   
     
     // Update is called once per frame
     void Update()

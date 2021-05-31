@@ -9,7 +9,7 @@ public class PlatformController : Trigger
     public float speed;
 
     public bool isTriggerable;
-
+    public bool isFromMap = false;
 
     private Vector3[] globalWaypoins;
 
@@ -125,7 +125,7 @@ public class PlatformController : Trigger
     private Vector3 CalculatePlatformMovement()
     {
         Vector3 newPosition;
-        if (isTriggerable)
+        if (isTriggerable || isFromMap)
         {
             Vector3 destination = (isTriggered) ? triggeredPosition : unTriggeredPosition;
             float distance = Vector3.Distance(transform.position, destination);
@@ -201,5 +201,14 @@ public class PlatformController : Trigger
             //collision.gameObject.transform.SetParent(transform);
             //groundPlayerController.SetPlatformXVelocity(0f);
         }
+    }
+
+    public void LerpTo(Transform position)
+    {
+        isTriggered = false;
+        isMoving = true;
+        percentBetweenWaypoints = 0;
+        unTriggeredPosition = transform.position;
+        triggeredPosition = position.position;
     }
 }

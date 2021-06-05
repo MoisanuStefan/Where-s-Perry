@@ -60,7 +60,17 @@ public class ScoreKeeper : MonoBehaviour
     public void EndTimer()
     {
         timerStarted = false;
-        FirebaseHandler.GetInstance().PutLevelScore(SceneManager.GetActiveScene().buildIndex - 1, SceneManager.GetActiveScene().name, elapsedTime);
+        if (FirebaseHandler.GetInstance().isLoggedIn())
+        {
+            FirebaseHandler.GetInstance().PutLevelScore(SceneManager.GetActiveScene().buildIndex - 1, SceneManager.GetActiveScene().name, elapsedTime);
+        }
+        else
+        {
+            if (PlayerPrefs.GetInt("CurrentLevel") <= SceneManager.GetActiveScene().buildIndex - 1)
+            {
+                PlayerPrefs.SetInt("CurrentLevel", SceneManager.GetActiveScene().buildIndex);
+            }
+        }
 
     }
 

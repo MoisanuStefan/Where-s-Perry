@@ -60,14 +60,14 @@ TagManager:
   - name: Background
     uniqueID: 916878209
     locked: 0
+  - name: Decoration
+    uniqueID: 3016106307
+    locked: 0
   - name: Triggers
     uniqueID: 1762576881
     locked: 0
   - name: Platforms
     uniqueID: 1632617473
-    locked: 0
-  - name: Decoration
-    uniqueID: 3016106307
     locked: 0
   - name: Enemy
     uniqueID: 3256774575

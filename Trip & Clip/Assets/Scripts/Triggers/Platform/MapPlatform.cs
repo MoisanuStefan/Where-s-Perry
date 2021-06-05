@@ -43,6 +43,15 @@ public class MapPlatform : MonoBehaviour
 
     }
 
+    public void CancelMovement()
+    {
+        isMoving = false;
+    }
+
+    public bool IsMoving()
+    {
+        return isMoving;
+    }
     public void LerpTo(Transform position)
     {
         destination = position.position;

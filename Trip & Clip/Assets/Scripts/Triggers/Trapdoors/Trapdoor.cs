@@ -28,6 +28,7 @@ public class Trapdoor : Trigger
        
     }
 
+
     // Update is called once per frame
     void Update()
     {
@@ -43,8 +44,11 @@ public class Trapdoor : Trigger
                 isMoving = false;
                 transform.position = destination;
 
-                AstarPath.active.UpdateGraphs(boxCollider.bounds);
-                AstarPath.active.UpdateGraphs(trapdoorBound);
+                if (AstarPath.active)
+                {
+                    AstarPath.active.UpdateGraphs(boxCollider.bounds);
+                    AstarPath.active.UpdateGraphs(trapdoorBound);
+                }
             }
         }
     }

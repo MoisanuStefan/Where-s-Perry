@@ -10,18 +10,18 @@ public class User
     public string email;
     public string username;
     public float globalTime;
-    public float currentLevel;
+    public int currentLevel;
     public LevelData[] levelsData;
 
 
     public User(string localId, string email, string username, float globalTime)
     {
-        levelsData = new LevelData[3];
+        levelsData = new LevelData[6];
         this.localId = localId;
         this.email = email;
         this.username = username;
         this.globalTime = globalTime;
-        this.currentLevel = 0;
+        currentLevel = 0;
         
     }
 }

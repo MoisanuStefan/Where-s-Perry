@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MapPerry : MonoBehaviour
 {
+    public MapPlatform platform;
     public float movementSpeed;
     public Animator anim;
     private bool isMoving = false;
@@ -21,7 +22,10 @@ public class MapPerry : MonoBehaviour
 
     public void Move()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(movementSpeed, 0);
-        anim.SetBool("isMoving", true);
+        if (!platform.IsMoving())
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(movementSpeed, 0);
+            anim.SetBool("isMoving", true);
+        }
     }
 }

@@ -25,7 +25,7 @@ public class FirebaseHandler : MonoBehaviour
     private string idToken;
     private string localId;
     private string username;
-
+    private bool isLogged = false;
 
     private List<User> usersList;
 
@@ -134,6 +134,7 @@ public class FirebaseHandler : MonoBehaviour
         RestClient.Post<SignInResponse>("https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=" + authKey, userData).Then(
             response =>
             {
+                isLogged = true;
                 Debug.Log("Successfully signed in");
                 dialogBox.SetMessage("Successfully signed in!");
                 idToken = response.idToken;
@@ -173,11 +174,16 @@ public class FirebaseHandler : MonoBehaviour
 
     public void SignOutButton()
     {
+        isLogged = false;
         idToken = null;
         localId = null;
         dialogBox.SetMessage("Successfully signed out.");
     }
 
+    public bool isLoggedIn()
+    {
+        return isLogged;
+    }
 
     public void PutLevelScore(int levelId, string levelName, float seconds)
     {
@@ -262,5 +268,24 @@ public class FirebaseHandler : MonoBehaviour
         });
     }
 
+    public void GetCurrentLevel(Action<float> callback)
+    {
+        RestClient.Get<User>(databaseURL + "/userData/" + localId + ".json").Then(response =>
+        {
+            callback(response.currentLevel);
+                
+        
+        }).Catch(err =>
+        {
+            var error = err as RequestException;
+            if (error != null)
+            {
+
+                Debug.Log(err.Message);
+            }
+
+            //TODO : display error for not being able to retreive data from database
+        });
+    }
 
 }

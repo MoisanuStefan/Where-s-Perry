@@ -79,6 +79,7 @@ public class NextSceneLoader : MonoBehaviour
     }
 
     IEnumerator LoadNextScene(string sceneName) {
+        
         yield return new WaitForSeconds(waitTime);
         SceneManager.LoadScene(sceneName);
 

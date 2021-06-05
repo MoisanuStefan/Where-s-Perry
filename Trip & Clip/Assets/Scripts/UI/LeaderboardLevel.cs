@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class LeaderboardLevel : Leaderboard
 {
     [SerializeField]
@@ -11,7 +11,7 @@ public class LeaderboardLevel : Leaderboard
     protected override void SetEntryValues(Transform entryTransform, User user)
     {
         base.SetEntryValues(entryTransform, user);
-        entryTransform.Find("Time").GetComponent<Text>().text = user.levelsData[levelIndex].timeString;
+        entryTransform.Find("Time").GetComponent<TextMeshProUGUI>().text = (user.levelsData[levelIndex].timeString == "") ? "--:--.--" : user.levelsData[levelIndex].timeString;
     }
 
     protected override void SortUsers(List<User> usersList)

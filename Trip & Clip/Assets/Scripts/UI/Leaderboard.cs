@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Leaderboard : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class Leaderboard : MonoBehaviour
     protected List<Transform> entryTansforms;
     private void Awake()
     {
-        entryTemplate.gameObject.SetActive(false);
+        //entryTemplate.gameObject.SetActive(false);
         entryTansforms = new List<Transform>();
 
     }
@@ -53,8 +54,8 @@ public class Leaderboard : MonoBehaviour
             RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
             entryRectTransform.anchoredPosition = new Vector2(0, -templateHeight * entryIndex + templateHeight / 2);
 
-            entryTransform.Find("Position").GetComponent<Text>().text = entryIndex.ToString();
-            entryTransform.Find("Username").GetComponent<Text>().text = user.username;
+            entryTransform.Find("Position").GetComponent<TextMeshProUGUI>().text = entryIndex.ToString();
+            entryTransform.Find("Username").GetComponent<TextMeshProUGUI>().text = user.username;
 
             SetEntryValues(entryTransform, user);
             entryTansforms.Add(entryTransform);

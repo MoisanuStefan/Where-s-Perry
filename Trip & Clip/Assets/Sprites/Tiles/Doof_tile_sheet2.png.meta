@@ -56,6 +56,12 @@ TextureImporter:
   - first:
       213: 2448094186439873854
     second: Doof_tile_sheet2_17
+  - first:
+      213: 949734497872937533
+    second: Doof_tile_sheet2_18
+  - first:
+      213: 2246051848748403861
+    second: Doof_tile_sheet2_19
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -396,7 +402,7 @@ TextureImporter:
       name: Doof_tile_sheet2_12
       rect:
         serializedVersion: 2
-        x: 600
+        x: 400
         y: 200
         width: 200
         height: 200
@@ -417,7 +423,7 @@ TextureImporter:
       name: Doof_tile_sheet2_13
       rect:
         serializedVersion: 2
-        x: 800
+        x: 600
         y: 200
         width: 200
         height: 200
@@ -438,8 +444,8 @@ TextureImporter:
       name: Doof_tile_sheet2_14
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 800
+        y: 200
         width: 200
         height: 200
       alignment: 0
@@ -459,7 +465,7 @@ TextureImporter:
       name: Doof_tile_sheet2_15
       rect:
         serializedVersion: 2
-        x: 200
+        x: 0
         y: 0
         width: 200
         height: 200
@@ -480,7 +486,7 @@ TextureImporter:
       name: Doof_tile_sheet2_16
       rect:
         serializedVersion: 2
-        x: 600
+        x: 200
         y: 0
         width: 200
         height: 200
@@ -501,7 +507,7 @@ TextureImporter:
       name: Doof_tile_sheet2_17
       rect:
         serializedVersion: 2
-        x: 800
+        x: 400
         y: 0
         width: 200
         height: 200
@@ -514,6 +520,48 @@ TextureImporter:
       bones: []
       spriteID: e35927721b069f120800000000000000
       internalID: 2448094186439873854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doof_tile_sheet2_18
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3286a07e722e2d00800000000000000
+      internalID: 949734497872937533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doof_tile_sheet2_19
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59c02cf91449b2f10800000000000000
+      internalID: 2246051848748403861
       vertices: []
       indices: 
       edges: []

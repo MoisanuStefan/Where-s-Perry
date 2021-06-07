@@ -23,7 +23,7 @@ public class Lever : Trigger
         if ((collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("FlyPlayer")) && collision.gameObject.GetComponent<PlayerController>().IsFocused())
 
         {
-
+            FindObjectOfType<SoundManager>().Play("lever");
             if (isOn)
             {
                 GetComponent<SpriteRenderer>().sprite = offLever.GetComponent<SpriteRenderer>().sprite;

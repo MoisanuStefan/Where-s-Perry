@@ -64,7 +64,8 @@ public class Entity : MonoBehaviour
 
     public virtual bool CheckWall()
     {
-        return Physics2D.Raycast(wallCheck.position, aliveGO.transform.right, entityData.wallCheckDistance, entityData.whatIsGround);
+        //return Physics2D.Raycast(wallCheck.position, aliveGO.transform.right, entityData.wallCheckDistance, entityData.whatIsGround);
+        return Physics2D.OverlapBox(wallCheck.position, new Vector2(entityData.wallCheckDistance, entityData.wallCheckDistance * 2), 0, entityData.whatIsGround);
     }
 
     public virtual bool CheckLedge()
@@ -121,7 +122,7 @@ public class Entity : MonoBehaviour
     }
     public virtual void OnDrawGizmos()
     {
-        Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(wallCheck.right * facingDirection * entityData.wallCheckDistance));
+        Gizmos.DrawWireCube(wallCheck.position, new Vector2(entityData.wallCheckDistance, entityData.wallCheckDistance * 2));
         Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
         Gizmos.DrawWireSphere(playerCheck.position + playerCheck.right * entityData.minDetectRange, 0.2f);
         Gizmos.DrawWireSphere(playerCheck.position + playerCheck.right * entityData.maxDetectRange, 0.3f);

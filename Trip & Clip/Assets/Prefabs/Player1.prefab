@@ -126,7 +126,7 @@ MonoBehaviour:
   combatEnabled: 1
   inputTimer: 0.2
   attackRadius: 0.19
-  attackDamage: 10
+  attackDamage: 1
   attackHitBoxPosition: {fileID: 9182830024806030554}
   whatIsDamageable:
     serializedVersion: 2
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa70954a2556544db6ce1da3bb101ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 3
   knockbackDuration: 0.25
   knockbackSpeed: {x: 8, y: 10}
   spriteScaleFactor: 0.03
@@ -157,6 +157,7 @@ MonoBehaviour:
   groundCheck: {fileID: 9182830024534879827}
   followTarget: {fileID: 9182830025886894742}
   flyPlayer: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!95 &9182830023976389714
 Animator:
   serializedVersion: 3

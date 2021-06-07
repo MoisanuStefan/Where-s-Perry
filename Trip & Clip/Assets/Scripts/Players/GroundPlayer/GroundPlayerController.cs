@@ -28,6 +28,9 @@ public class GroundPlayerController : PlayerController
     public Transform followTarget;
     public GameObject flyPlayer;
 
+    [SerializeField]
+    private HealthBar healthBar;
+
     private void Awake()
     {
         if (groundSingleton != null)
@@ -187,7 +190,20 @@ public class GroundPlayerController : PlayerController
         base.SetFocused(value);
     }
 
+    public override void DecreaseHealth(float amount)
+    {
+        base.DecreaseHealth(amount);
+        FindObjectOfType<SoundManager>().Play("grr");
+        HealthBar.GetInstance().DecreaseHealth();
 
+    }
+    
+    public override void Die()
+    {
+        HealthBar.GetInstance().ResetHealth();
+        base.Die();
+    }
+    
 
     private void OnDrawGizmos()
     {

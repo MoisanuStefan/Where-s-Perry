@@ -24,6 +24,7 @@ public class MapPerry : MonoBehaviour
     {
         if (!platform.IsMoving())
         {
+            FindObjectOfType<SoundManager>().Play("dubiduba");
             GetComponent<Rigidbody2D>().velocity = new Vector2(movementSpeed, 0);
             anim.SetBool("isMoving", true);
         }

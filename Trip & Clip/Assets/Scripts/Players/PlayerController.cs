@@ -186,7 +186,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void DecreaseHealth(float amount)
+    public virtual void DecreaseHealth(float amount)
     {
         currentHealth -= amount;
         if (currentHealth <= 0.0f)
@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Die()
+    public virtual void Die()
     {
         SetVelocity(Vector3.zero);
         gameObject.transform.parent = null;

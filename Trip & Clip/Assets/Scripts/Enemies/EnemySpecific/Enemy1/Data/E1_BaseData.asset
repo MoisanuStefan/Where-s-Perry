@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f243d66857fcd844a0b19e37c18e92a, type: 3}
   m_Name: E1_BaseData
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 2
   damageHopSpeed: 10
-  wallCheckDistance: 0.2
-  ledgeCheckDistance: 0.4
+  wallCheckDistance: 1.09
+  ledgeCheckDistance: 0.58
   minDetectRange: 6
   maxDetectRange: 7
   closeRangeActionDistance: 1
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 2304
+    m_Bits: 264448
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 1024

@@ -61,6 +61,9 @@ public class ResetPlayersPositions : MonoBehaviour
             groundPlayer.SetFocused(true);
             flyPlayer.SetFollowMode(true);
             GameObject.FindGameObjectWithTag("ScoreKeeper").SendMessage("BeginTimer");
+            FindObjectOfType<SoundManager>().Play("perry");
+            FindObjectOfType<SoundManager>().Play("theme");
+
         }
     }
 

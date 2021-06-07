@@ -26,6 +26,7 @@ public class LaserCollisionController : MonoBehaviour
 
         SetCollider();
         previousBounds = polygonCollider.bounds;
+        UpdateAStarPath();
     }
 
     private void SetCollider()

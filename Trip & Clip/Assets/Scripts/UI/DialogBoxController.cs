@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class DialogBoxController : MonoBehaviour
 {
     [SerializeField]
     private float displayTime = 2f;
     private float enableTime;
-    private Text text;
+    private TextMeshProUGUI text;
 
     void Start()
     {
-        text = GetComponent<Text>();
+        text = GetComponent<TextMeshProUGUI>();
         gameObject.SetActive(false);
     }
 

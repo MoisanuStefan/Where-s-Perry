@@ -13,12 +13,13 @@ public class DeadState : State
     public override void Enter()
     {
         base.Enter();
+        entity.gameObject.SetActive(false);
+
     }
 
     public override void Exit()
     {
         base.Exit();
-        entity.gameObject.SetActive(false);
     }
 
     public override void LogicUpdate()

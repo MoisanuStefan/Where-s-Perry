@@ -6,7 +6,6 @@ public class PlayerSwitcher : MonoBehaviour
 {
 
 
-    public PlayerController[] players;
     private int currentPlayer;
     private bool isFollowEnabled = true;
 
@@ -31,6 +30,7 @@ public class PlayerSwitcher : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
+            FindObjectOfType<SoundManager>().Play("swap");
             FlyPlayerController flyplayer = FlyPlayerController.GetInstance();
             GroundPlayerController groundPlayer = GroundPlayerController.GetInstance();
             if (currentPlayer == 0)

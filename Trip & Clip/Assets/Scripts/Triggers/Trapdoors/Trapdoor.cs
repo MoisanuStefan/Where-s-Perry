@@ -75,5 +75,6 @@ public class Trapdoor : Trigger
         isMoving = true;
         isTriggered = !isTriggered;
         trapdoorBound = boxCollider.bounds;
+        FindObjectOfType<SoundManager>().Play("trapdoor");
     }
 }

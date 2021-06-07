@@ -122,6 +122,7 @@ public class ScoreKeeper : MonoBehaviour
 
     private IEnumerator ShakeMe()
     {
+        FindObjectOfType<SoundManager>().Play("shake");
         while (Time.time < shakeBeginTime + shakeTime)
         {
             hatContainerTransform.position += Vector3.left * shakeDirection * shakeFactor;

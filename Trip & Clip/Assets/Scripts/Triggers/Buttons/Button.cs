@@ -5,18 +5,22 @@ using UnityEngine;
 public class Button : Trigger
 {
     public float moveDistance;
-    public float lerpTime;
-    public float delayTime = 0;
+    public float lerpTime = 4f;
+    public float delayTime = 0.1f;
 
     public Trigger[] triggers;
 
     private bool isTriggered;
     private bool isMoving;
     private bool collisionExit = false;
+    private bool isDisabled = false;
 
     private string triggeringEntity = "notag";
 
     private float unTriggerTime;
+    private float disabledTime = 0.4f;
+    private float disableStartTime;
+
 
     private Vector3 unTriggeredPosition;
     private Vector3 triggeredPosition;
@@ -37,21 +41,25 @@ public class Button : Trigger
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject go = collision.gameObject;
-        if (triggeringEntity == "notag" || go.CompareTag(triggeringEntity))
+        if (!isMoving)
         {
-            // player layer = 10
-            if ((go.layer == 10 && go.GetComponent<PlayerController>().IsFocused()) || go.layer == 18)
+            if (triggeringEntity == "notag" || go.CompareTag(triggeringEntity))
             {
-                triggeringEntity = collision.gameObject.tag;
-                if (!isTriggered)
+                // player layer = 10
+                // pushables layer = 18
+                if ((go.layer == 10 && go.GetComponent<PlayerController>().IsFocused()) || go.layer == 18)
                 {
+                    triggeringEntity = collision.gameObject.tag;
+                    if (!isTriggered)
+                    {
 
-                    TriggerFunction();
-                }
+                        TriggerFunction();
+                    }
 
-                else
-                {
-                    unTriggerTime = Mathf.Infinity;
+                    else
+                    {
+                        unTriggerTime = Mathf.Infinity;
+                    }
                 }
             }
         }
@@ -79,6 +87,7 @@ public class Button : Trigger
     void Update()
     {
      
+      
         if(collisionExit && Time.time >= unTriggerTime + delayTime)
         {
             collisionExit = false;
@@ -103,6 +112,7 @@ public class Button : Trigger
 
         destination = (isTriggered) ? unTriggeredPosition : triggeredPosition;
 
+        FindObjectOfType<SoundManager>().Play((isTriggered) ? "button_off" : "button_on");
         isTriggered = !isTriggered;
         StartCoroutine(Move(0f, destination));
     }
@@ -110,19 +120,19 @@ public class Button : Trigger
     IEnumerator Move(float perc, Vector3 destination)
     {
         float incrementAmount = 1f / lerpTime;
-      
-        while (perc < 1f)
+        
+        while (1 - perc > 0.001f)
         {
-            perc += Time.deltaTime * incrementAmount;
+            perc += incrementAmount;
             transform.position = Vector3.Lerp(transform.position, destination, perc);
+            yield return new WaitForSeconds(0.005f);
+
         }
-        if (perc >= 1f)
-        {
+       
             isMoving = false;
             transform.position = destination;
-        }
         
-        yield return null;
+
     }
 
   

@@ -17,6 +17,8 @@ public class PlatformController : Trigger
 
     private int fromWaypointIndex;
 
+    private BoxCollider2D boxCollider;
+    private Bounds bounds;
     private Rigidbody2D rb;
     private GroundPlayerController groundPlayerController;
     private Vector3 platformDirection;
@@ -32,6 +34,7 @@ public class PlatformController : Trigger
 
     private void Start()
     {
+        boxCollider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         fromWaypointIndex = 0;
         globalWaypoins = new Vector3[localWaypoints.Length];
@@ -68,6 +71,7 @@ public class PlatformController : Trigger
         if (isMoving || !isTriggerable)
         {
             transform.Translate(CalculatePlatformMovement());
+            UpdateGraph();
         }
 
 
@@ -117,9 +121,19 @@ public class PlatformController : Trigger
         if (isTriggerable)
         {
             base.TriggerFunction();
+            if (!isMoving)
+            {
+                FindObjectOfType<SoundManager>().Play("platform_init");
+            }
+            FindObjectOfType<SoundManager>().Stop((isTriggered) ? "platform_go" : "platform_come");
+            FindObjectOfType<SoundManager>().PlayLoop((isTriggered) ? "platform_come" : "platform_go");
             isTriggered = !isTriggered;
             percentBetweenWaypoints = 0;
             isMoving = true;
+            if (boxCollider)
+            {
+                bounds = boxCollider.bounds;
+            }
         }
     }
     private Vector3 CalculatePlatformMovement()
@@ -135,7 +149,9 @@ public class PlatformController : Trigger
             if (1 - percentBetweenWaypoints < 0.1f) {
                 percentBetweenWaypoints = 0;
                 isMoving = false;
-            
+                FindObjectOfType<SoundManager>().Stop("platform_init");
+                FindObjectOfType<SoundManager>().Stop((isTriggered) ? "platform_go" : "platform_come");
+
             }
 
         }
@@ -153,6 +169,7 @@ public class PlatformController : Trigger
                 fromWaypointIndex++;
                 if (fromWaypointIndex >= globalWaypoins.Length - 1)
                 {
+                    
                     fromWaypointIndex = 0;
                     System.Array.Reverse(globalWaypoins);
                 }
@@ -162,6 +179,16 @@ public class PlatformController : Trigger
         }
         return newPosition - transform.position;
 
+    }
+
+    private void UpdateGraph()
+    {
+        if (AstarPath.active)
+        {
+            AstarPath.active.UpdateGraphs(boxCollider.bounds);
+            AstarPath.active.UpdateGraphs(bounds);
+            bounds = boxCollider.bounds;
+        }
     }
     private void OnDrawGizmos()
     {

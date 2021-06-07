@@ -43,6 +43,8 @@ public class TextPrinter : MonoBehaviour
     }
     private IEnumerator TypeText()
     {
+        FindObjectOfType<SoundManager>().PlayLoop("type");
+
         foreach (char letter in text.ToCharArray())
         {
             if (letter == '\\')
@@ -57,11 +59,13 @@ public class TextPrinter : MonoBehaviour
         }
         isPrinting = false;
         anim.SetBool("isWriting", false);
+        FindObjectOfType<SoundManager>().Stop("type");
+
 
 
 
     }
 
-    
+
 
 }

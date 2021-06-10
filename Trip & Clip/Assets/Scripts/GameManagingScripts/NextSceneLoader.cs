@@ -6,6 +6,7 @@ public class NextSceneLoader : MonoBehaviour
 {
     public string sceneName;
     public float waitTime;
+    public Animator animator;
 
     public Vector3 playersResetPosition;
 
@@ -21,6 +22,7 @@ public class NextSceneLoader : MonoBehaviour
   
     private void Start()
     {
+        
         sceneLoaded = false;
         groundPlayerOn = false;
         flyPlayerOn = false;
@@ -78,8 +80,21 @@ public class NextSceneLoader : MonoBehaviour
         }
     }
 
+    public void ResetButton()
+    {
+        StartCoroutine(PlaySceneEndAnim());
+    }
+
+    IEnumerator PlaySceneEndAnim()
+    {
+        animator.SetTrigger("start");
+        yield return new WaitForSeconds(1f);
+
+
+    }
     IEnumerator LoadNextScene(string sceneName) {
-        
+
+        animator.SetTrigger("start");
         yield return new WaitForSeconds(waitTime);
         SceneManager.LoadScene(sceneName);
 

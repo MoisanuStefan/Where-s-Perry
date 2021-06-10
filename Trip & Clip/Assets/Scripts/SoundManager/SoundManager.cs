@@ -19,26 +19,44 @@ public class SoundManager : MonoBehaviour
             s.source.pitch = s.pitch;
 
         }
-        Play("theme");
+        PlayLoop("theme");
     }
 
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        s.source.Play();
+        if (s.source != null)
+        {
+            s.source.Play();
+        }
     }
 
     public void Stop(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        s.source.Stop();
+        if (s.source != null)
+        {
+            s.source.Stop();
+        }
     }
 
     public void PlayLoop(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        s.source.loop = true;
-        s.source.Play();
+        if (s.source != null)
+        {
+            s.source.loop = true;
+            s.source.Play();
+        }
+    }
+
+    public void MapBackButtonPress()
+    {
+       
+        Array.Find(sounds, sound => sound.name == "platform_go").source.Stop();
+        Array.Find(sounds, sound => sound.name == "platform_come").source.Stop();
+
+
     }
 
 }

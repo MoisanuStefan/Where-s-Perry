@@ -10,7 +10,7 @@ public class LeaderboardGlobal : Leaderboard
     protected override void SetEntryValues(Transform entryTransform, User user)
     {
         base.SetEntryValues(entryTransform, user);
-        entryTransform.Find("GlobalTime").GetComponent<TextMeshProUGUI>().text = user.globalTime.ToString();
+        entryTransform.Find("GlobalTime").GetComponent<TextMeshProUGUI>().text = (user.globalTime == 0) ? "--:--.--" : System.TimeSpan.FromSeconds(user.globalTime).ToString("mm':'ss'.'ff");
         entryTransform.Find("Level1").GetComponent<TextMeshProUGUI>().text = (user.levelsData[0].timeString == "") ? "--:--.--" : user.levelsData[0].timeString;
         entryTransform.Find("Level2").GetComponent<TextMeshProUGUI>().text = (user.levelsData[1].timeString == "") ? "--:--.--" : user.levelsData[1].timeString;
         entryTransform.Find("Level3").GetComponent<TextMeshProUGUI>().text = (user.levelsData[2].timeString == "") ? "--:--.--" : user.levelsData[2].timeString;
@@ -25,4 +25,21 @@ public class LeaderboardGlobal : Leaderboard
         usersList.Sort((a, b) => a.globalTime.CompareTo(b.globalTime));
     }
 
+    protected override void SendEmptyToEnd(List<User> usersList)
+    {
+        base.SendEmptyToEnd(usersList);
+        List<User> emptyUsers = new List<User>();
+        foreach (var user in usersList)
+        {
+            if (user.globalTime == 0)
+            {
+                emptyUsers.Add(user);
+            }
+        }
+        foreach (var user in emptyUsers)
+        {
+            usersList.Remove(user);
+        }
+        usersList.AddRange(emptyUsers);
+    }
 }

@@ -9,7 +9,6 @@ public class UpdateAStarGraph : MonoBehaviour
     private Bounds bounds;
     void Start()
     {
-       
         aCollider = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -31,4 +30,7 @@ public class UpdateAStarGraph : MonoBehaviour
             bounds = aCollider.bounds;
         }
     }
+
+   
+  
 }

@@ -176,6 +176,13 @@ public class PlayerController : MonoBehaviour
     public void DisableFlip()
     {
         canFlip = false;
+        StartCoroutine(ReEnableFlip());
+    }
+
+    private IEnumerator ReEnableFlip()
+    {
+        yield return new WaitForSeconds(0.5f);
+        EnableFlip();
     }
     public virtual void Flip()
     {

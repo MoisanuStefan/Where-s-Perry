@@ -6,20 +6,55 @@ public class MapPlatform : MonoBehaviour
 {
 
     public float speed;
+    public UnityEngine.UI.Button playButton;
     private float percentBetweenWaypoints;
     private bool isMoving;
     private Vector3 destination;
+    private bool firstMoveInit = false;
+    private bool firstMoveCompleted = false;
+    private bool mustdisablePlayBut = false;
 
-   
 
+
+    private void Start()
+    {
+        firstMoveInit = false;
+        firstMoveCompleted = false;
+        mustdisablePlayBut = true;
+    }
+
+    private void OnEnable()
+    {
+        firstMoveInit = false;
+        firstMoveCompleted = false;
+        mustdisablePlayBut = true;
+    }
 
     private void FixedUpdate()
     {
+        if (mustdisablePlayBut)
+        {
+            mustdisablePlayBut = false;
+            playButton.interactable = false;
+        }
         if (isMoving)
         {
             transform.Translate(CalculatePlatformMovement());
         }
+        if (!isMoving)
+        {
+            if (firstMoveInit && !firstMoveCompleted)
+            {
+                firstMoveCompleted = true;
+                playButton.interactable = true;
+                
+            }
+            FindObjectOfType<SoundManager>().Stop("platform_go");
+            FindObjectOfType<SoundManager>().Stop("platform_come");
 
+
+
+        }
 
     }
 
@@ -52,10 +87,21 @@ public class MapPlatform : MonoBehaviour
     {
         return isMoving;
     }
-    public void LerpTo(Transform position)
+    public void LerpTo(Transform destination)
     {
-        destination = position.position;
+        bool goingUp = transform.position.y <= destination.position.y;
+        if (!isMoving && destination.position != transform.position)
+        {
+            FindObjectOfType<SoundManager>().Play("platform_init");
+        }
+        FindObjectOfType<SoundManager>().Stop((goingUp) ? "platform_come" : "platform_go");
+        FindObjectOfType<SoundManager>().PlayLoop((goingUp) ? "platform_go" : "platform_come");
+        this.destination = destination.position;
         isMoving = true;
+        if (!firstMoveCompleted)
+        {
+            firstMoveInit = true;
+        }
         percentBetweenWaypoints = 0;
     }
 }

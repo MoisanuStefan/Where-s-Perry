@@ -180,6 +180,7 @@ public class GroundPlayerController : PlayerController
     {
         if (collision.gameObject.CompareTag("Hat"))
         {
+            FindObjectOfType<SoundManager>().Play("grr");
             GameObject.FindGameObjectWithTag("ScoreKeeper").SendMessage("IncrementScore");
             Destroy(collision.gameObject);
         }

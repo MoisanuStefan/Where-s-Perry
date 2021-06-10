@@ -94,12 +94,18 @@ public class LevelLocker : MonoBehaviour
             {
                 index++;
                 trapdoor.TriggerFunction();
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.2f);
             }
         }
-        if (currentLevel > 0) {
-            platform.LerpTo(buttons[(int)currentLevel - 1].transform);
+        if(currentLevel == 6)
+        {
+            currentLevel--;
         }
+        if (currentLevel < 6)
+        {
+            platform.LerpTo(buttons[(int)currentLevel].transform);
+        }
+      
     }
 
   

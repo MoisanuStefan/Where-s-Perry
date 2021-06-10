@@ -26,8 +26,8 @@ public class ScoreKeeper : MonoBehaviour
     private float shakeSpeed;
 
     private TimeSpan timePlaying;
-    private Text hatsCounter;
-    private Text timeCounter;
+    private TextMeshProUGUI hatsCounter;
+    private TextMeshProUGUI timeCounter;
     private Transform hatContainerTransform;
     private Vector3 initialPosition;
    
@@ -41,8 +41,8 @@ public class ScoreKeeper : MonoBehaviour
   
     public void ResetScore()
     {
-        hatsCounter = GameObject.FindGameObjectWithTag("HatCounter").GetComponent<Text>();
-        timeCounter = GameObject.FindGameObjectWithTag("TimeCounter").GetComponent<Text>();
+        hatsCounter = GameObject.FindGameObjectWithTag("HatCounter").GetComponent<TextMeshProUGUI>();
+        timeCounter = GameObject.FindGameObjectWithTag("TimeCounter").GetComponent<TextMeshProUGUI>();
         numberOfHats = 0;
 
         timeCounter.text = "00:00.00";

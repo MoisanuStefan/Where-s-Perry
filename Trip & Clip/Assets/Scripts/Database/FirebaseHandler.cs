@@ -5,18 +5,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class FirebaseHandler : MonoBehaviour
 {
-    [SerializeField]
-    private DialogBoxController dialogBox;
-    [SerializeField]
-    private GameObject signOutButton;
+  
     public float requestWaitTime = 1f;
-    public InputField usernameInput;
-    public InputField emailInput;
-    public InputField passwordInput;
-    public InputField passordCheckInput;
+   
 
     private static FirebaseHandler singletonInstance = null;
 
@@ -36,7 +31,6 @@ public class FirebaseHandler : MonoBehaviour
     {
         if (singletonInstance != null)
         {
-            Destroy(gameObject);
             return;
         }
         singletonInstance = this;
@@ -45,6 +39,8 @@ public class FirebaseHandler : MonoBehaviour
 
     private void Start()
     {
+       
+
         serializer = new fsSerializer();
         usersList = new List<User>();
 
@@ -60,30 +56,30 @@ public class FirebaseHandler : MonoBehaviour
     {
         if (ValidInputFields())
         {
-            SignUpUser(emailInput.text, usernameInput.text, passwordInput.text);
+            SignUpUser(GameObject.FindGameObjectWithTag("EmailInput").GetComponent<InputField>().text, GameObject.FindGameObjectWithTag("UserInput").GetComponent<InputField>().text, GameObject.FindGameObjectWithTag("PassInput").GetComponent<InputField>().text);
         }
     }
 
     private bool ValidInputFields()
     {
-        if (passordCheckInput.text.Length == 0 || passwordInput.text.Length == 0 || emailInput.text.Length == 0)
+        if (GameObject.FindGameObjectWithTag("PassVerifyInput").GetComponent<InputField>().text.Length == 0 || GameObject.FindGameObjectWithTag("PassInput").GetComponent<InputField>().text.Length == 0 || GameObject.FindGameObjectWithTag("EmailInput").GetComponent<InputField>().text.Length == 0)
         {
-            dialogBox.SetMessage("Please fill all required fields.");
+            GameObject.FindGameObjectWithTag("DialogBox").GetComponent<DialogBoxController>().SetMessage("Please fill all required fields.");
             return false;
         }
-        if (passwordInput.text.Length < 6)
+        if (GameObject.FindGameObjectWithTag("PassInput").GetComponent<InputField>().text.Length < 6)
         {
-            dialogBox.SetMessage("Password must be at least 6 characters.");
+            GameObject.FindGameObjectWithTag("DialogBox").GetComponent<DialogBoxController>().SetMessage("Password must be at least 6 characters.");
             return false;
         }
-        if (passwordInput.text != passordCheckInput.text)
+        if (GameObject.FindGameObjectWithTag("PassInput").GetComponent<InputField>().text != GameObject.FindGameObjectWithTag("PassVerifyInput").GetComponent<InputField>().text)
         {
-            dialogBox.SetMessage("Passwords do not match!");
+            GameObject.FindGameObjectWithTag("DialogBox").GetComponent<DialogBoxController>().SetMessage("Passwords do not match!");
             return false;
         }
-        if (!emailInput.text.Contains("@"))
+        if (!GameObject.FindGameObjectWithTag("EmailInput").GetComponent<InputField>().text.Contains("@"))
         {
-            dialogBox.SetMessage("Please insert a valid email.");
+            GameObject.FindGameObjectWithTag("DialogBox").GetComponent<DialogBoxController>().SetMessage("Please insert a valid email.");
             return false;
         }
         return true;
@@ -92,18 +88,18 @@ public class FirebaseHandler : MonoBehaviour
     private void SignUpUser(string email, string username, string password)
     {
         string userData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"returnSecureToken\":true}";
-        RestClient.Post<SignInResponse>("https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=" + authKey, userData).Then(
+        RestClient.Post<SignInResponse>("https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=" + singletonInstance.authKey, userData).Then(
             response =>
             {
                 CreateNewUserEntry(response.localId, response.idToken);
-                dialogBox.SetMessage("Account created. Go back and sign in to play !");
+                GameObject.FindGameObjectWithTag("DialogBox").GetComponent<DialogBoxController>().SetMessage("Account created. Go back and sign in to play !");
 
             }).Catch(err =>
             {
                 var error = err as RequestException;
                 if (error != null)
                 {
-                    dialogBox.SetMessage("Error creating account. Try again.");
+                    GameObject.FindGameObjectWithTag("DialogBox").GetComponent<DialogBoxController>().SetMessage("Error creating account. Try again.");
                     Debug.Log(error);
                 }
             });
@@ -111,35 +107,35 @@ public class FirebaseHandler : MonoBehaviour
 
     private void CreateNewUserEntry(string localId, string idToken)
     {
-        User user = new User(localId, emailInput.text, usernameInput.text, 0f);
+        User user = new User(localId, GameObject.FindGameObjectWithTag("EmailInput").GetComponent<InputField>().text, GameObject.FindGameObjectWithTag("UserInput").GetComponent<InputField>().text, 0f);
 
-        RestClient.Put(databaseURL + "/userData/" + localId + ".json?auth=" + idToken, user);
+        RestClient.Put(singletonInstance.databaseURL + "/userData/" + localId + ".json?auth=" + idToken, user);
     }
 
     public void SignInButton()
     {
-        if (idToken != null)
+        if (singletonInstance.idToken != null)
         {
-            dialogBox.SetMessage("Already signed in. Please sign out before signing in again.");
+            GameObject.FindGameObjectWithTag("DialogBox").GetComponent<DialogBoxController>().SetMessage("Already signed in. Please sign out before signing in again.");
         }
         else
         {
-            SignInUser(emailInput.text, passwordInput.text);
+            SignInUser(GameObject.FindGameObjectWithTag("EmailInput").GetComponent<InputField>().text, GameObject.FindGameObjectWithTag("PassInput").GetComponent<InputField>().text);
         }
     }
 
     private void SignInUser(string email, string password)
     {
         string userData = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"returnSecureToken\":true}";
-        RestClient.Post<SignInResponse>("https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=" + authKey, userData).Then(
+        RestClient.Post<SignInResponse>("https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=" + singletonInstance.authKey, userData).Then(
             response =>
             {
-                isLogged = true;
+                singletonInstance.isLogged = true;
                 Debug.Log("Successfully signed in");
-                dialogBox.SetMessage("Successfully signed in!");
-                idToken = response.idToken;
-                localId = response.localId;
-                signOutButton.SetActive(true);
+                GameObject.FindGameObjectWithTag("DialogBox").GetComponent<DialogBoxController>().SetMessage("Successfully signed in!");
+                singletonInstance.idToken = response.idToken;
+                singletonInstance.localId = response.localId;
+               
                 SetUsername();
 
             }).Catch(err =>
@@ -147,7 +143,7 @@ public class FirebaseHandler : MonoBehaviour
                 var error = err as RequestException;
                 if (error != null)
                 {
-                    dialogBox.SetMessage("Username or password incorrect. Try again");
+                    GameObject.FindGameObjectWithTag("DialogBox").GetComponent<DialogBoxController>().SetMessage("Username or password incorrect. Try again");
                     Debug.Log(error.Message);
                 }
             });
@@ -155,9 +151,9 @@ public class FirebaseHandler : MonoBehaviour
 
     private void SetUsername()
     {
-        RestClient.Get<User>(databaseURL + "/userData/" + localId + ".json").Then(response =>
+        RestClient.Get<User>(singletonInstance.databaseURL + "/userData/" + singletonInstance.localId + ".json").Then(response =>
         {
-            username = response.username;
+            singletonInstance.username = response.username;
         }).Catch(err =>
         {
             var error = err as RequestException;
@@ -174,25 +170,26 @@ public class FirebaseHandler : MonoBehaviour
 
     public void SignOutButton()
     {
-        isLogged = false;
-        idToken = null;
-        localId = null;
-        dialogBox.SetMessage("Successfully signed out.");
+        singletonInstance.isLogged = false;
+        singletonInstance.idToken = null;
+        singletonInstance.localId = null;
+        GameObject.FindGameObjectWithTag("DialogBox").GetComponent<DialogBoxController>().SetMessage("Successfully signed out.");
+       
     }
 
     public bool isLoggedIn()
     {
-        return isLogged;
+        return singletonInstance.isLogged;
     }
 
     public void PutLevelScore(int levelId, string levelName, float seconds)
     {
-        if (idToken != null)
+        if (singletonInstance.idToken != null)
         {
             // idToken == nul => player is not signed in so scores will not get saved
             // idToken != null => player is signed in and the score will be updated if it is a highscore
 
-            RestClient.Get<User>(databaseURL + "/userData/" + localId + ".json").Then(response =>
+            RestClient.Get<User>(singletonInstance.databaseURL + "/userData/" + singletonInstance.localId + ".json").Then(response =>
             {
                 float previousLevelTime = response.levelsData[levelId].seconds;
                 if (previousLevelTime > seconds || previousLevelTime == 0)
@@ -209,7 +206,7 @@ public class FirebaseHandler : MonoBehaviour
                         // store the level with the lowest index that the user did not complete yet
                         response.currentLevel = levelId + 1;
                     }
-                    RestClient.Put(databaseURL + "/userData/" + localId + ".json?auth=" + idToken, response).Catch(err =>
+                    RestClient.Put(singletonInstance.databaseURL + "/userData/" + singletonInstance.localId + ".json?auth=" + singletonInstance.idToken, response).Catch(err =>
                     {
                         var error = err as RequestException;
                         if (error != null)
@@ -240,18 +237,18 @@ public class FirebaseHandler : MonoBehaviour
 
     public void GetUsersList(Action<List<User>> callback)
     {
-        RestClient.Get(databaseURL + "/userData.json").Then(response =>
+        RestClient.Get(singletonInstance.databaseURL + "/userData.json").Then(response =>
         {
 
             fsData userDataJson = fsJsonParser.Parse(response.Text);
             Dictionary<string, User> users = null;
-            serializer.TryDeserialize(userDataJson, ref users);
-            usersList.Clear();
+            singletonInstance.serializer.TryDeserialize(userDataJson, ref users);
+            singletonInstance.usersList.Clear();
             foreach (var user in users.Values)
             {
-                usersList.Add(user);
+                singletonInstance.usersList.Add(user);
             }
-            callback(usersList);
+            callback(singletonInstance.usersList);
         }).Catch(err =>
         {
 
@@ -270,7 +267,7 @@ public class FirebaseHandler : MonoBehaviour
 
     public void GetCurrentLevel(Action<float> callback)
     {
-        RestClient.Get<User>(databaseURL + "/userData/" + localId + ".json").Then(response =>
+        RestClient.Get<User>(singletonInstance.databaseURL + "/userData/" + singletonInstance.localId + ".json").Then(response =>
         {
             callback(response.currentLevel);
                 

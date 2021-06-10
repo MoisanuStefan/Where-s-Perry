@@ -46,76 +46,76 @@ MonoBehaviour:
   sounds:
   - name: button_click
     clip: {fileID: 8300000, guid: 4535254d129b2fd4ca87f4f40e23aa68, type: 3}
-    volume: 0.2
+    volume: 0.9
     pitch: 2
     source: {fileID: 0}
   - name: dubiduba
     clip: {fileID: 8300000, guid: 75aa8ac2d4cd9b64c96014925d2761c6, type: 3}
-    volume: 0.2
+    volume: 0.9
     pitch: 1
     source: {fileID: 0}
   - name: perry
     clip: {fileID: 8300000, guid: 568c699db5c9f7a489f78612184fcb19, type: 3}
-    volume: 0.05
+    volume: 0.16
     pitch: 1
     source: {fileID: 0}
   - name: swap
     clip: {fileID: 8300000, guid: 0425e92ad52806149b06271a4a000d5d, type: 3}
-    volume: 0.2
+    volume: 0.9
     pitch: 1
     source: {fileID: 0}
   - name: theme
     clip: {fileID: 8300000, guid: f39aaabd9699dd54db2f09be65ddd1ff, type: 3}
-    volume: 0.03
+    volume: 0.1
     pitch: 1
     source: {fileID: 0}
   - name: grr
     clip: {fileID: 8300000, guid: fd497a58b327a4a4592e890d445a3cc2, type: 3}
-    volume: 0.2
+    volume: 0.9
     pitch: 1
     source: {fileID: 0}
   - name: lever
     clip: {fileID: 8300000, guid: f2bfd9725d255b74099290b6ed18d73d, type: 3}
-    volume: 0.3
+    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: trapdoor
     clip: {fileID: 8300000, guid: 8533c1dc2d08cc24d948a97750f9e2bd, type: 3}
-    volume: 0.2
+    volume: 0.9
     pitch: 1
     source: {fileID: 0}
   - name: button_off
     clip: {fileID: 8300000, guid: 749d8cc6130276944924fc7c45c17652, type: 3}
-    volume: 0.3
+    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: button_on
     clip: {fileID: 8300000, guid: e31b55db6364b7c4f8e354b19931a171, type: 3}
-    volume: 0.3
+    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: type
     clip: {fileID: 8300000, guid: 5a7346187cc360740bda28c1fc3af045, type: 3}
-    volume: 0.2
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - name: shake
     clip: {fileID: 8300000, guid: 7e0dd5ff608a0fd4aa71bd2d85cd44d1, type: 3}
-    volume: 0.2
+    volume: 0.9
     pitch: 1
     source: {fileID: 0}
   - name: platform_go
     clip: {fileID: 8300000, guid: ea82e88def5fedd4b93f9ac4876897e6, type: 3}
-    volume: 0.2
+    volume: 0.9
     pitch: 1
     source: {fileID: 0}
   - name: platform_come
     clip: {fileID: 8300000, guid: ea82e88def5fedd4b93f9ac4876897e6, type: 3}
-    volume: 0.2
+    volume: 0.9
     pitch: 0.8
     source: {fileID: 0}
   - name: platform_init
     clip: {fileID: 8300000, guid: fc6c2e14013dc1a4a9eeef3533d860e4, type: 3}
-    volume: 0.15
+    volume: 0.2
     pitch: 1
     source: {fileID: 0}

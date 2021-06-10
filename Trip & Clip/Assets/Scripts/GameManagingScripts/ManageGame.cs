@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class ManageGame : MonoBehaviour
 {
@@ -11,12 +12,14 @@ public class ManageGame : MonoBehaviour
     [SerializeField]
     private ScoreKeeper scoreKeeper;
 
+
+
     private void Start()
     {
         isPaused = false;
     }
 
-   
+
     // Update is called once per frame
     void Update()
     {
@@ -40,24 +43,53 @@ public class ManageGame : MonoBehaviour
         GroundPlayerController.GetInstance().transform.parent = null;
         DontDestroyOnLoad(GroundPlayerController.GetInstance().gameObject);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
     }
 
+    private IEnumerator DelaySceneLoad()
+    {
+        yield return new WaitForSeconds(1f);
+        ResetScene();
+
+
+    }
     public void RestartButton()
     {
-        ResetScene();
+        Time.timeScale = 1;
+        StartCoroutine(DelaySceneLoad());
+
     }
     public void MenuButton()
     {
+        Time.timeScale = 1;
         Destroy(FlyPlayerController.GetInstance().gameObject);
         Destroy(GroundPlayerController.GetInstance().gameObject);
-        Time.timeScale = 1;
         SceneManager.LoadScene("Menu");
     }
     public void PauseUnpauseGame()
     {
-        isPaused = !isPaused;
         scoreKeeper.PauseResumeTimer();
-        GameObject.FindGameObjectWithTag("PauseButton").GetComponentInChildren<Text>().text = (isPaused) ? "Resume" : "Pause";
-        Time.timeScale = (isPaused) ? 0 : 1;
+        isPaused = !isPaused;
+        GameObject.FindGameObjectsWithTag("PauseButton")[1].GetComponentInChildren<TextMeshProUGUI>().text = (isPaused) ? "RESUME" : "PAUSE";
+        if (!isPaused)
+        {
+            Time.timeScale = 1;
+
+        }
+        else
+        {
+
+            StartCoroutine(DelayPause());
+        }
     }
+
+    private IEnumerator DelayPause()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+
+        Time.timeScale = 0;
+    }
+
+    
 }

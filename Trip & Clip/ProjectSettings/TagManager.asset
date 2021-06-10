@@ -14,7 +14,6 @@ TagManager:
   - HatCounter
   - TimeCounter
   - FinalPlatform
-  - SignOutButton
   - HatContainer
   - PauseButton
   - ScoreKeeper
@@ -22,6 +21,17 @@ TagManager:
   - notag
   - ball
   - box
+  - PauseTime
+  - PauseHats
+  - DialogBox
+  - SignOutButton
+  - SignInButton
+  - UserInput
+  - EmailInput
+  - PassInput
+  - PassVerifyInput
+  - SignOutButton
+  - SignOutBut
   layers:
   - Default
   - TransparentFX

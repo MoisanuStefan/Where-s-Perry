@@ -13,7 +13,6 @@ public class DialogBoxController : MonoBehaviour
     void Start()
     {
         text = GetComponent<TextMeshProUGUI>();
-        gameObject.SetActive(false);
     }
 
     private void Update()
@@ -21,7 +20,6 @@ public class DialogBoxController : MonoBehaviour
         if (gameObject.activeSelf && Time.time >= enableTime + displayTime)
         {
             text.text = "";
-            gameObject.SetActive(false);
         }
     }
     public void SetMessage(string message)

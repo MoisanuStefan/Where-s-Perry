@@ -9,7 +9,7 @@ public class PlatformController : Trigger
     public float speed;
 
     public bool isTriggerable;
-    public bool isFromMap = false;
+    public bool isFromStart = false;
 
     private Vector3[] globalWaypoins;
 
@@ -121,7 +121,7 @@ public class PlatformController : Trigger
         if (isTriggerable)
         {
             base.TriggerFunction();
-            if (!isMoving)
+            if (!isMoving && !isFromStart)
             {
                 FindObjectOfType<SoundManager>().Play("platform_init");
             }
@@ -139,7 +139,7 @@ public class PlatformController : Trigger
     private Vector3 CalculatePlatformMovement()
     {
         Vector3 newPosition;
-        if (isTriggerable || isFromMap)
+        if (isTriggerable)
         {
             Vector3 destination = (isTriggered) ? triggeredPosition : unTriggeredPosition;
             float distance = Vector3.Distance(transform.position, destination);
@@ -149,7 +149,7 @@ public class PlatformController : Trigger
             if (1 - percentBetweenWaypoints < 0.1f) {
                 percentBetweenWaypoints = 0;
                 isMoving = false;
-                FindObjectOfType<SoundManager>().Stop("platform_init");
+                FindObjectOfType<SoundManager>().Play("platform_init");
                 FindObjectOfType<SoundManager>().Stop((isTriggered) ? "platform_go" : "platform_come");
 
             }

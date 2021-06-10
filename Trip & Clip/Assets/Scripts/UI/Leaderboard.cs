@@ -13,6 +13,9 @@ public class Leaderboard : MonoBehaviour
     [SerializeField]
     protected float templateHeight = 30f;
     protected List<Transform> entryTansforms;
+    [SerializeField]
+    protected ScrollRect scroll;
+
     private void Awake()
     {
         //entryTemplate.gameObject.SetActive(false);
@@ -29,16 +32,27 @@ public class Leaderboard : MonoBehaviour
        
         FirebaseHandler.GetInstance().GetUsersList((usersList) => {
             SortUsers(usersList);
-
+            SendEmptyToEnd(usersList);
             InstantiateEntries(usersList);
-
             DisplayEntries();
+            ScrollToTop();
+
 
         }
         );
 
     }
 
+    protected void ScrollToTop()
+    {
+        
+       scroll.verticalNormalizedPosition = 0.5f;
+        Canvas.ForceUpdateCanvases();
+    }
+    protected virtual void SendEmptyToEnd(List<User> usersList)
+    {
+       
+    }
     protected virtual void SortUsers(List<User> usersList)
     {
 

@@ -59,6 +59,7 @@ public class ResetPlayersPositions : MonoBehaviour
             //GameObject.FindGameObjectWithTag("FlyPlayerCollider").SendMessage("SetEnabled", Strue);
             startTime = Mathf.Infinity;
             groundPlayer.SetFocused(true);
+            flyPlayer.SetFocused(false);
             flyPlayer.SetFollowMode(true);
             GameObject.FindGameObjectWithTag("ScoreKeeper").SendMessage("BeginTimer");
             FindObjectOfType<SoundManager>().Play("perry");

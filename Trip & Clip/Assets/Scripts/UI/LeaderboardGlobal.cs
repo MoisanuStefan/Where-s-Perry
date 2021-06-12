@@ -25,13 +25,16 @@ public class LeaderboardGlobal : Leaderboard
         usersList.Sort((a, b) => a.globalTime.CompareTo(b.globalTime));
     }
 
+   
+  
+
     protected override void SendEmptyToEnd(List<User> usersList)
     {
         base.SendEmptyToEnd(usersList);
         List<User> emptyUsers = new List<User>();
         foreach (var user in usersList)
         {
-            if (user.globalTime == 0)
+            if (user.globalTime == 0 || user.currentLevel != 6)
             {
                 emptyUsers.Add(user);
             }

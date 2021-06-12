@@ -1499,6 +1499,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1706823041}
+    - target: {fileID: 6913355228011080810, guid: cb0a73c424bc48842a8ee21f9c58c873,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 147.83492
+      objectReference: {fileID: 0}
+    - target: {fileID: 6913355228011080810, guid: cb0a73c424bc48842a8ee21f9c58c873,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -329.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6913355229149385017, guid: cb0a73c424bc48842a8ee21f9c58c873,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2708,7 +2718,7 @@ MonoBehaviour:
   textPrinter: {fileID: 391900405}
   text: Agent P, your mission is to get to the top of the tower and find out what
     is Dr. Doofenshmirtz up to. Don't worry, I'll be guiding you with my drone.\Move
-    - W, A, S, D\Jump - Space\LeftClick - Attack\Shift - Switch characters\F - Enable\Disable
+    - W, A, S, D\Jump - Space\LeftClick - Attack\Shift - Switch characters\F - Enable/Disable
     follow mode
 --- !u!61 &1307733864
 BoxCollider2D:

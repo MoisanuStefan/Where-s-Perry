@@ -32,6 +32,7 @@ TagManager:
   - PassVerifyInput
   - SignOutButton
   - SignOutBut
+  - FormButton
   layers:
   - Default
   - TransparentFX

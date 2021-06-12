@@ -15,7 +15,7 @@ public class Leaderboard : MonoBehaviour
     protected List<Transform> entryTansforms;
     [SerializeField]
     protected ScrollRect scroll;
-
+    private GameObject dialogBox;
     private void Awake()
     {
         //entryTemplate.gameObject.SetActive(false);
@@ -23,9 +23,23 @@ public class Leaderboard : MonoBehaviour
 
     }
 
-  
+    private void OnEnable()
+    {
+        dialogBox = GameObject.FindGameObjectWithTag("DialogBox");
+        if (dialogBox)
+        {
+            dialogBox.SetActive(false);
+        }
+    }
+    private void OnDisable()
+    {
+        if (dialogBox)
+        {
+            dialogBox.SetActive(true);
+        }
+    }
 
-   
+
 
     public void PopulateLeaderboard()
     {

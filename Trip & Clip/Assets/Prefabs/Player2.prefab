@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde7a2aa17973494d9481d3b451b7b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  speed: 130
   nextWaypointDistance: 1
   followDistance: 2
   headjumpMovementDelayTime: 0.5

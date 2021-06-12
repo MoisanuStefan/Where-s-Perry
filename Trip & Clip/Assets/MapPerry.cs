@@ -9,9 +9,25 @@ public class MapPerry : MonoBehaviour
     public UnityEngine.UI.Button playButton;
     public UnityEngine.UI.Button backButton;
     public Animator anim;
+    private GameObject dialogBox;
     private bool isMoving = false;
 
+    private void OnEnable()
+    {
 
+        dialogBox = GameObject.FindGameObjectWithTag("DialogBox");
+        if (dialogBox)
+        {
+            dialogBox.SetActive(false);
+        }
+    }
+    private void OnDisable()
+    {
+        if (dialogBox)
+        {
+            dialogBox.SetActive(true);
+        }
+    }
     private void Start()
     {
 

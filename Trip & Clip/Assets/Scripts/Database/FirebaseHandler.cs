@@ -285,4 +285,17 @@ public class FirebaseHandler : MonoBehaviour
         });
     }
 
+    public void PrintFeedbackReminder()
+    {
+        GetCurrentLevel((currentLevel) =>
+        {
+            if (currentLevel == 6)
+            {
+                
+                GameObject.FindGameObjectWithTag("DialogBox").GetComponent<DialogBoxController>().SetTimer(20f);
+                GameObject.FindGameObjectWithTag("DialogBox").GetComponent<DialogBoxController>().SetMessage("Thank you for playing! I hope you enjoyed it and please don't forget to fill out the feedback form. It only takes 5 minutes!");
+            }
+        });
+    }
+
 }

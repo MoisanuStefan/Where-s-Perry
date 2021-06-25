@@ -13,6 +13,7 @@ public class E1_DeadState : DeadState
     public override void Enter()
     {
         base.Enter();
+        GameObject.Instantiate(stateData.collectable, enemy.transform.GetChild(0).transform.position, Quaternion.identity);
     }
 
     public override void Exit()

@@ -145,11 +145,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   knockbackDuration: 0.25
-  knockbackSpeed: {x: 8, y: 10}
+  knockbackSpeed: {x: 12, y: 10}
   spriteScaleFactor: 0.03
-  movementSpeed: 6
+  movementSpeed: 5
   jumpForce: 30
-  groundCheckRadius: 0.26
+  groundCheckRadius: 0.2
   amountOfJumps: 1
   whatIsGround:
     serializedVersion: 2

@@ -77,45 +77,6 @@ public class PlatformController : Trigger
 
     }
 
-    /*
-    private void UpdateHorizontalVelocity()
-    {
-        newPos = transform.position;
-        xVelocity = (newPos.x - oldPos.x) / Time.deltaTime;
-        oldPos = newPos;
-    }
-    */
-  
-    /*
-    private void SetPlatformDirection(Vector2 newPosition)
-    {
-        if (newPosition.x > transform.position.x)
-        {
-            platformDirection = Vector2.right;
-            platformMovement = Mathf.Abs(newPosition.x - transform.position.x);
-        }
-        else if (newPosition.x < transform.position.x)
-        {
-            platformDirection = Vector2.left;
-            platformMovement = Mathf.Abs(newPosition.x - transform.position.x);
-
-        }
-        else if (newPosition.y < transform.position.y)
-        {
-            platformDirection = Vector2.down;
-            platformMovement = Mathf.Abs(newPosition.y - transform.position.y);
-
-        }
-        else
-        {
-            platformDirection = Vector2.up;
-            platformMovement = Mathf.Abs(newPosition.y - transform.position.y);
-
-        }
-
-    }
-
-    */
     public override void TriggerFunction()
     {
         if (isTriggerable)
@@ -139,10 +100,13 @@ public class PlatformController : Trigger
     private Vector3 CalculatePlatformMovement()
     {
         Vector3 newPosition;
+        float distance;
+
+        // platform only moves when TriggerFunction() is called
         if (isTriggerable)
         {
             Vector3 destination = (isTriggered) ? triggeredPosition : unTriggeredPosition;
-            float distance = Vector3.Distance(transform.position, destination);
+            distance = Vector3.Distance(transform.position, destination);
             percentBetweenWaypoints += Time.deltaTime * speed / distance;
 
             newPosition = Vector3.Lerp(transform.position, destination, percentBetweenWaypoints);
@@ -155,10 +119,11 @@ public class PlatformController : Trigger
             }
 
         }
+        // platform moves all the time
         else
         {
             int toWaypointIndex = fromWaypointIndex + 1;
-            float distance = Vector3.Distance(transform.position, globalWaypoins[toWaypointIndex]);
+            distance = Vector3.Distance(transform.position, globalWaypoins[toWaypointIndex]);
             percentBetweenWaypoints += Time.deltaTime * speed / distance;
 
             newPosition = Vector3.Lerp(transform.position, globalWaypoins[toWaypointIndex], percentBetweenWaypoints);

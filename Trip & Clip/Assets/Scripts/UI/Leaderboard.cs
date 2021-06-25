@@ -18,7 +18,6 @@ public class Leaderboard : MonoBehaviour
     private GameObject dialogBox;
     private void Awake()
     {
-        //entryTemplate.gameObject.SetActive(false);
         entryTansforms = new List<Transform>();
 
     }
@@ -43,8 +42,9 @@ public class Leaderboard : MonoBehaviour
 
     public void PopulateLeaderboard()
     {
-       
-        FirebaseHandler.GetInstance().GetUsersList((usersList) => {
+
+        FirebaseHandler.GetInstance().GetUsersList((usersList) =>
+        {
             SortUsers(usersList);
             SendEmptyToEnd(usersList);
             InstantiateEntries(usersList);
@@ -59,19 +59,19 @@ public class Leaderboard : MonoBehaviour
 
     protected void ScrollToTop()
     {
-        
-       scroll.verticalNormalizedPosition = 0.5f;
+        scroll.verticalNormalizedPosition = 0.5f;
         Canvas.ForceUpdateCanvases();
     }
+
     protected virtual void SendEmptyToEnd(List<User> usersList)
     {
-       
+
     }
+
     protected virtual void SortUsers(List<User> usersList)
     {
 
     }
-
 
     protected void InstantiateEntries(List<User> usersList)
     {
@@ -97,10 +97,10 @@ public class Leaderboard : MonoBehaviour
     {
 
     }
-   
+
     protected void DisplayEntries()
     {
-        
+
         foreach (var entry in entryTansforms)
         {
             entry.gameObject.SetActive(true);

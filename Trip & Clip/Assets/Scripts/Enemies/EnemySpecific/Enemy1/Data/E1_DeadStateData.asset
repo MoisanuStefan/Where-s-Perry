@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d0e94834426c1c4c87cadc5302fb96e, type: 3}
   m_Name: E1_DeadStateData
   m_EditorClassIdentifier: 
+  collectable: {fileID: 2718656853614437506, guid: b6bc1f7ef0c54be4ca59be7c8cef3279,
+    type: 3}
